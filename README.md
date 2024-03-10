@@ -1,0 +1,3 @@
+# berrielocal
+
+BerrieLocal Flutter project.
