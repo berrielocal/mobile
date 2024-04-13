@@ -1,0 +1,10 @@
+{
+  "test_title": "Тестовый экран",
+  "showcase": "Главная",
+  "catalog": "Каталог",
+  "cart" : "Корзина",
+  "favorite": "Избранное",
+  "profile": "Профиль",
+  "connectionTrouble": "Проблемы с подключением",
+  "createOrder": "Оформить заказ"
+}

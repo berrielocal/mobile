@@ -2,20 +2,58 @@ name: berrielocal
 description: "BerrieLocal Flutter project."
 
 publish_to: 'none'
-version: 1.0.0+1
+
+version: 1.0.0+2
 
 environment:
-  sdk: '>=3.2.6 <4.0.0'
+  sdk: '>=3.1.2 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
   cupertino_icons: ^1.0.2
+  dio: ^5.4.0
+  retrofit: ^4.0.3
+  elementary: ^3.0.0
+  elementary_helper: ^1.0.1
+  elementary_cli: ^2.0.0
+  auto_route: ^7.8.4
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
+  logger: ^2.0.2+1
+  pretty_dio_logger: ^1.3.1
+  shared_preferences: ^2.2.2
+  provider: ^6.1.1
+  analyzer: ^5.13.0
+  intl: ^0.18.1
+  intl_utils: ^2.8.5
+  rxdart: ^0.27.7
+  decimal: ^2.3.3
+  shimmer_animation: ^2.1.0+1
+  smooth_page_indicator: ^1.1.0
+  cached_network_image: ^3.3.1
+  intl_translation: ^0.18.2
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  build_runner: ^2.4.8
+  json_serializable: ^6.7.1
+  retrofit_generator: ^8.0.6
+  freezed: ^2.4.6
+  auto_route_generator: ^7.3.2
 
 flutter:
-  uses-material-design: true
+  uses-material-design: false
+
+  assets:
+    - assets/image/
+    - assets/svg/
+
+flutter_intl:
+  enabled: true

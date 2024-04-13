@@ -1,0 +1,11 @@
+{
+  "test_title": "Test title",
+  "showcase": "Showcase",
+  "catalog": "Catalog",
+  "cart" : "Cart",
+  "favorite": "Favorite",
+  "profile": "Profile",
+  "connectionTrouble": "Connection troubles",
+  "createOrder": "Create Order"
+
+}
