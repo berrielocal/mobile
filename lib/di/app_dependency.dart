@@ -1,3 +1,4 @@
+import 'package:berrielocal/data/token/repository/auth_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:berrielocal/ui/feature/test_page/test_page.dart';
@@ -29,9 +30,14 @@ class _AppDependencyState extends State<AppDependency> {
 
     //TODO: add repository in AppComponents
     final TestRepository testRepository = AppComponents().testRepository;
+    final AuthRepository authRepository = AppComponents().authRepository;
 
     //TODO: init models
-    _testPageModel = TestPageModel(errorHandler, testRepository);
+    _testPageModel = TestPageModel(
+      errorHandler,
+      testRepository,
+      authRepository,
+    );
   }
 
   @override
@@ -42,7 +48,9 @@ class _AppDependencyState extends State<AppDependency> {
           create: (context) => ValueNotifier(ThemeMode.light),
         ),
         //TODO: provide models
-        Provider(create: (context) => _testPageModel),
+        Provider(
+          create: (context) => _testPageModel,
+        ),
       ],
       child: widget.app,
     );

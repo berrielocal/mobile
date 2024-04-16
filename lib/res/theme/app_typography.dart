@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-const defaultFontFamily = 'Roboto';
+const defaultFontFamily = 'Montserrat';
 
 
 class AppTypography{

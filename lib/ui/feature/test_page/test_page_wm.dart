@@ -35,6 +35,7 @@ class TestPageWidgetModel extends WidgetModel<TestPageWidget, TestPageModel>
   void initWidgetModel() {
     super.initWidgetModel();
     _loadTestList();
+    _auth();
   }
 
   @override
@@ -69,5 +70,7 @@ class TestPageWidgetModel extends WidgetModel<TestPageWidget, TestPageModel>
     }
   }
 
-
+  Future<void> _auth() async {
+    await model.auth();
+  }
 }

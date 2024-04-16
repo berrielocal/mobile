@@ -24,7 +24,10 @@ class HomePage extends StatelessWidget {
           onDestinationSelected: tabsRouter.setActiveIndex,
           destinations: [
             NavigationDestination(
-              icon: SvgPicture.asset('assets/svg/showcase.svg'),
+              icon: SvgPicture.asset(
+                'assets/svg/showcase.svg',
+                color: AppColor.black,
+              ),
               selectedIcon: SvgPicture.asset(
                 'assets/svg/showcase.svg',
                 color: AppColor.green,
@@ -32,7 +35,10 @@ class HomePage extends StatelessWidget {
               label: localization.showcase,
             ),
             NavigationDestination(
-              icon: SvgPicture.asset('assets/svg/cart.svg'),
+              icon: SvgPicture.asset(
+                'assets/svg/cart.svg',
+                color: AppColor.black,
+              ),
               selectedIcon: SvgPicture.asset(
                 'assets/svg/cart.svg',
                 color: AppColor.green,
@@ -40,7 +46,10 @@ class HomePage extends StatelessWidget {
               label: localization.cart,
             ),
             NavigationDestination(
-              icon: SvgPicture.asset('assets/svg/profile.svg'),
+              icon: SvgPicture.asset(
+                'assets/svg/profile.svg',
+                color: AppColor.black,
+              ),
               selectedIcon: SvgPicture.asset(
                 'assets/svg/profile.svg',
                 color: AppColor.green,

@@ -12,6 +12,8 @@ ThemeData appTheme({ColorScheme? colorScheme, bool isDark = false}) {
         titleTextStyle: TextStyle(color: AppColor.black)),
     navigationBarTheme: const NavigationBarThemeData(
       indicatorColor: Colors.transparent,
+      backgroundColor: Colors.white,
+      elevation: 20,
     ),
     colorScheme: colorScheme,
     //colorSchemeSeed: Colors.purple,

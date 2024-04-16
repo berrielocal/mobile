@@ -18,13 +18,14 @@ class App extends StatelessWidget {
     final themeMode = context.watch<ValueNotifier<ThemeMode>>();
 
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       builder: (context, child){
         return ScrollConfiguration(
           behavior: CustomScrollBehavior(),
           child: child!,
         );
       },
-      title: "Test app",
+      title: "Berrielocal",
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
