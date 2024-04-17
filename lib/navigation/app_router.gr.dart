@@ -33,6 +33,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomePage(),
       );
     },
+    ProfileRouteWidget.name: (routeData) {
+      final args = routeData.argsAs<ProfileRouteWidgetArgs>(
+          orElse: () => const ProfileRouteWidgetArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ProfileScreenWidget(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
     ProfileTab.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -99,6 +110,47 @@ class HomeRoute extends PageRouteInfo<void> {
   static const String name = 'HomeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProfileScreenWidget]
+class ProfileRouteWidget extends PageRouteInfo<ProfileRouteWidgetArgs> {
+  ProfileRouteWidget({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultProfileScreenWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ProfileRouteWidget.name,
+          args: ProfileRouteWidgetArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileRouteWidget';
+
+  static const PageInfo<ProfileRouteWidgetArgs> page =
+      PageInfo<ProfileRouteWidgetArgs>(name);
+}
+
+class ProfileRouteWidgetArgs {
+  const ProfileRouteWidgetArgs({
+    this.key,
+    this.wmFactory = defaultProfileScreenWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'ProfileRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+  }
 }
 
 /// generated route for

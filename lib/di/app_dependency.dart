@@ -1,4 +1,5 @@
 import 'package:berrielocal/data/token/repository/auth_repository.dart';
+import 'package:berrielocal/ui/feature/profile_screen/profile_screen_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:berrielocal/ui/feature/test_page/test_page.dart';
@@ -21,6 +22,7 @@ class AppDependency extends StatefulWidget {
 class _AppDependencyState extends State<AppDependency> {
   //models
   late final TestPageModel _testPageModel;
+  late final ProfileScreenModel _profileScreenModel;
 
   @override
   void initState() {
@@ -38,6 +40,10 @@ class _AppDependencyState extends State<AppDependency> {
       testRepository,
       authRepository,
     );
+
+    _profileScreenModel = ProfileScreenModel(
+      errorHandler,
+    );
   }
 
   @override
@@ -51,6 +57,9 @@ class _AppDependencyState extends State<AppDependency> {
         Provider(
           create: (context) => _testPageModel,
         ),
+        Provider(
+          create: (context) => _profileScreenModel,
+        )
       ],
       child: widget.app,
     );

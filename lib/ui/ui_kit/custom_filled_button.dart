@@ -1,3 +1,4 @@
+import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:flutter/material.dart';
 
 class CustomFilledButton extends StatelessWidget {
@@ -14,15 +15,20 @@ class CustomFilledButton extends StatelessWidget {
       width: 360,
       child: FilledButton(
         style: ButtonStyle(
-            shape: MaterialStateProperty.all(const RoundedRectangleBorder())),
+          backgroundColor: MaterialStatePropertyAll(AppColor.green),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              side: BorderSide(),
+              borderRadius: BorderRadius.circular(25),
+            ),
+          ),
+        ),
         onPressed: onTap,
         child: Center(
           child: Text(
             text.toUpperCase(),
-            style: Theme.of(context)
-                .textTheme
-                .labelMedium
-                ?.copyWith(color: color),
+            style:
+                Theme.of(context).textTheme.labelMedium?.copyWith(color: color),
           ),
         ),
       ),
