@@ -15,10 +15,10 @@ class CustomFilledButton extends StatelessWidget {
       width: 360,
       child: FilledButton(
         style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(AppColor.green),
+          backgroundColor: const MaterialStatePropertyAll(AppColor.green),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
-              side: BorderSide(),
+              side: const BorderSide(),
               borderRadius: BorderRadius.circular(25),
             ),
           ),

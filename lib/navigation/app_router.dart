@@ -1,10 +1,13 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/ui/feature/cart_screen/cart_screen_widget.dart';
+import 'package:berrielocal/ui/feature/cart_screen/cart_screen_wm.dart';
 import 'package:berrielocal/ui/feature/profile_screen/profile_screen_widget.dart';
 import 'package:berrielocal/ui/feature/profile_screen/profile_screen_wm.dart';
+import 'package:berrielocal/ui/feature/showcase_screen/showcase_screen_widget.dart';
+import 'package:berrielocal/ui/feature/showcase_screen/showcase_screen_wm.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:berrielocal/ui/feature/home/home.dart';
-import 'package:berrielocal/ui/feature/test_page/test_page.dart';
 import 'package:berrielocal/ui/ui_kit/empty_page.dart';
 
 part 'app_router.gr.dart';
@@ -19,15 +22,18 @@ class AppRouter extends _$AppRouter {
             initial: true,
             children: [
               AutoRoute(
-                page: TestRouteWidget.page,
                 initial: true,
-              ),
+                page: ShowcaseRouteWidget.page,
+              )
             ],
           ),
           AutoRoute(
             page: CartTab.page,
             children: [
-              AutoRoute(page: EmptyRoute.page),
+              AutoRoute(
+                initial: true,
+                page: CartRouteWidget.page,
+              ),
             ],
           ),
           AutoRoute(

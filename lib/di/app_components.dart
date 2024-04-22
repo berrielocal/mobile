@@ -1,9 +1,10 @@
 import 'package:berrielocal/data/service/auth_service.dart';
+import 'package:berrielocal/data/service/cart_service.dart';
+import 'package:berrielocal/data/service/shop_service.dart';
 import 'package:berrielocal/data/token/repository/auth_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:elementary/elementary.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:berrielocal/data/test/test_data.dart';
 import 'package:berrielocal/data/token/token_data.dart';
 import 'package:berrielocal/utils/error_handler.dart';
 
@@ -22,17 +23,18 @@ class AppComponents {
   ErrorHandler errorHandler = DefaultErrorHandler();
 
   //service
-  late final ITestService _testService = MockTestService();
   late final AuthService _authService = AuthService(dio);
 
   //repository
   late final TokenRepository tokenRepository = TokenRepository();
-  late final TestRepository testRepository = TestRepository(_testService);
   late final AuthRepository authRepository = AuthRepository(_authService);
+  late final MockShopService mockShopService = MockShopService();
+  late final MockCartService mockCartService = MockCartService();
 
   Future<void> init() async {
     dio.options
       ..baseUrl = 'http://217.25.92.9:1111'
+      ..contentType = Headers.jsonContentType
       ..connectTimeout = timeout
       ..receiveTimeout = timeout
       ..sendTimeout = timeout;
@@ -40,7 +42,6 @@ class AppComponents {
       PrettyDioLogger(
         requestHeader: true,
         requestBody: true,
-        responseHeader: true,
         responseBody: true,
       ),
     );

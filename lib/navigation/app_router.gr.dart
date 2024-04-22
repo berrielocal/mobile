@@ -15,6 +15,17 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    CartRouteWidget.name: (routeData) {
+      final args = routeData.argsAs<CartRouteWidgetArgs>(
+          orElse: () => const CartRouteWidgetArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CartScreenWidget(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
     CartTab.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -56,18 +67,59 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ShowCaseTabPage(),
       );
     },
-    TestRouteWidget.name: (routeData) {
-      final args = routeData.argsAs<TestRouteWidgetArgs>(
-          orElse: () => const TestRouteWidgetArgs());
+    ShowcaseRouteWidget.name: (routeData) {
+      final args = routeData.argsAs<ShowcaseRouteWidgetArgs>(
+          orElse: () => const ShowcaseRouteWidgetArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: TestPageWidget(
+        child: ShowcaseScreenWidget(
           key: args.key,
           wmFactory: args.wmFactory,
         ),
       );
     },
   };
+}
+
+/// generated route for
+/// [CartScreenWidget]
+class CartRouteWidget extends PageRouteInfo<CartRouteWidgetArgs> {
+  CartRouteWidget({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultCartScreenWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CartRouteWidget.name,
+          args: CartRouteWidgetArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CartRouteWidget';
+
+  static const PageInfo<CartRouteWidgetArgs> page =
+      PageInfo<CartRouteWidgetArgs>(name);
+}
+
+class CartRouteWidgetArgs {
+  const CartRouteWidgetArgs({
+    this.key,
+    this.wmFactory = defaultCartScreenWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'CartRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+  }
 }
 
 /// generated route for
@@ -182,33 +234,33 @@ class ShowCaseTab extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [TestPageWidget]
-class TestRouteWidget extends PageRouteInfo<TestRouteWidgetArgs> {
-  TestRouteWidget({
+/// [ShowcaseScreenWidget]
+class ShowcaseRouteWidget extends PageRouteInfo<ShowcaseRouteWidgetArgs> {
+  ShowcaseRouteWidget({
     Key? key,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
-        wmFactory = defaultTestPageWidgetModelFactory,
+        wmFactory = defaultShowcaseScreenWidgetModelFactory,
     List<PageRouteInfo>? children,
   }) : super(
-          TestRouteWidget.name,
-          args: TestRouteWidgetArgs(
+          ShowcaseRouteWidget.name,
+          args: ShowcaseRouteWidgetArgs(
             key: key,
             wmFactory: wmFactory,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'TestRouteWidget';
+  static const String name = 'ShowcaseRouteWidget';
 
-  static const PageInfo<TestRouteWidgetArgs> page =
-      PageInfo<TestRouteWidgetArgs>(name);
+  static const PageInfo<ShowcaseRouteWidgetArgs> page =
+      PageInfo<ShowcaseRouteWidgetArgs>(name);
 }
 
-class TestRouteWidgetArgs {
-  const TestRouteWidgetArgs({
+class ShowcaseRouteWidgetArgs {
+  const ShowcaseRouteWidgetArgs({
     this.key,
-    this.wmFactory = defaultTestPageWidgetModelFactory,
+    this.wmFactory = defaultShowcaseScreenWidgetModelFactory,
   });
 
   final Key? key;
@@ -218,6 +270,6 @@ class TestRouteWidgetArgs {
 
   @override
   String toString() {
-    return 'TestRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+    return 'ShowcaseRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
   }
 }

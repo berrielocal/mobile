@@ -1,10 +1,12 @@
+import 'package:berrielocal/data/service/cart_service.dart';
+import 'package:berrielocal/data/service/shop_service.dart';
 import 'package:berrielocal/data/token/repository/auth_repository.dart';
+import 'package:berrielocal/ui/feature/cart_screen/cart_screen_model.dart';
 import 'package:berrielocal/ui/feature/profile_screen/profile_screen_model.dart';
+import 'package:berrielocal/ui/feature/showcase_screen/showcase_screen_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:berrielocal/ui/feature/test_page/test_page.dart';
 
-import 'package:berrielocal/data/test/test_data.dart';
 import 'app_components.dart';
 
 class AppDependency extends StatefulWidget {
@@ -21,7 +23,8 @@ class AppDependency extends StatefulWidget {
 
 class _AppDependencyState extends State<AppDependency> {
   //models
-  late final TestPageModel _testPageModel;
+  late final ShowcaseScreenModel _showcaseScreenModel;
+  late final CartScreenModel _cartScreenModel;
   late final ProfileScreenModel _profileScreenModel;
 
   @override
@@ -31,15 +34,13 @@ class _AppDependencyState extends State<AppDependency> {
     final errorHandler = AppComponents().errorHandler;
 
     //TODO: add repository in AppComponents
-    final TestRepository testRepository = AppComponents().testRepository;
     final AuthRepository authRepository = AppComponents().authRepository;
+    final MockShopService mockShopService = AppComponents().mockShopService;
+    final MockCartService mockCartService = AppComponents().mockCartService;
 
     //TODO: init models
-    _testPageModel = TestPageModel(
-      errorHandler,
-      testRepository,
-      authRepository,
-    );
+    _showcaseScreenModel = ShowcaseScreenModel(errorHandler, mockShopService);
+    _cartScreenModel = CartScreenModel(errorHandler);
 
     _profileScreenModel = ProfileScreenModel(
       errorHandler,
@@ -55,7 +56,10 @@ class _AppDependencyState extends State<AppDependency> {
         ),
         //TODO: provide models
         Provider(
-          create: (context) => _testPageModel,
+          create: (context) => _cartScreenModel,
+        ),
+        Provider(
+          create: (context) => _showcaseScreenModel,
         ),
         Provider(
           create: (context) => _profileScreenModel,
