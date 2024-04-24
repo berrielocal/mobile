@@ -3,6 +3,7 @@
   "showcase": "Главная",
   "catalog": "Каталог",
   "cart" : "Корзина",
+  "order" : "Заказ",
   "favorite": "Избранное",
   "profile": "Профиль",
   "connectionTrouble": "Проблемы с подключением",

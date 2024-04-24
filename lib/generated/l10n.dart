@@ -90,6 +90,16 @@ class S {
     );
   }
 
+  /// `Order`
+  String get order {
+    return Intl.message(
+      'Order',
+      name: 'order',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Favorite`
   String get favorite {
     return Intl.message(

@@ -12,14 +12,17 @@ class CatalogCardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      scrollDirection: Axis.horizontal,
-      children: list.map((e) {
-        return Padding(
-          padding: const EdgeInsets.all(8) ,
-          child: CatalogCard(shop: e),
-        );
-      }).toList(),
+    return SizedBox(
+      height: 150,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: list.map((e) {
+          return Padding(
+            padding: const EdgeInsets.all(8) ,
+            child: CatalogCard(shop: e),
+          );
+        }).toList(),
+      ),
     );
   }
 }

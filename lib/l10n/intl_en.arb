@@ -3,6 +3,7 @@
   "showcase": "Showcase",
   "catalog": "Catalog",
   "cart" : "Cart",
+  "order" : "Order",
   "favorite": "Favorite",
   "profile": "Profile",
   "connectionTrouble": "Connection troubles",

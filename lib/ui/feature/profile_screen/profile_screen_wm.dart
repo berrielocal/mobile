@@ -1,10 +1,14 @@
+import 'package:auto_route/src/router/controller/routing_controller.dart';
+import 'package:berrielocal/generated/l10n.dart';
+import 'package:berrielocal/utils/theme_extension.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'profile_screen_model.dart';
 import 'profile_screen_widget.dart';
 
-abstract interface class IProfileScreenWidgetModel implements IWidgetModel {}
+abstract interface class IProfileScreenWidgetModel
+    implements IWidgetModel, IThemeProvider {}
 
 ProfileScreenWidgetModel defaultProfileScreenWidgetModelFactory(
     BuildContext context) {
@@ -16,6 +20,7 @@ ProfileScreenWidgetModel defaultProfileScreenWidgetModelFactory(
 /// Default widget model for ProfileScreenWidget
 class ProfileScreenWidgetModel
     extends WidgetModel<ProfileScreenWidget, ProfileScreenModel>
+    with ThemeProvider
     implements IProfileScreenWidgetModel {
   ProfileScreenWidgetModel(ProfileScreenModel model) : super(model);
 }

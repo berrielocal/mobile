@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Connection troubles"),
         "createOrder": MessageLookupByLibrary.simpleMessage("Create Order"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
+        "order": MessageLookupByLibrary.simpleMessage("Order"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "showcase": MessageLookupByLibrary.simpleMessage("Showcase"),
         "test_title": MessageLookupByLibrary.simpleMessage("Test title")
