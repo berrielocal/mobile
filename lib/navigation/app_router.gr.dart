@@ -61,6 +61,28 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ProfileTabPage(),
       );
     },
+    SearchRouteWidget.name: (routeData) {
+      final args = routeData.argsAs<SearchRouteWidgetArgs>(
+          orElse: () => const SearchRouteWidgetArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: SearchScreenWidget(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
+    ShopRouteWidget.name: (routeData) {
+      final args = routeData.argsAs<ShopRouteWidgetArgs>(
+          orElse: () => const ShopRouteWidgetArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ShopScreenWidget(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
     ShowCaseTab.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -217,6 +239,88 @@ class ProfileTab extends PageRouteInfo<void> {
   static const String name = 'ProfileTab';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SearchScreenWidget]
+class SearchRouteWidget extends PageRouteInfo<SearchRouteWidgetArgs> {
+  SearchRouteWidget({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultSearchScreenWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          SearchRouteWidget.name,
+          args: SearchRouteWidgetArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'SearchRouteWidget';
+
+  static const PageInfo<SearchRouteWidgetArgs> page =
+      PageInfo<SearchRouteWidgetArgs>(name);
+}
+
+class SearchRouteWidgetArgs {
+  const SearchRouteWidgetArgs({
+    this.key,
+    this.wmFactory = defaultSearchScreenWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'SearchRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+  }
+}
+
+/// generated route for
+/// [ShopScreenWidget]
+class ShopRouteWidget extends PageRouteInfo<ShopRouteWidgetArgs> {
+  ShopRouteWidget({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultShopScreenWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ShopRouteWidget.name,
+          args: ShopRouteWidgetArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ShopRouteWidget';
+
+  static const PageInfo<ShopRouteWidgetArgs> page =
+      PageInfo<ShopRouteWidgetArgs>(name);
+}
+
+class ShopRouteWidgetArgs {
+  const ShopRouteWidgetArgs({
+    this.key,
+    this.wmFactory = defaultShopScreenWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'ShopRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+  }
 }
 
 /// generated route for

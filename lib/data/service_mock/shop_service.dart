@@ -4,25 +4,25 @@ class MockShopService {
   final List<ShopMainInfo> list = [
     const ShopMainInfo(
       shopId: '1',
-      name: 'name',
+      name: 'Название магазина',
       imageUrl: 'assets/image/empty_photo.png',
       matchLevel: 90,
     ),
     const ShopMainInfo(
-      shopId: '1',
-      name: 'name',
+      shopId: '2',
+      name: 'Название магазина',
       imageUrl: 'assets/image/empty_photo.png',
       matchLevel: 90,
     ),
     const ShopMainInfo(
-      shopId: '1',
-      name: 'name',
+      shopId: '3',
+      name: 'Название магазина',
       imageUrl: 'assets/image/empty_photo.png',
       matchLevel: 90,
     ),
     const ShopMainInfo(
-      shopId: '1',
-      name: 'name',
+      shopId: '4',
+      name: 'Название магазина',
       imageUrl: 'assets/image/empty_photo.png',
       matchLevel: 90,
     ),

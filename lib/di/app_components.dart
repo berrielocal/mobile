@@ -1,6 +1,7 @@
 import 'package:berrielocal/data/service/auth_service.dart';
-import 'package:berrielocal/data/service/cart_service.dart';
-import 'package:berrielocal/data/service/shop_service.dart';
+import 'package:berrielocal/data/service_mock/cart_service.dart';
+import 'package:berrielocal/data/service_mock/product_service.dart';
+import 'package:berrielocal/data/service_mock/shop_service.dart';
 import 'package:berrielocal/data/token/repository/auth_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:elementary/elementary.dart';
@@ -30,6 +31,7 @@ class AppComponents {
   late final AuthRepository authRepository = AuthRepository(_authService);
   late final MockShopService mockShopService = MockShopService();
   late final MockCartService mockCartService = MockCartService();
+  late final MockProductService mockProductService = MockProductService();
 
   Future<void> init() async {
     dio.options

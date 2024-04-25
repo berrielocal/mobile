@@ -4,8 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SearchWidget extends StatefulWidget {
-  const SearchWidget({super.key});
+  const SearchWidget({
+      super.key, 
+      required this.autoFocus,
+      required this.enabled,
+    });
 
+  final bool autoFocus;
+  final bool enabled;
   @override
   State<SearchWidget> createState() => _SearchWidgetState();
 }
@@ -34,6 +40,8 @@ class _SearchWidgetState extends State<SearchWidget> {
       child: Stack(
         children: [
           TextFormField(
+            autofocus: widget.autoFocus,
+            enabled: widget.enabled,
             decoration: InputDecoration(
               prefixIconConstraints: const BoxConstraints(
                 minWidth: 32,

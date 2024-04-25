@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/domain/shop/shop_main_info.dart';
+import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/utils/theme_extension.dart';
 import 'package:elementary/elementary.dart';
 import 'package:elementary_helper/elementary_helper.dart';
@@ -10,6 +12,7 @@ import 'showcase_screen_widget.dart';
 abstract interface class IShowcaseScreenWidgetModel
     implements IWidgetModel, IThemeProvider {
   ValueNotifier<EntityState<List<ShopMainInfo>>> get testShop;
+  void openSearch();
 }
 
 ShowcaseScreenWidgetModel defaultShowcaseScreenWidgetModelFactory(
@@ -46,5 +49,10 @@ class ShowcaseScreenWidgetModel
     } on Exception catch (e) {
       _testShop.error(e, previousData);
     }
+  }
+
+  @override
+  void openSearch() async {
+    context.router.navigate(SearchRouteWidget());
   }
 }

@@ -1,8 +1,11 @@
-import 'package:berrielocal/data/service/cart_service.dart';
-import 'package:berrielocal/data/service/shop_service.dart';
+import 'package:berrielocal/data/service_mock/cart_service.dart';
+import 'package:berrielocal/data/service_mock/product_service.dart';
+import 'package:berrielocal/data/service_mock/shop_service.dart';
 import 'package:berrielocal/data/token/repository/auth_repository.dart';
 import 'package:berrielocal/ui/feature/cart_screen/cart_screen_model.dart';
 import 'package:berrielocal/ui/feature/profile_screen/profile_screen_model.dart';
+import 'package:berrielocal/ui/feature/search_screen/search_screen_model.dart';
+import 'package:berrielocal/ui/feature/shop_screen/shop_screen_model.dart';
 import 'package:berrielocal/ui/feature/showcase_screen/showcase_screen_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +29,8 @@ class _AppDependencyState extends State<AppDependency> {
   late final ShowcaseScreenModel _showcaseScreenModel;
   late final CartScreenModel _cartScreenModel;
   late final ProfileScreenModel _profileScreenModel;
+  late final SearchScreenModel _searchScreenModel;
+  late final ShopScreenModel _shopScreenModel;
 
   @override
   void initState() {
@@ -37,10 +42,14 @@ class _AppDependencyState extends State<AppDependency> {
     final AuthRepository authRepository = AppComponents().authRepository;
     final MockShopService mockShopService = AppComponents().mockShopService;
     final MockCartService mockCartService = AppComponents().mockCartService;
+    final MockProductService mockProductService =
+        AppComponents().mockProductService;
 
     //TODO: init models
     _showcaseScreenModel = ShowcaseScreenModel(errorHandler, mockShopService);
     _cartScreenModel = CartScreenModel(errorHandler);
+    _searchScreenModel = SearchScreenModel(errorHandler);
+    _shopScreenModel = ShopScreenModel(errorHandler, mockProductService);
 
     _profileScreenModel = ProfileScreenModel(
       errorHandler,
@@ -63,6 +72,12 @@ class _AppDependencyState extends State<AppDependency> {
         ),
         Provider(
           create: (context) => _profileScreenModel,
+        ),
+        Provider(
+          create: (context) => _searchScreenModel,
+        ),
+        Provider(
+          create: (context) => _shopScreenModel,
         )
       ],
       child: widget.app,
