@@ -30,6 +30,12 @@ class ShopScreenWidgetModel
       EntityStateNotifier();
   ShopScreenWidgetModel(ShopScreenModel model) : super(model);
 
+  @override
+  void initWidgetModel() {
+    super.initWidgetModel();
+    _loadProducts();
+  }
+
   Future<void> _loadProducts() async {
     final previousData = _testProducts.value.data;
     _testProducts.loading(previousData);

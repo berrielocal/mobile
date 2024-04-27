@@ -24,7 +24,9 @@ class ProfileScreenWidget extends ElementaryWidget<IProfileScreenWidgetModel> {
             centerTitle: true,
             actions: const [],
           ),
-          body: const ProfileCards(),
+          body: ProfileCards(
+            wm: wm,
+          ),
         );
       },
     );
@@ -34,7 +36,10 @@ class ProfileScreenWidget extends ElementaryWidget<IProfileScreenWidgetModel> {
 class ProfileCards extends StatelessWidget {
   const ProfileCards({
     super.key,
+    required this.wm,
   });
+
+  final IProfileScreenWidgetModel wm;
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +141,9 @@ class ProfileCards extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               height: 50,
               child: CustomFilledButton(
-                onTap: () {},
+                onTap: () {
+                  wm.toAuth();
+                },
                 text: 'Войти',
               ),
             ),

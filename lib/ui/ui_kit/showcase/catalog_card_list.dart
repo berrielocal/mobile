@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/domain/shop/shop_main_info.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
-import 'package:berrielocal/ui/ui_kit/catalog_card.dart';
+import 'package:berrielocal/ui/ui_kit/showcase/catalog_card.dart';
 import 'package:flutter/material.dart';
 
 class CatalogCardList extends StatelessWidget {

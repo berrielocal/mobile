@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:berrielocal/ui/ui_kit/basket_card.dart';
+import 'package:berrielocal/ui/ui_kit/cart/basket_card.dart';
 import 'package:berrielocal/ui/ui_kit/custom_filled_button.dart';
 import 'package:decimal/decimal.dart';
 import 'package:elementary/elementary.dart';

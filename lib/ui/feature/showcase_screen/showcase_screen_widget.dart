@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/navigation/app_router.dart';
-import 'package:berrielocal/ui/ui_kit/catalog_card_list.dart';
+import 'package:berrielocal/ui/ui_kit/showcase/catalog_card_list.dart';
 import 'package:berrielocal/ui/ui_kit/search_widget.dart';
 import 'package:elementary/elementary.dart';
 import 'package:elementary_helper/elementary_helper.dart';

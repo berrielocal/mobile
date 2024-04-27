@@ -2,7 +2,11 @@ import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:flutter/material.dart';
 
 class CustomFilledButton extends StatelessWidget {
-  const CustomFilledButton({super.key, this.onTap, required this.text});
+  const CustomFilledButton({
+    super.key,
+    this.onTap,
+    required this.text,
+  });
 
   final VoidCallback? onTap;
   final String text;
