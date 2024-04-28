@@ -66,6 +66,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    OrderSuccessRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const OrderSuccessScreen(),
+      );
+    },
     ProductRouteWidget.name: (routeData) {
       final args = routeData.argsAs<ProductRouteWidgetArgs>(
           orElse: () => const ProductRouteWidgetArgs());
@@ -299,6 +305,20 @@ class OrderRouteWidgetArgs {
   String toString() {
     return 'OrderRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
   }
+}
+
+/// generated route for
+/// [OrderSuccessScreen]
+class OrderSuccessRoute extends PageRouteInfo<void> {
+  const OrderSuccessRoute({List<PageRouteInfo>? children})
+      : super(
+          OrderSuccessRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OrderSuccessRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

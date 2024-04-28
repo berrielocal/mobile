@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 extension MoneyExtensions on Decimal {
   String formatMoney() {
     final formatCurrency = NumberFormat.simpleCurrency(
-      decimalDigits: 2,
+      decimalDigits: 0,
       name: '\u20bd',
       locale: 'ru',
     );

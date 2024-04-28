@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/navigation/app_router.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +8,7 @@ import 'order_screen_widget.dart';
 
 abstract interface class IOrderScreenWidgetModel implements IWidgetModel {
   void back();
+  void toResult();
   TextEditingController get emailController;
 }
 
@@ -30,4 +32,9 @@ class OrderScreenWidgetModel
 
   @override
   final emailController = TextEditingController();
+
+  @override
+  void toResult() {
+    context.router.navigate(OrderSuccessRoute());
+  }
 }

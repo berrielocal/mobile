@@ -33,8 +33,10 @@ class CustomFilledButton extends StatelessWidget {
         child: Center(
           child: Text(
             text.toUpperCase(),
-            style:
-                Theme.of(context).textTheme.labelMedium?.copyWith(color: color),
+            style: Theme.of(context)
+                .textTheme
+                .labelMedium
+                ?.copyWith(color: color, fontWeight: FontWeight.w600),
           ),
         ),
       ),

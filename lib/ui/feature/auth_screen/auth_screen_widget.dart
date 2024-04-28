@@ -37,7 +37,7 @@ class AuthScreenWidget extends ElementaryWidget<IAuthScreenWidgetModel> {
         ),
       ),
       body: SafeArea(
-        minimum: const EdgeInsets.only(left: 16, right: 16, bottom: 28),
+        minimum: const EdgeInsets.only(left: 16, right: 16, bottom: 40),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -102,6 +102,9 @@ class AuthScreenWidget extends ElementaryWidget<IAuthScreenWidgetModel> {
               child: Text(
                 'Нажимая кнопку, Вы соглашаетесь c Правилами и политикой конфиденциальности Компании',
               ),
+            ),
+            const SizedBox(
+              height: 15,
             ),
             const CustomFilledButton(text: 'Зарегистрироваться')
           ],
