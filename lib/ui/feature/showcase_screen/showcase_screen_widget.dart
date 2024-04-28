@@ -38,6 +38,9 @@ class ShowcaseScreenWidget
                     autoFocus: false,
                   ),
                 ),
+                SizedBox(
+                  height: 15,
+                ),
                 Expanded(
                   child: ListView(
                     shrinkWrap: true,
