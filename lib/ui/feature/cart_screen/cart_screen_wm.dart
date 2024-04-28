@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/domain/product/product_response.dart';
+import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/utils/theme_extension.dart';
 import 'package:elementary/elementary.dart';
 import 'package:elementary_helper/elementary_helper.dart';
@@ -10,6 +12,8 @@ import 'cart_screen_widget.dart';
 abstract interface class ICartScreenWidgetModel
     implements IWidgetModel, IThemeProvider {
   ValueNotifier<EntityState<List<ProductResponse>>> get cartState;
+  void toProduct();
+  void toOrder();
 }
 
 CartScreenWidgetModel defaultCartScreenWidgetModelFactory(
@@ -38,7 +42,28 @@ class CartScreenWidgetModel
       const ProductResponse(
         name: 'Test',
         cost: 100,
+        units: '1',
+      ),
+      const ProductResponse(
+        name: 'Test',
+        cost: 100,
+        units: '1',
+      ),
+      const ProductResponse(
+        name: 'Test',
+        cost: 100,
+        units: '1',
       )
     ]);
+  }
+
+  @override
+  void toProduct() {
+    context.router.root.navigate(ShowCaseTab());
+  }
+
+  @override
+  void toOrder() {
+    context.router.navigate(OrderRouteWidget());
   }
 }

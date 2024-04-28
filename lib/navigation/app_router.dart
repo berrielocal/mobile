@@ -3,6 +3,8 @@ import 'package:berrielocal/ui/feature/auth_screen/auth_screen_widget.dart';
 import 'package:berrielocal/ui/feature/auth_screen/auth_screen_wm.dart';
 import 'package:berrielocal/ui/feature/cart_screen/cart_screen_widget.dart';
 import 'package:berrielocal/ui/feature/cart_screen/cart_screen_wm.dart';
+import 'package:berrielocal/ui/feature/order_screen/order_screen_widget.dart';
+import 'package:berrielocal/ui/feature/order_screen/order_screen_wm.dart';
 import 'package:berrielocal/ui/feature/product_screen/product_screen_widget.dart';
 import 'package:berrielocal/ui/feature/product_screen/product_screen_wm.dart';
 import 'package:berrielocal/ui/feature/profile_screen/profile_screen_widget.dart';
@@ -38,14 +40,12 @@ class AppRouter extends _$AppRouter {
                 ),
                 AutoRoute(
                   page: SearchRouteWidget.page,
-                  path: 'searchScreen',
                 ),
                 AutoRoute(
                   page: ShopRouteWidget.page,
                 ),
                 AutoRoute(
                   page: ProductRouteWidget.page,
-                  path: 'productScreen',
                 )
               ],
             ),
@@ -53,9 +53,12 @@ class AppRouter extends _$AppRouter {
               page: CartTab.page,
               children: [
                 AutoRoute(
-                    initial: true,
-                    page: CartRouteWidget.page,
-                    path: 'cartScreen'),
+                  initial: true,
+                  page: CartRouteWidget.page,
+                ),
+                AutoRoute(
+                  page: OrderRouteWidget.page,
+                )
               ],
             ),
             AutoRoute(
@@ -65,13 +68,13 @@ class AppRouter extends _$AppRouter {
                   page: ProfileRouteWidget.page,
                   initial: true,
                 ),
-                AutoRoute(
-                  page: AuthRouteWidget.page,
-                  path: 'authScreen',
-                ),
               ],
             ),
           ],
+        ),
+        AutoRoute(
+          page: AuthRouteWidget.page,
+          path: '/authScreen',
         ),
       ];
 }

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/ui/ui_kit/cart/basket_card.dart';
 import 'package:berrielocal/ui/ui_kit/custom_filled_button.dart';
 import 'package:decimal/decimal.dart';
@@ -37,7 +38,9 @@ class CartScreenWidget extends ElementaryWidget<ICartScreenWidgetModel> {
             itemBuilder: (context, index) {
               return BasketCard(
                 cartProduct: products[index],
-                onTap: () {},
+                onTap: () {
+                  //TODO ???
+                },
               );
             },
           );
@@ -89,7 +92,8 @@ class CartScreenWidget extends ElementaryWidget<ICartScreenWidgetModel> {
                           ),
                         ),
                       ),
-                      const CustomFilledButton(
+                      CustomFilledButton(
+                        onTap: wm.toOrder,
                         text: 'Перейти к оформлению',
                       )
                     ],

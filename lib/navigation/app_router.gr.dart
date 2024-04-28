@@ -55,6 +55,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomePage(),
       );
     },
+    OrderRouteWidget.name: (routeData) {
+      final args = routeData.argsAs<OrderRouteWidgetArgs>(
+          orElse: () => const OrderRouteWidgetArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: OrderScreenWidget(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
     ProductRouteWidget.name: (routeData) {
       final args = routeData.argsAs<ProductRouteWidgetArgs>(
           orElse: () => const ProductRouteWidgetArgs());
@@ -247,6 +258,47 @@ class HomeRoute extends PageRouteInfo<void> {
   static const String name = 'HomeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [OrderScreenWidget]
+class OrderRouteWidget extends PageRouteInfo<OrderRouteWidgetArgs> {
+  OrderRouteWidget({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultOrderScreenWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          OrderRouteWidget.name,
+          args: OrderRouteWidgetArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'OrderRouteWidget';
+
+  static const PageInfo<OrderRouteWidgetArgs> page =
+      PageInfo<OrderRouteWidgetArgs>(name);
+}
+
+class OrderRouteWidgetArgs {
+  const OrderRouteWidgetArgs({
+    this.key,
+    this.wmFactory = defaultOrderScreenWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'OrderRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+  }
 }
 
 /// generated route for

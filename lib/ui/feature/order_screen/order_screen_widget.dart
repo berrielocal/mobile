@@ -5,20 +5,19 @@ import 'package:berrielocal/ui/ui_kit/auth/custom_textfield.dart';
 import 'package:berrielocal/ui/ui_kit/custom_filled_button.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'auth_screen_wm.dart';
+import 'order_screen_wm.dart';
 
 // TODO: cover with documentation
-/// Main widget for AuthScreen module
+/// Main widget for OrderScreen module
 @RoutePage()
-class AuthScreenWidget extends ElementaryWidget<IAuthScreenWidgetModel> {
-  const AuthScreenWidget({
+class OrderScreenWidget extends ElementaryWidget<IOrderScreenWidgetModel> {
+  const OrderScreenWidget({
     Key? key,
-    WidgetModelFactory wmFactory = defaultAuthScreenWidgetModelFactory,
+    WidgetModelFactory wmFactory = defaultOrderScreenWidgetModelFactory,
   }) : super(wmFactory, key: key);
 
   @override
-  Widget build(IAuthScreenWidgetModel wm) {
+  Widget build(IOrderScreenWidgetModel wm) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -42,8 +41,30 @@ class AuthScreenWidget extends ElementaryWidget<IAuthScreenWidgetModel> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Ваши данные',
+              'Данные получателя',
               style: AppTypography.personalCardTitle,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            CustomTextfield(
+              controller: wm.emailController,
+              autofocus: false,
+              textFieldBorderRadius: 0,
+              hint: 'Имя Фамилия',
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            CustomTextfield(
+              controller: wm.emailController,
+              autofocus: false,
+              textFieldBorderRadius: 0,
+              hint: 'Телефон',
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             ),
             const SizedBox(
               height: 15,
@@ -59,30 +80,8 @@ class AuthScreenWidget extends ElementaryWidget<IAuthScreenWidgetModel> {
             const SizedBox(
               height: 15,
             ),
-            CustomTextfield(
-              controller: wm.emailController,
-              autofocus: false,
-              textFieldBorderRadius: 0,
-              hint: 'Пароль',
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            CustomTextfield(
-              controller: wm.emailController,
-              autofocus: false,
-              textFieldBorderRadius: 0,
-              hint: 'Повторите пароль',
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
             const Text(
-              'Данные магазина',
+              'Адрес доставки',
               style: AppTypography.personalCardTitle,
             ),
             const SizedBox(
@@ -92,18 +91,31 @@ class AuthScreenWidget extends ElementaryWidget<IAuthScreenWidgetModel> {
               controller: wm.emailController,
               autofocus: false,
               textFieldBorderRadius: 0,
-              hint: 'Название магазина',
+              hint: 'г. Воронеж, ул. Мира, д. 5',
               contentPadding:
                   EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             ),
-            const Spacer(),
-            const Padding(
-              padding: EdgeInsets.all(8),
-              child: Text(
-                'Нажимая кнопку, Вы соглашаетесь c Правилами и политикой конфиденциальности Компании',
-              ),
+            const SizedBox(
+              height: 15,
             ),
-            const CustomFilledButton(text: 'Зарегистрироваться')
+            const Text(
+              'Способ оплаты',
+              style: AppTypography.personalCardTitle,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Row(
+              children: [
+                Image.asset(
+                  'assets/image/payment.png',
+                  width: 360,
+                  fit: BoxFit.fitWidth,
+                ),
+              ],
+            ),
+            const Spacer(),
+            const CustomFilledButton(text: 'ОФОРМИТЬ ЗАКАЗ')
           ],
         ),
       ),

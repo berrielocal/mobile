@@ -36,7 +36,7 @@ class ProductCardList extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 child: GestureDetector(
                   onTap: () {
-                    context.router.navigateNamed('productScreen');
+                    context.router.navigate(ProductRouteWidget());
                   },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

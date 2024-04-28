@@ -4,6 +4,7 @@ import 'package:berrielocal/data/service_mock/shop_service.dart';
 import 'package:berrielocal/data/token/repository/auth_repository.dart';
 import 'package:berrielocal/ui/feature/auth_screen/auth_screen_model.dart';
 import 'package:berrielocal/ui/feature/cart_screen/cart_screen_model.dart';
+import 'package:berrielocal/ui/feature/order_screen/order_screen_model.dart';
 import 'package:berrielocal/ui/feature/product_screen/product_screen_model.dart';
 import 'package:berrielocal/ui/feature/profile_screen/profile_screen_model.dart';
 import 'package:berrielocal/ui/feature/search_screen/search_screen_model.dart';
@@ -35,6 +36,7 @@ class _AppDependencyState extends State<AppDependency> {
   late final ShopScreenModel _shopScreenModel;
   late final ProductScreenModel _productScreenModel;
   late final AuthScreenModel _authScreenModel;
+  late final OrderScreenModel _orderScreenModel;
 
   @override
   void initState() {
@@ -57,6 +59,7 @@ class _AppDependencyState extends State<AppDependency> {
     _productScreenModel = ProductScreenModel(errorHandler);
     _authScreenModel = AuthScreenModel(errorHandler);
     _profileScreenModel = ProfileScreenModel(errorHandler);
+    _orderScreenModel = OrderScreenModel(errorHandler);
   }
 
   @override
@@ -87,6 +90,9 @@ class _AppDependencyState extends State<AppDependency> {
         ),
         Provider(
           create: (context) => _authScreenModel,
+        ),
+        Provider(
+          create: (context) => _orderScreenModel,
         ),
       ],
       child: widget.app,

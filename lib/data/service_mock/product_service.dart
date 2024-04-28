@@ -8,6 +8,7 @@ class MockProductService {
       name: 'Название продукта',
       cost: 100,
       shopId: 1,
+      units: '1',
     ),
     ProductResponse(
       productId: 2,

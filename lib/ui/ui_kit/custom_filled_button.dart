@@ -22,7 +22,9 @@ class CustomFilledButton extends StatelessWidget {
           backgroundColor: const MaterialStatePropertyAll(AppColor.green),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
-              side: const BorderSide(),
+              side: const BorderSide(
+                width: 1.5,
+              ),
               borderRadius: BorderRadius.circular(25),
             ),
           ),
