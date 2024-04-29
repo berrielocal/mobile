@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/ui/ui_kit/custom_filled_button.dart';
 import 'package:elementary/elementary.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'profile_screen_wm.dart';
@@ -67,16 +69,19 @@ class ProfileCards extends StatelessWidget {
             thickness: 1.7,
           ),
         ),
-        SizedBox(
-          height: 45,
-          child: ListTile(
-            title: Text(
-              'Заказы',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            trailing: const Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 20,
+        GestureDetector(
+          onTap: () => context.router.navigate(OrderHistoryRouteWidget()),
+          child: SizedBox(
+            height: 45,
+            child: ListTile(
+              title: Text(
+                'Заказы',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 20,
+              ),
             ),
           ),
         ),

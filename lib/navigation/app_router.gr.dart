@@ -55,6 +55,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomePage(),
       );
     },
+    OrderHistoryRouteWidget.name: (routeData) {
+      final args = routeData.argsAs<OrderHistoryRouteWidgetArgs>(
+          orElse: () => const OrderHistoryRouteWidgetArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: OrderHistoryScreenWidget(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
     OrderRouteWidget.name: (routeData) {
       final args = routeData.argsAs<OrderRouteWidgetArgs>(
           orElse: () => const OrderRouteWidgetArgs());
@@ -264,6 +275,48 @@ class HomeRoute extends PageRouteInfo<void> {
   static const String name = 'HomeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [OrderHistoryScreenWidget]
+class OrderHistoryRouteWidget
+    extends PageRouteInfo<OrderHistoryRouteWidgetArgs> {
+  OrderHistoryRouteWidget({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultOrderHistoryScreenWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          OrderHistoryRouteWidget.name,
+          args: OrderHistoryRouteWidgetArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'OrderHistoryRouteWidget';
+
+  static const PageInfo<OrderHistoryRouteWidgetArgs> page =
+      PageInfo<OrderHistoryRouteWidgetArgs>(name);
+}
+
+class OrderHistoryRouteWidgetArgs {
+  const OrderHistoryRouteWidgetArgs({
+    this.key,
+    this.wmFactory = defaultOrderHistoryScreenWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'OrderHistoryRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+  }
 }
 
 /// generated route for

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:berrielocal/ui/ui_kit/custom_filled_button.dart';
@@ -48,7 +49,10 @@ class OrderSuccessScreen extends StatelessWidget {
                 'В бижайшее время по указанным данным с вами свяжется(-утся) оператор(-ы) магазин(-ов) для подтверждения заказа.',
                 textAlign: TextAlign.center,
               ),
-              CustomFilledButton(text: 'Перейти в мои заказы')
+              CustomFilledButton(
+                text: 'Перейти в мои заказы',
+                onTap: () => context.router.navigate(ProfileRouteWidget()),
+              )
             ],
           ),
         ),
