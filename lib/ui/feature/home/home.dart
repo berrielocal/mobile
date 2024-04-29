@@ -6,8 +6,8 @@ import 'package:berrielocal/navigation/app_router.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeScreenWidget extends StatelessWidget {
+  const HomeScreenWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

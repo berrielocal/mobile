@@ -15,9 +15,9 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    AuthRouteWidget.name: (routeData) {
-      final args = routeData.argsAs<AuthRouteWidgetArgs>(
-          orElse: () => const AuthRouteWidgetArgs());
+    AuthRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<AuthRouteArgs>(orElse: () => const AuthRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: AuthScreenWidget(
@@ -26,9 +26,9 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    CartRouteWidget.name: (routeData) {
-      final args = routeData.argsAs<CartRouteWidgetArgs>(
-          orElse: () => const CartRouteWidgetArgs());
+    CartRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<CartRouteArgs>(orElse: () => const CartRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: CartScreenWidget(
@@ -43,21 +43,15 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CartTabPage(),
       );
     },
-    EmptyRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const EmptyPage(),
-      );
-    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const HomePage(),
+        child: const HomeScreenWidget(),
       );
     },
-    OrderHistoryRouteWidget.name: (routeData) {
-      final args = routeData.argsAs<OrderHistoryRouteWidgetArgs>(
-          orElse: () => const OrderHistoryRouteWidgetArgs());
+    OrderHistoryRoute.name: (routeData) {
+      final args = routeData.argsAs<OrderHistoryRouteArgs>(
+          orElse: () => const OrderHistoryRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: OrderHistoryScreenWidget(
@@ -66,9 +60,9 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    OrderRouteWidget.name: (routeData) {
-      final args = routeData.argsAs<OrderRouteWidgetArgs>(
-          orElse: () => const OrderRouteWidgetArgs());
+    OrderRoute.name: (routeData) {
+      final args = routeData.argsAs<OrderRouteArgs>(
+          orElse: () => const OrderRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: OrderScreenWidget(
@@ -80,12 +74,12 @@ abstract class _$AppRouter extends RootStackRouter {
     OrderSuccessRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const OrderSuccessScreen(),
+        child: const OrderSuccessScreenWidget(),
       );
     },
-    ProductRouteWidget.name: (routeData) {
-      final args = routeData.argsAs<ProductRouteWidgetArgs>(
-          orElse: () => const ProductRouteWidgetArgs());
+    ProductRoute.name: (routeData) {
+      final args = routeData.argsAs<ProductRouteArgs>(
+          orElse: () => const ProductRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: ProductScreenWidget(
@@ -94,9 +88,9 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    ProfileRouteWidget.name: (routeData) {
-      final args = routeData.argsAs<ProfileRouteWidgetArgs>(
-          orElse: () => const ProfileRouteWidgetArgs());
+    ProfileRoute.name: (routeData) {
+      final args = routeData.argsAs<ProfileRouteArgs>(
+          orElse: () => const ProfileRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: ProfileScreenWidget(
@@ -111,9 +105,9 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ProfileTabPage(),
       );
     },
-    SearchRouteWidget.name: (routeData) {
-      final args = routeData.argsAs<SearchRouteWidgetArgs>(
-          orElse: () => const SearchRouteWidgetArgs());
+    SearchRoute.name: (routeData) {
+      final args = routeData.argsAs<SearchRouteArgs>(
+          orElse: () => const SearchRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: SearchScreenWidget(
@@ -122,9 +116,20 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    ShopRouteWidget.name: (routeData) {
-      final args = routeData.argsAs<ShopRouteWidgetArgs>(
-          orElse: () => const ShopRouteWidgetArgs());
+    ShopEditRoute.name: (routeData) {
+      final args = routeData.argsAs<ShopEditRouteArgs>(
+          orElse: () => const ShopEditRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ShopEditScreenWidget(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
+    ShopRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<ShopRouteArgs>(orElse: () => const ShopRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: ShopScreenWidget(
@@ -139,9 +144,9 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ShowCaseTabPage(),
       );
     },
-    ShowcaseRouteWidget.name: (routeData) {
-      final args = routeData.argsAs<ShowcaseRouteWidgetArgs>(
-          orElse: () => const ShowcaseRouteWidgetArgs());
+    ShowcaseRoute.name: (routeData) {
+      final args = routeData.argsAs<ShowcaseRouteArgs>(
+          orElse: () => const ShowcaseRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: ShowcaseScreenWidget(
@@ -155,30 +160,29 @@ abstract class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [AuthScreenWidget]
-class AuthRouteWidget extends PageRouteInfo<AuthRouteWidgetArgs> {
-  AuthRouteWidget({
+class AuthRoute extends PageRouteInfo<AuthRouteArgs> {
+  AuthRoute({
     Key? key,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
         wmFactory = defaultAuthScreenWidgetModelFactory,
     List<PageRouteInfo>? children,
   }) : super(
-          AuthRouteWidget.name,
-          args: AuthRouteWidgetArgs(
+          AuthRoute.name,
+          args: AuthRouteArgs(
             key: key,
             wmFactory: wmFactory,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'AuthRouteWidget';
+  static const String name = 'AuthRoute';
 
-  static const PageInfo<AuthRouteWidgetArgs> page =
-      PageInfo<AuthRouteWidgetArgs>(name);
+  static const PageInfo<AuthRouteArgs> page = PageInfo<AuthRouteArgs>(name);
 }
 
-class AuthRouteWidgetArgs {
-  const AuthRouteWidgetArgs({
+class AuthRouteArgs {
+  const AuthRouteArgs({
     this.key,
     this.wmFactory = defaultAuthScreenWidgetModelFactory,
   });
@@ -190,36 +194,35 @@ class AuthRouteWidgetArgs {
 
   @override
   String toString() {
-    return 'AuthRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+    return 'AuthRouteArgs{key: $key, wmFactory: $wmFactory}';
   }
 }
 
 /// generated route for
 /// [CartScreenWidget]
-class CartRouteWidget extends PageRouteInfo<CartRouteWidgetArgs> {
-  CartRouteWidget({
+class CartRoute extends PageRouteInfo<CartRouteArgs> {
+  CartRoute({
     Key? key,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
         wmFactory = defaultCartScreenWidgetModelFactory,
     List<PageRouteInfo>? children,
   }) : super(
-          CartRouteWidget.name,
-          args: CartRouteWidgetArgs(
+          CartRoute.name,
+          args: CartRouteArgs(
             key: key,
             wmFactory: wmFactory,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'CartRouteWidget';
+  static const String name = 'CartRoute';
 
-  static const PageInfo<CartRouteWidgetArgs> page =
-      PageInfo<CartRouteWidgetArgs>(name);
+  static const PageInfo<CartRouteArgs> page = PageInfo<CartRouteArgs>(name);
 }
 
-class CartRouteWidgetArgs {
-  const CartRouteWidgetArgs({
+class CartRouteArgs {
+  const CartRouteArgs({
     this.key,
     this.wmFactory = defaultCartScreenWidgetModelFactory,
   });
@@ -231,7 +234,7 @@ class CartRouteWidgetArgs {
 
   @override
   String toString() {
-    return 'CartRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+    return 'CartRouteArgs{key: $key, wmFactory: $wmFactory}';
   }
 }
 
@@ -250,21 +253,7 @@ class CartTab extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [EmptyPage]
-class EmptyRoute extends PageRouteInfo<void> {
-  const EmptyRoute({List<PageRouteInfo>? children})
-      : super(
-          EmptyRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'EmptyRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [HomePage]
+/// [HomeScreenWidget]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
       : super(
@@ -279,31 +268,30 @@ class HomeRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [OrderHistoryScreenWidget]
-class OrderHistoryRouteWidget
-    extends PageRouteInfo<OrderHistoryRouteWidgetArgs> {
-  OrderHistoryRouteWidget({
+class OrderHistoryRoute extends PageRouteInfo<OrderHistoryRouteArgs> {
+  OrderHistoryRoute({
     Key? key,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
         wmFactory = defaultOrderHistoryScreenWidgetModelFactory,
     List<PageRouteInfo>? children,
   }) : super(
-          OrderHistoryRouteWidget.name,
-          args: OrderHistoryRouteWidgetArgs(
+          OrderHistoryRoute.name,
+          args: OrderHistoryRouteArgs(
             key: key,
             wmFactory: wmFactory,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'OrderHistoryRouteWidget';
+  static const String name = 'OrderHistoryRoute';
 
-  static const PageInfo<OrderHistoryRouteWidgetArgs> page =
-      PageInfo<OrderHistoryRouteWidgetArgs>(name);
+  static const PageInfo<OrderHistoryRouteArgs> page =
+      PageInfo<OrderHistoryRouteArgs>(name);
 }
 
-class OrderHistoryRouteWidgetArgs {
-  const OrderHistoryRouteWidgetArgs({
+class OrderHistoryRouteArgs {
+  const OrderHistoryRouteArgs({
     this.key,
     this.wmFactory = defaultOrderHistoryScreenWidgetModelFactory,
   });
@@ -315,36 +303,35 @@ class OrderHistoryRouteWidgetArgs {
 
   @override
   String toString() {
-    return 'OrderHistoryRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+    return 'OrderHistoryRouteArgs{key: $key, wmFactory: $wmFactory}';
   }
 }
 
 /// generated route for
 /// [OrderScreenWidget]
-class OrderRouteWidget extends PageRouteInfo<OrderRouteWidgetArgs> {
-  OrderRouteWidget({
+class OrderRoute extends PageRouteInfo<OrderRouteArgs> {
+  OrderRoute({
     Key? key,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
         wmFactory = defaultOrderScreenWidgetModelFactory,
     List<PageRouteInfo>? children,
   }) : super(
-          OrderRouteWidget.name,
-          args: OrderRouteWidgetArgs(
+          OrderRoute.name,
+          args: OrderRouteArgs(
             key: key,
             wmFactory: wmFactory,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'OrderRouteWidget';
+  static const String name = 'OrderRoute';
 
-  static const PageInfo<OrderRouteWidgetArgs> page =
-      PageInfo<OrderRouteWidgetArgs>(name);
+  static const PageInfo<OrderRouteArgs> page = PageInfo<OrderRouteArgs>(name);
 }
 
-class OrderRouteWidgetArgs {
-  const OrderRouteWidgetArgs({
+class OrderRouteArgs {
+  const OrderRouteArgs({
     this.key,
     this.wmFactory = defaultOrderScreenWidgetModelFactory,
   });
@@ -356,12 +343,12 @@ class OrderRouteWidgetArgs {
 
   @override
   String toString() {
-    return 'OrderRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+    return 'OrderRouteArgs{key: $key, wmFactory: $wmFactory}';
   }
 }
 
 /// generated route for
-/// [OrderSuccessScreen]
+/// [OrderSuccessScreenWidget]
 class OrderSuccessRoute extends PageRouteInfo<void> {
   const OrderSuccessRoute({List<PageRouteInfo>? children})
       : super(
@@ -376,30 +363,30 @@ class OrderSuccessRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [ProductScreenWidget]
-class ProductRouteWidget extends PageRouteInfo<ProductRouteWidgetArgs> {
-  ProductRouteWidget({
+class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
+  ProductRoute({
     Key? key,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
         wmFactory = defaultProductScreenWidgetModelFactory,
     List<PageRouteInfo>? children,
   }) : super(
-          ProductRouteWidget.name,
-          args: ProductRouteWidgetArgs(
+          ProductRoute.name,
+          args: ProductRouteArgs(
             key: key,
             wmFactory: wmFactory,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'ProductRouteWidget';
+  static const String name = 'ProductRoute';
 
-  static const PageInfo<ProductRouteWidgetArgs> page =
-      PageInfo<ProductRouteWidgetArgs>(name);
+  static const PageInfo<ProductRouteArgs> page =
+      PageInfo<ProductRouteArgs>(name);
 }
 
-class ProductRouteWidgetArgs {
-  const ProductRouteWidgetArgs({
+class ProductRouteArgs {
+  const ProductRouteArgs({
     this.key,
     this.wmFactory = defaultProductScreenWidgetModelFactory,
   });
@@ -411,36 +398,36 @@ class ProductRouteWidgetArgs {
 
   @override
   String toString() {
-    return 'ProductRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+    return 'ProductRouteArgs{key: $key, wmFactory: $wmFactory}';
   }
 }
 
 /// generated route for
 /// [ProfileScreenWidget]
-class ProfileRouteWidget extends PageRouteInfo<ProfileRouteWidgetArgs> {
-  ProfileRouteWidget({
+class ProfileRoute extends PageRouteInfo<ProfileRouteArgs> {
+  ProfileRoute({
     Key? key,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
         wmFactory = defaultProfileScreenWidgetModelFactory,
     List<PageRouteInfo>? children,
   }) : super(
-          ProfileRouteWidget.name,
-          args: ProfileRouteWidgetArgs(
+          ProfileRoute.name,
+          args: ProfileRouteArgs(
             key: key,
             wmFactory: wmFactory,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'ProfileRouteWidget';
+  static const String name = 'ProfileRoute';
 
-  static const PageInfo<ProfileRouteWidgetArgs> page =
-      PageInfo<ProfileRouteWidgetArgs>(name);
+  static const PageInfo<ProfileRouteArgs> page =
+      PageInfo<ProfileRouteArgs>(name);
 }
 
-class ProfileRouteWidgetArgs {
-  const ProfileRouteWidgetArgs({
+class ProfileRouteArgs {
+  const ProfileRouteArgs({
     this.key,
     this.wmFactory = defaultProfileScreenWidgetModelFactory,
   });
@@ -452,7 +439,7 @@ class ProfileRouteWidgetArgs {
 
   @override
   String toString() {
-    return 'ProfileRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+    return 'ProfileRouteArgs{key: $key, wmFactory: $wmFactory}';
   }
 }
 
@@ -472,30 +459,29 @@ class ProfileTab extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SearchScreenWidget]
-class SearchRouteWidget extends PageRouteInfo<SearchRouteWidgetArgs> {
-  SearchRouteWidget({
+class SearchRoute extends PageRouteInfo<SearchRouteArgs> {
+  SearchRoute({
     Key? key,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
         wmFactory = defaultSearchScreenWidgetModelFactory,
     List<PageRouteInfo>? children,
   }) : super(
-          SearchRouteWidget.name,
-          args: SearchRouteWidgetArgs(
+          SearchRoute.name,
+          args: SearchRouteArgs(
             key: key,
             wmFactory: wmFactory,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'SearchRouteWidget';
+  static const String name = 'SearchRoute';
 
-  static const PageInfo<SearchRouteWidgetArgs> page =
-      PageInfo<SearchRouteWidgetArgs>(name);
+  static const PageInfo<SearchRouteArgs> page = PageInfo<SearchRouteArgs>(name);
 }
 
-class SearchRouteWidgetArgs {
-  const SearchRouteWidgetArgs({
+class SearchRouteArgs {
+  const SearchRouteArgs({
     this.key,
     this.wmFactory = defaultSearchScreenWidgetModelFactory,
   });
@@ -507,36 +493,76 @@ class SearchRouteWidgetArgs {
 
   @override
   String toString() {
-    return 'SearchRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+    return 'SearchRouteArgs{key: $key, wmFactory: $wmFactory}';
   }
 }
 
 /// generated route for
-/// [ShopScreenWidget]
-class ShopRouteWidget extends PageRouteInfo<ShopRouteWidgetArgs> {
-  ShopRouteWidget({
+/// [ShopEditScreenWidget]
+class ShopEditRoute extends PageRouteInfo<ShopEditRouteArgs> {
+  ShopEditRoute({
     Key? key,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
-        wmFactory = defaultShopScreenWidgetModelFactory,
+        wmFactory = defaultShopEditScreenWidgetModelFactory,
     List<PageRouteInfo>? children,
   }) : super(
-          ShopRouteWidget.name,
-          args: ShopRouteWidgetArgs(
+          ShopEditRoute.name,
+          args: ShopEditRouteArgs(
             key: key,
             wmFactory: wmFactory,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'ShopRouteWidget';
+  static const String name = 'ShopEditRoute';
 
-  static const PageInfo<ShopRouteWidgetArgs> page =
-      PageInfo<ShopRouteWidgetArgs>(name);
+  static const PageInfo<ShopEditRouteArgs> page =
+      PageInfo<ShopEditRouteArgs>(name);
 }
 
-class ShopRouteWidgetArgs {
-  const ShopRouteWidgetArgs({
+class ShopEditRouteArgs {
+  const ShopEditRouteArgs({
+    this.key,
+    this.wmFactory = defaultShopEditScreenWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'ShopEditRouteArgs{key: $key, wmFactory: $wmFactory}';
+  }
+}
+
+/// generated route for
+/// [ShopScreenWidget]
+class ShopRoute extends PageRouteInfo<ShopRouteArgs> {
+  ShopRoute({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultShopScreenWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ShopRoute.name,
+          args: ShopRouteArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ShopRoute';
+
+  static const PageInfo<ShopRouteArgs> page = PageInfo<ShopRouteArgs>(name);
+}
+
+class ShopRouteArgs {
+  const ShopRouteArgs({
     this.key,
     this.wmFactory = defaultShopScreenWidgetModelFactory,
   });
@@ -548,7 +574,7 @@ class ShopRouteWidgetArgs {
 
   @override
   String toString() {
-    return 'ShopRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+    return 'ShopRouteArgs{key: $key, wmFactory: $wmFactory}';
   }
 }
 
@@ -568,30 +594,30 @@ class ShowCaseTab extends PageRouteInfo<void> {
 
 /// generated route for
 /// [ShowcaseScreenWidget]
-class ShowcaseRouteWidget extends PageRouteInfo<ShowcaseRouteWidgetArgs> {
-  ShowcaseRouteWidget({
+class ShowcaseRoute extends PageRouteInfo<ShowcaseRouteArgs> {
+  ShowcaseRoute({
     Key? key,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
         wmFactory = defaultShowcaseScreenWidgetModelFactory,
     List<PageRouteInfo>? children,
   }) : super(
-          ShowcaseRouteWidget.name,
-          args: ShowcaseRouteWidgetArgs(
+          ShowcaseRoute.name,
+          args: ShowcaseRouteArgs(
             key: key,
             wmFactory: wmFactory,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'ShowcaseRouteWidget';
+  static const String name = 'ShowcaseRoute';
 
-  static const PageInfo<ShowcaseRouteWidgetArgs> page =
-      PageInfo<ShowcaseRouteWidgetArgs>(name);
+  static const PageInfo<ShowcaseRouteArgs> page =
+      PageInfo<ShowcaseRouteArgs>(name);
 }
 
-class ShowcaseRouteWidgetArgs {
-  const ShowcaseRouteWidgetArgs({
+class ShowcaseRouteArgs {
+  const ShowcaseRouteArgs({
     this.key,
     this.wmFactory = defaultShowcaseScreenWidgetModelFactory,
   });
@@ -603,6 +629,6 @@ class ShowcaseRouteWidgetArgs {
 
   @override
   String toString() {
-    return 'ShowcaseRouteWidgetArgs{key: $key, wmFactory: $wmFactory}';
+    return 'ShowcaseRouteArgs{key: $key, wmFactory: $wmFactory}';
   }
 }

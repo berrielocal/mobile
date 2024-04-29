@@ -3,7 +3,7 @@ import 'package:berrielocal/domain/product/product_list_response.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:berrielocal/ui/ui_kit/product_card/categories_list.dart';
-import 'package:berrielocal/ui/ui_kit/product_card/product_card_list.dart';
+import 'package:berrielocal/ui/ui_kit/product_card/product_card_list_horizontal.dart';
 import 'package:elementary/elementary.dart';
 import 'package:elementary_helper/elementary_helper.dart';
 import 'package:flutter/material.dart';
@@ -40,92 +40,91 @@ class ShopScreenWidget extends ElementaryWidget<IShopScreenWidgetModel> {
       ),
       body: SafeArea(
           child: ListView(
-            shrinkWrap: true,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              children: [
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Container(
-                            width: 128,
-                            height: 128,
-                            clipBehavior: Clip.hardEdge,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColor.black.withOpacity(0.08),
-                                  offset: const Offset(0, 4),
-                                  blurRadius: 12,
-                                  spreadRadius: 0,
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(15),
-                              color: Colors.white,
-                            ),
-                            child: Image.asset(
-                              'assets/image/empty_photo.png',
-                              fit: BoxFit.fill,
-                            ),
-                          ),
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Container(
+                        width: 128,
+                        height: 128,
+                        clipBehavior: Clip.hardEdge,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColor.black.withOpacity(0.08),
+                              offset: const Offset(0, 4),
+                              blurRadius: 12,
+                              spreadRadius: 0,
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white,
                         ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: ListView(
-                              physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              children: List.generate(
-                                6,
-                                (index) => const Text('Информация: информация'),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
+                        child: Image.asset(
+                          'assets/image/empty_photo.png',
+                          fit: BoxFit.fill,
+                        ),
+                      ),
                     ),
-                    const Row(
-                      children: [
-                        Expanded(
-                          child: CategoriesList(list: [
-                            'Фрукты',
-                            'Овощи',
-                            'Фрукты',
-                            'Овощи',
-                            'Фрукты',
-                            'Овощи'
-                          ]),
-                        )
-                      ],
-                    ),
-                    EntityStateNotifierBuilder(
-                      listenableEntityState: wm.testProducts,
-                      loadingBuilder: (context, data) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      },
-                      builder: ((context, data) {
-                        return ListView(
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListView(
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           children: List.generate(
-                            5,
-                            (index) => ProductCardList(
-                              response: data!,
-                            ),
+                            6,
+                            (index) => const Text('Информация: информация'),
                           ),
-                        );
-                      }),
-                    ),
+                        ),
+                      ),
+                    )
                   ],
                 ),
-              ),
-            ],
-          )),
+                const Row(
+                  children: [
+                    Expanded(
+                      child: CategoriesList(list: [
+                        'Фрукты',
+                        'Овощи',
+                        'Фрукты',
+                        'Овощи',
+                        'Фрукты',
+                        'Овощи'
+                      ]),
+                    )
+                  ],
+                ),
+                EntityStateNotifierBuilder(
+                  listenableEntityState: wm.testProducts,
+                  loadingBuilder: (context, data) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                  builder: ((context, data) {
+                    return ListView(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      children: List.generate(
+                        5,
+                        (index) => ProductCardListHorizontal(
+                          response: data!,
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              ],
+            ),
+          ),
+        ],
+      )),
     );
   }
 }

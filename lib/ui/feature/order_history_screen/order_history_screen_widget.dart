@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
+import 'package:berrielocal/ui/ui_kit/order_history/order_history_card.dart';
 import 'package:elementary/elementary.dart';
 import 'package:elementary_helper/elementary_helper.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class OrderHistoryScreenWidget
         child: EntityStateNotifierBuilder(
           listenableEntityState: wm.ordersState,
           loadingBuilder: (context, data) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           },
@@ -53,15 +54,13 @@ class OrderHistoryScreenWidget
                     (BuildContext context, bool innerBoxIsScrolled) {
                   return [
                     SliverAppBar(
+                        toolbarHeight: 0,
                         pinned: true,
                         leadingWidth: 16,
                         bottom: PreferredSize(
                           preferredSize: TabBar(
                             tabs: List.of(
-                              [
-                                Text('Вы заказали'),
-                                Text('Заказали у вас'),
-                              ],
+                              [],
                             ),
                           ).preferredSize,
                           child: Stack(
@@ -70,8 +69,21 @@ class OrderHistoryScreenWidget
                             children: <Widget>[
                               TabBar(
                                 tabs: List.of([
-                                  Text('Вы заказали'),
-                                  Text('Заказали у вас')
+                                  const Padding(
+                                    padding: EdgeInsets.all(12.0),
+                                    child: Text(
+                                      'ВЫ ЗАКАЗАЛИ',
+                                      style: TextStyle(
+                                        color: AppColor.black,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text('ЗАКАЗАЛИ У ВАС',
+                                      style: TextStyle(
+                                        color: AppColor.black,
+                                        fontSize: 14,
+                                      )),
                                 ]),
                               ),
                             ],
@@ -81,12 +93,8 @@ class OrderHistoryScreenWidget
                 },
                 body: TabBarView(
                   children: List.of([
-                    Container(
-                      decoration: BoxDecoration(color: Colors.black),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(color: Colors.black),
-                    ),
+                    OrderHistoryCard(),
+                    OrderHistoryCard(),
                   ]),
                 ),
               ),

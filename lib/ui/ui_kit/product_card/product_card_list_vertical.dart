@@ -1,44 +1,46 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/domain/product/product_list_response.dart';
+import 'package:berrielocal/domain/product/product_response.dart';
 import 'package:berrielocal/domain/shop/shop_main_info.dart';
+import 'package:berrielocal/extensions/money_extension.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:berrielocal/ui/ui_kit/showcase/catalog_card.dart';
+import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-class CategoriesList extends StatelessWidget {
-  const CategoriesList({
+class ProductCardListVertical extends StatelessWidget {
+  const ProductCardListVertical({
     super.key,
-    required this.list,
+    required this.response,
   });
 
-  final List<String> list;
+  final ProductListResponse response;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          'Категории',
-          style: AppTypography.label.copyWith(fontSize: 16),
-        ),
         SizedBox(
-          height: 55,
+          height: 260,
           child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: list.map((e) {
+            scrollDirection: Axis.vertical,
+            physics: NeverScrollableScrollPhysics(),
+            children: response.products!.map((e) {
               return Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.only(top: 16),
                 child: GestureDetector(
                   onTap: () {
-                    context.router.navigate(ShopRoute());
+                    context.router.navigate(ProductRoute());
                   },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: 84,
-                        height: 35,
+                        width: 164,
+                        height: 192,
                         clipBehavior: Clip.hardEdge,
                         decoration: BoxDecoration(
                           boxShadow: [
@@ -52,18 +54,25 @@ class CategoriesList extends StatelessWidget {
                           borderRadius: BorderRadius.circular(7),
                           color: Colors.white,
                         ),
-                        child: Stack(
-                          alignment: Alignment.center,
+                        child: Column(
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Color(0xFFDCECE0),
-                              ),
+                            Image.asset(
+                              height: 192,
+                              e.imageUrl ?? 'assets/image/empty_photo.png',
+                              fit: BoxFit.fill,
                             ),
-                            Text(e),
                           ],
                         ),
                       ),
+                      Padding(
+                          padding: EdgeInsets.only(
+                            top: 8,
+                            bottom: 8,
+                          ),
+                          child: Text(e.name!)),
+                      Text(Decimal.parse(
+                        e.cost.toString(),
+                      ).formatMoney()),
                     ],
                   ),
                 ),

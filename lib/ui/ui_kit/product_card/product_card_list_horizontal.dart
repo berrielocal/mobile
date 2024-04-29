@@ -11,8 +11,8 @@ import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class ProductCardList extends StatelessWidget {
-  const ProductCardList({
+class ProductCardListHorizontal extends StatelessWidget {
+  const ProductCardListHorizontal({
     super.key,
     required this.response,
   });
@@ -36,7 +36,7 @@ class ProductCardList extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 child: GestureDetector(
                   onTap: () {
-                    context.router.navigate(ProductRouteWidget());
+                    context.router.navigate(ProductRoute());
                   },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

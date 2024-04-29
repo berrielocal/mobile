@@ -43,7 +43,6 @@ class ShowcaseScreenWidget
                 ),
                 Expanded(
                   child: ListView(
-                    shrinkWrap: true,
                     children: List.generate(
                       5,
                       (index) => CatalogCardList(

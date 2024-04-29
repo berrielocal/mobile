@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
-class OrderSuccessScreen extends StatelessWidget {
-  const OrderSuccessScreen({super.key});
+class OrderSuccessScreenWidget extends StatelessWidget {
+  const OrderSuccessScreenWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class OrderSuccessScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        minimum: EdgeInsets.only(left: 16, right: 16, bottom: 28),
+        minimum: const EdgeInsets.only(left: 16, right: 16, bottom: 28),
         child: Align(
           alignment: Alignment.center,
           child: Column(
@@ -38,20 +38,20 @@ class OrderSuccessScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SvgPicture.asset('assets/svg/success.svg'),
-              Text(
+              const Text(
                 'ОФОМРМЛЕН!',
                 style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
                     color: AppColor.green),
               ),
-              Text(
+              const Text(
                 'В бижайшее время по указанным данным с вами свяжется(-утся) оператор(-ы) магазин(-ов) для подтверждения заказа.',
                 textAlign: TextAlign.center,
               ),
               CustomFilledButton(
                 text: 'Перейти в мои заказы',
-                onTap: () => context.router.navigate(ProfileRouteWidget()),
+                onTap: () => context.router.navigate(OrderHistoryRoute()),
               )
             ],
           ),

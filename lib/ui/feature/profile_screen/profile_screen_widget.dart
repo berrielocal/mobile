@@ -47,16 +47,21 @@ class ProfileCards extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: 45,
-          child: ListTile(
-            title: Text(
-              'Мои магазин',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            trailing: const Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 20,
+        GestureDetector(
+          onTap: () {
+            context.router.navigate(ShopEditRoute());
+          },
+          child: SizedBox(
+            height: 45,
+            child: ListTile(
+              title: Text(
+                'Мои магазин',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 20,
+              ),
             ),
           ),
         ),
@@ -70,7 +75,9 @@ class ProfileCards extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: () => context.router.navigate(OrderHistoryRouteWidget()),
+          onTap: () => context.router.navigate(
+            OrderHistoryRoute(),
+          ),
           child: SizedBox(
             height: 45,
             child: ListTile(

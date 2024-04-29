@@ -14,6 +14,8 @@ import 'package:berrielocal/ui/feature/profile_screen/profile_screen_widget.dart
 import 'package:berrielocal/ui/feature/profile_screen/profile_screen_wm.dart';
 import 'package:berrielocal/ui/feature/search_screen/search_screen_widget.dart';
 import 'package:berrielocal/ui/feature/search_screen/search_screen_wm.dart';
+import 'package:berrielocal/ui/feature/shop_edit_screen/shop_edit_screen_widget.dart';
+import 'package:berrielocal/ui/feature/shop_edit_screen/shop_edit_screen_wm.dart';
 import 'package:berrielocal/ui/feature/shop_screen/shop_screen_widget.dart';
 import 'package:berrielocal/ui/feature/shop_screen/shop_screen_wm.dart';
 import 'package:berrielocal/ui/feature/showcase_screen/showcase_screen_widget.dart';
@@ -25,7 +27,7 @@ import 'package:berrielocal/ui/ui_kit/empty_page.dart';
 
 part 'app_router.gr.dart';
 
-@AutoRouterConfig()
+@AutoRouterConfig(replaceInRouteName: "PageWidget|ScreenWidget,Route")
 class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
@@ -35,21 +37,21 @@ class AppRouter extends _$AppRouter {
           children: [
             AutoRoute(
               page: ShowCaseTab.page,
-              initial: true,
               children: [
                 AutoRoute(
                   initial: true,
-                  page: ShowcaseRouteWidget.page,
+                  page: ShowcaseRoute.page,
                 ),
                 AutoRoute(
-                  page: SearchRouteWidget.page,
+                  page: SearchRoute.page,
                 ),
                 AutoRoute(
-                  page: ShopRouteWidget.page,
+                  page: ShopRoute.page,
                 ),
                 AutoRoute(
-                  page: ProductRouteWidget.page,
-                )
+                  page: ProductRoute.page,
+                  path: 'product/:productId',
+                ),
               ],
             ),
             AutoRoute(
@@ -57,32 +59,46 @@ class AppRouter extends _$AppRouter {
               children: [
                 AutoRoute(
                   initial: true,
-                  page: CartRouteWidget.page,
+                  page: CartRoute.page,
                 ),
                 AutoRoute(
-                  page: OrderRouteWidget.page,
+                  page: OrderRoute.page,
                 ),
                 AutoRoute(
                   page: OrderSuccessRoute.page,
-                )
+                ),
+                AutoRoute(
+                  page: ProductRoute.page,
+                  path: 'product/:productId',
+                ),
+                AutoRoute(
+                  page: OrderHistoryRoute.page,
+                ),
               ],
             ),
             AutoRoute(
               page: ProfileTab.page,
               children: [
                 AutoRoute(
-                  page: ProfileRouteWidget.page,
+                  page: ProfileRoute.page,
                   initial: true,
                 ),
                 AutoRoute(
-                  page: OrderHistoryRouteWidget.page,
+                  page: OrderHistoryRoute.page,
+                ),
+                AutoRoute(
+                  page: ProductRoute.page,
+                  path: 'product/:productId',
+                ),
+                AutoRoute(
+                  page: ShopEditRoute.page,
                 ),
               ],
             ),
           ],
         ),
         AutoRoute(
-          page: AuthRouteWidget.page,
+          page: AuthRoute.page,
           path: '/authScreen',
         ),
       ];

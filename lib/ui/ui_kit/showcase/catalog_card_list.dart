@@ -34,7 +34,7 @@ class CatalogCardList extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 child: GestureDetector(
                   onTap: () {
-                    context.router.navigate(ShopRouteWidget());
+                    context.router.navigate(ShopRoute());
                   },
                   child: CatalogCard(shop: e),
                 ),

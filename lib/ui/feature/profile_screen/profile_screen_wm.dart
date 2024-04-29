@@ -30,6 +30,6 @@ class ProfileScreenWidgetModel
 
   @override
   void toAuth() {
-    context.router.navigate(AuthRouteWidget());
+    context.router.navigate(AuthRoute());
   }
 }

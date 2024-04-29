@@ -39,7 +39,7 @@ class CartScreenWidget extends ElementaryWidget<ICartScreenWidgetModel> {
               return BasketCard(
                 cartProduct: products[index],
                 onTap: () {
-                  //TODO ???
+                  wm.toProduct();
                 },
               );
             },

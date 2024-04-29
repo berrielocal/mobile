@@ -59,11 +59,11 @@ class CartScreenWidgetModel
 
   @override
   void toProduct() {
-    context.router.root.navigate(ShowCaseTab());
+    context.router.root.navigate(ProductRoute());
   }
 
   @override
   void toOrder() {
-    context.router.navigate(OrderRouteWidget());
+    context.router.navigate(OrderRoute());
   }
 }

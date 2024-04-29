@@ -53,6 +53,6 @@ class ShowcaseScreenWidgetModel
 
   @override
   void openSearch() async {
-    context.router.navigate(SearchRouteWidget());
+    context.router.navigate(SearchRoute());
   }
 }
