@@ -2,8 +2,10 @@ import 'package:berrielocal/data/service_mock/cart_service.dart';
 import 'package:berrielocal/data/service_mock/product_service.dart';
 import 'package:berrielocal/data/service_mock/shop_service.dart';
 import 'package:berrielocal/data/token/repository/auth_repository.dart';
+import 'package:berrielocal/ui/feature/auth_code_screen/auth_code_screen_model.dart';
 import 'package:berrielocal/ui/feature/auth_screen/auth_screen_model.dart';
 import 'package:berrielocal/ui/feature/cart_screen/cart_screen_model.dart';
+import 'package:berrielocal/ui/feature/favorite_screen/favorite_screen_model.dart';
 import 'package:berrielocal/ui/feature/order_history_screen/order_history_screen_model.dart';
 import 'package:berrielocal/ui/feature/order_screen/order_screen_model.dart';
 import 'package:berrielocal/ui/feature/product_screen/product_screen_model.dart';
@@ -41,6 +43,8 @@ class _AppDependencyState extends State<AppDependency> {
   late final OrderScreenModel _orderScreenModel;
   late final OrderHistoryScreenModel _orderHistoryScreenModel;
   late final ShopEditScreenModel _shopEditScreenModel;
+  late final AuthCodeScreenModel _authCodeScreenModel;
+  late final FavoriteScreenModel _favoriteScreenModel;
 
   @override
   void initState() {
@@ -67,6 +71,8 @@ class _AppDependencyState extends State<AppDependency> {
     _orderHistoryScreenModel = OrderHistoryScreenModel(errorHandler);
     _shopEditScreenModel =
         ShopEditScreenModel(errorHandler, mockProductService);
+    _authCodeScreenModel = AuthCodeScreenModel(errorHandler);
+    _favoriteScreenModel = FavoriteScreenModel(errorHandler);
   }
 
   @override
@@ -106,6 +112,12 @@ class _AppDependencyState extends State<AppDependency> {
         ),
         Provider(
           create: (context) => _shopEditScreenModel,
+        ),
+        Provider(
+          create: (context) => _authCodeScreenModel,
+        ),
+        Provider(
+          create: (context) => _favoriteScreenModel,
         ),
       ],
       child: widget.app,

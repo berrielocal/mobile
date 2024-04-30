@@ -1,3 +1,4 @@
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +7,19 @@ import 'package:berrielocal/navigation/app_router.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
-class HomeScreenWidget extends StatelessWidget {
+class HomeScreenWidget extends StatefulWidget {
   const HomeScreenWidget({super.key});
+
+  @override
+  State<HomeScreenWidget> createState() => _HomeScreenWidgetState();
+}
+
+class _HomeScreenWidgetState extends State<HomeScreenWidget> {
+  @override
+  void initState() {
+    super.initState();
+    AppMetrica.reportEvent('app_launch');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +47,29 @@ class HomeScreenWidget extends StatelessWidget {
               label: localization.showcase,
             ),
             NavigationDestination(
-              icon: SvgPicture.asset(
-                'assets/svg/cart.svg',
-                color: AppColor.black,
+              icon: Stack(
+                alignment: Alignment.topRight,
+                children: [
+                  SvgPicture.asset(
+                    'assets/svg/cart.svg',
+                    color: AppColor.black,
+                  ),
+                  SvgPicture.asset(
+                    'assets/svg/vector.svg',
+                  ),
+                ],
               ),
-              selectedIcon: SvgPicture.asset(
-                'assets/svg/cart.svg',
-                color: AppColor.green,
+              selectedIcon: Stack(
+                alignment: Alignment.topRight,
+                children: [
+                  SvgPicture.asset(
+                    'assets/svg/cart.svg',
+                    color: AppColor.green,
+                  ),
+                  SvgPicture.asset(
+                    'assets/svg/vector.svg',
+                  ),
+                ],
               ),
               label: localization.cart,
             ),

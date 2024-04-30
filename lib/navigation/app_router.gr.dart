@@ -15,6 +15,17 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AuthCodeRoute.name: (routeData) {
+      final args = routeData.argsAs<AuthCodeRouteArgs>(
+          orElse: () => const AuthCodeRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: AuthCodeScreenWidget(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
     AuthRoute.name: (routeData) {
       final args =
           routeData.argsAs<AuthRouteArgs>(orElse: () => const AuthRouteArgs());
@@ -41,6 +52,17 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const CartTabPage(),
+      );
+    },
+    FavoriteRoute.name: (routeData) {
+      final args = routeData.argsAs<FavoriteRouteArgs>(
+          orElse: () => const FavoriteRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: FavoriteScreenWidget(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
       );
     },
     HomeRoute.name: (routeData) {
@@ -159,6 +181,47 @@ abstract class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
+/// [AuthCodeScreenWidget]
+class AuthCodeRoute extends PageRouteInfo<AuthCodeRouteArgs> {
+  AuthCodeRoute({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultAuthCodeScreenWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          AuthCodeRoute.name,
+          args: AuthCodeRouteArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'AuthCodeRoute';
+
+  static const PageInfo<AuthCodeRouteArgs> page =
+      PageInfo<AuthCodeRouteArgs>(name);
+}
+
+class AuthCodeRouteArgs {
+  const AuthCodeRouteArgs({
+    this.key,
+    this.wmFactory = defaultAuthCodeScreenWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'AuthCodeRouteArgs{key: $key, wmFactory: $wmFactory}';
+  }
+}
+
+/// generated route for
 /// [AuthScreenWidget]
 class AuthRoute extends PageRouteInfo<AuthRouteArgs> {
   AuthRoute({
@@ -250,6 +313,47 @@ class CartTab extends PageRouteInfo<void> {
   static const String name = 'CartTab';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [FavoriteScreenWidget]
+class FavoriteRoute extends PageRouteInfo<FavoriteRouteArgs> {
+  FavoriteRoute({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultFavoriteScreenWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          FavoriteRoute.name,
+          args: FavoriteRouteArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'FavoriteRoute';
+
+  static const PageInfo<FavoriteRouteArgs> page =
+      PageInfo<FavoriteRouteArgs>(name);
+}
+
+class FavoriteRouteArgs {
+  const FavoriteRouteArgs({
+    this.key,
+    this.wmFactory = defaultFavoriteScreenWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'FavoriteRouteArgs{key: $key, wmFactory: $wmFactory}';
+  }
 }
 
 /// generated route for

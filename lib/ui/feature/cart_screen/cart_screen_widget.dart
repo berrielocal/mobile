@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/extensions/money_extension.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/ui/ui_kit/cart/basket_card.dart';
 import 'package:berrielocal/ui/ui_kit/custom_filled_button.dart';
@@ -81,8 +82,8 @@ class CartScreenWidget extends ElementaryWidget<ICartScreenWidgetModel> {
                               ),
                               RichText(
                                 text: TextSpan(
-                                  text: (data?.first.cost ?? Decimal.zero)
-                                      .toString(),
+                                  text: (Decimal.fromInt(150) ?? Decimal.zero)
+                                      .formatMoney(),
                                   style: theme.textTheme.bodyMedium?.copyWith(
                                     color: theme.colorScheme.onBackground,
                                   ),

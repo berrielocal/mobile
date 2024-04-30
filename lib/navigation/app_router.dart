@@ -1,8 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/ui/feature/auth_code_screen/auth_code_screen_widget.dart';
+import 'package:berrielocal/ui/feature/auth_code_screen/auth_code_screen_wm.dart';
 import 'package:berrielocal/ui/feature/auth_screen/auth_screen_widget.dart';
 import 'package:berrielocal/ui/feature/auth_screen/auth_screen_wm.dart';
 import 'package:berrielocal/ui/feature/cart_screen/cart_screen_widget.dart';
 import 'package:berrielocal/ui/feature/cart_screen/cart_screen_wm.dart';
+import 'package:berrielocal/ui/feature/favorite_screen/favorite_screen_widget.dart';
+import 'package:berrielocal/ui/feature/favorite_screen/favorite_screen_wm.dart';
 import 'package:berrielocal/ui/feature/order_history_screen/order_history_screen_widget.dart';
 import 'package:berrielocal/ui/feature/order_history_screen/order_history_screen_wm.dart';
 import 'package:berrielocal/ui/feature/order_screen/order_screen_widget.dart';
@@ -93,6 +97,9 @@ class AppRouter extends _$AppRouter {
                 AutoRoute(
                   page: ShopEditRoute.page,
                 ),
+                AutoRoute(
+                  page: FavoriteRoute.page,
+                )
               ],
             ),
           ],
@@ -101,6 +108,10 @@ class AppRouter extends _$AppRouter {
           page: AuthRoute.page,
           path: '/authScreen',
         ),
+        AutoRoute(
+          page: AuthCodeRoute.page,
+          path: '/authCodeScreen',
+        )
       ];
 }
 

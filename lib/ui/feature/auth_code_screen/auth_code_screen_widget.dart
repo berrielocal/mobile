@@ -5,20 +5,20 @@ import 'package:berrielocal/ui/ui_kit/auth/custom_textfield.dart';
 import 'package:berrielocal/ui/ui_kit/custom_filled_button.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'auth_screen_wm.dart';
+import 'auth_code_screen_wm.dart';
 
 // TODO: cover with documentation
-/// Main widget for AuthScreen module
+/// Main widget for AuthCodeScreen module
 @RoutePage()
-class AuthScreenWidget extends ElementaryWidget<IAuthScreenWidgetModel> {
-  const AuthScreenWidget({
+class AuthCodeScreenWidget
+    extends ElementaryWidget<IAuthCodeScreenWidgetModel> {
+  const AuthCodeScreenWidget({
     Key? key,
-    WidgetModelFactory wmFactory = defaultAuthScreenWidgetModelFactory,
+    WidgetModelFactory wmFactory = defaultAuthCodeScreenWidgetModelFactory,
   }) : super(wmFactory, key: key);
 
   @override
-  Widget build(IAuthScreenWidgetModel wm) {
+  Widget build(IAuthCodeScreenWidgetModel wm) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -39,11 +39,19 @@ class AuthScreenWidget extends ElementaryWidget<IAuthScreenWidgetModel> {
       body: SafeArea(
         minimum: const EdgeInsets.only(left: 16, right: 16, bottom: 40),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Text(
-              'Ваши данные',
-              style: AppTypography.personalCardTitle,
+            Text(
+              'Подтверждение почты',
+              style: AppTypography.personalCardTitle.copyWith(fontSize: 18),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Text(
+              'Мы отправили письмо с кодом на**********@gmail.com',
+              style: AppTypography.personalCardTitle.copyWith(fontSize: 12),
             ),
             const SizedBox(
               height: 15,
@@ -52,47 +60,7 @@ class AuthScreenWidget extends ElementaryWidget<IAuthScreenWidgetModel> {
               controller: wm.emailController,
               autofocus: false,
               textFieldBorderRadius: 0,
-              hint: 'E-mail',
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            CustomTextfield(
-              controller: wm.emailController,
-              autofocus: false,
-              textFieldBorderRadius: 0,
-              hint: 'Пароль',
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            CustomTextfield(
-              controller: wm.emailController,
-              autofocus: false,
-              textFieldBorderRadius: 0,
-              hint: 'Повторите пароль',
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            const Text(
-              'Данные магазина',
-              style: AppTypography.personalCardTitle,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            CustomTextfield(
-              controller: wm.emailController,
-              autofocus: false,
-              textFieldBorderRadius: 0,
-              hint: 'Название магазина',
+              hint: 'Код подтверждения',
               contentPadding:
                   EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             ),
@@ -108,7 +76,7 @@ class AuthScreenWidget extends ElementaryWidget<IAuthScreenWidgetModel> {
             ),
             CustomFilledButton(
               text: 'Зарегистрироваться',
-              onTap: wm.authCode,
+              onTap: wm.toProfile,
             )
           ],
         ),

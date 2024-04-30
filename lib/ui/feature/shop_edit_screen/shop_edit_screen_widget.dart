@@ -45,7 +45,7 @@ class ShopEditScreenWidget
         ),
       ),
       body: SafeArea(
-        minimum: EdgeInsets.only(left: 24, right: 24),
+        minimum: const EdgeInsets.only(left: 24, right: 24, bottom: 16),
         child: ListView(
           children: [
             Column(
@@ -63,7 +63,7 @@ class ShopEditScreenWidget
                           width: 273,
                         ),
                         Padding(
-                          padding: EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(16),
                           child: SvgPicture.asset('assets/svg/add.svg'),
                         ),
                       ],
@@ -86,7 +86,7 @@ class ShopEditScreenWidget
                   textFieldBorderRadius: 0,
                   hint: 'Название магазина',
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                 ),
                 const SizedBox(
                   height: 15,
@@ -97,7 +97,7 @@ class ShopEditScreenWidget
                   textFieldBorderRadius: 0,
                   hint: 'Информация',
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                 ),
                 const SizedBox(
                   height: 15,
@@ -108,7 +108,7 @@ class ShopEditScreenWidget
                   textFieldBorderRadius: 0,
                   hint: 'Телефон',
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                 ),
                 const SizedBox(
                   height: 15,
@@ -119,14 +119,22 @@ class ShopEditScreenWidget
                   textFieldBorderRadius: 0,
                   hint: 'E-mail',
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                 ),
                 const SizedBox(
-                  height: 15,
+                  height: 30,
                 ),
-                const Text(
-                  'Продукция магазина',
-                  style: AppTypography.personalCardTitle,
+                Row(
+                  children: [
+                    Text(
+                      'Продукция магазина',
+                      style: AppTypography.personalCardTitle,
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    SvgPicture.asset('assets/svg/add.svg'),
+                  ],
                 ),
                 const SizedBox(
                   height: 15,
@@ -136,13 +144,13 @@ class ShopEditScreenWidget
             EntityStateNotifierBuilder(
               listenableEntityState: wm.testProducts,
               loadingBuilder: (context, data) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               },
               builder: ((context, data) {
                 return ListView(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   children: List.generate(
                     1,

@@ -123,16 +123,19 @@ class ProfileCards extends StatelessWidget {
             thickness: 1.7,
           ),
         ),
-        SizedBox(
-          height: 45,
-          child: ListTile(
-            title: Text(
-              'Избранное',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            trailing: const Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 20,
+        GestureDetector(
+          onTap: () => context.router.navigate(FavoriteRoute()),
+          child: SizedBox(
+            height: 45,
+            child: ListTile(
+              title: Text(
+                'Избранное',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 20,
+              ),
             ),
           ),
         ),
