@@ -4,7 +4,7 @@
 
 BerrieLocal Flutter project.
 
-Architecture: Elementary
+State: Elementary
 
 Navigation: AutoRoute
 
