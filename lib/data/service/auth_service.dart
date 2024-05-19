@@ -18,4 +18,9 @@ abstract class AuthService {
   Future<JwtResponse> authEmailPart1({
     @Body() required UserRegistrationRequest request,
   });
+
+  @PATCH('/api/v1/users/activate/{activationCode}')
+  Future<void> authEmailPart2({
+    @Path() required String activationCode,
+  });
 }

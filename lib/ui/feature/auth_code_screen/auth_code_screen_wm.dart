@@ -10,7 +10,7 @@ import 'auth_code_screen_widget.dart';
 abstract interface class IAuthCodeScreenWidgetModel implements IWidgetModel {
   TextEditingController get emailController;
   void back();
-  void toProfile();
+  Future<void> toProfile();
 }
 
 AuthCodeScreenWidgetModel defaultAuthCodeScreenWidgetModelFactory(
@@ -35,7 +35,8 @@ class AuthCodeScreenWidgetModel
   }
 
   @override
-  void toProfile() {
+  Future<void> toProfile() async {
+    await model.authPart2(emailController.text);
     context.router.navigate(ProfileRoute());
   }
 }

@@ -50,12 +50,12 @@ class AppComponents {
 
     await tokenRepository.initTokens();
 
-    // dio.interceptors.add(
-    //   JWTInterceptor(
-    //     repository: tokenRepository,
-    //     dio: dio,
-    //   ),
-    // );
+    dio.interceptors.add(
+      JWTInterceptor(
+        repository: tokenRepository,
+        dio: dio,
+      ),
+    );
   }
 
   Future<void> dispose() async {}

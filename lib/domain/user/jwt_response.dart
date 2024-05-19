@@ -11,8 +11,8 @@ class JwtResponse with _$JwtResponse {
     includeIfNull: false,
   )
   const factory JwtResponse({
-    @JsonKey(name: "access_token") required String accessToken,
-    @JsonKey(name: "refresh_token") required String refreshToken,
+    @JsonKey(name: "accessToken") required String accessToken,
+    @JsonKey(name: "refreshToken") required String refreshToken,
   }) = _JwtResponse;
 
   factory JwtResponse.fromJson(Map<String, dynamic> json) =>

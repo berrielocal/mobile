@@ -34,12 +34,14 @@ class JWTInterceptor extends QueuedInterceptor {
   }
 
   /// Save tokens received after authorization.
+  /// 409 if email is used
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
-    if (response.requestOptions.path == '/auth/v1/phone/part2') {
+    if (response.requestOptions.path.contains('/api/v1/users/registration') ||
+        response.requestOptions.path == '/api/v1/users/login') {
       repository.saveTokens(
-        accessToken: response.data['data']['access_token'],
-        refreshToken: response.data['data']['refresh_token'],
+        accessToken: response.data['data']['accessToken'],
+        refreshToken: response.data['data']['refreshToken'],
       );
     }
 
@@ -51,7 +53,7 @@ class JWTInterceptor extends QueuedInterceptor {
   Future onError(error, handler) async {
     if ((error.response?.statusCode == 403 ||
             error.response?.statusCode == 401) &&
-        error.requestOptions.path != '/auth/v1/phone/part1') {
+        error.requestOptions.path != '/api/v1/users/registration') {
       await _refresh();
       if (repository.auth) {
         final response = await _retry(error.requestOptions);
@@ -65,16 +67,16 @@ class JWTInterceptor extends QueuedInterceptor {
   Future<void> _refresh() async {
     try {
       final response = await _dio.post(
-        '/auth/v1/token/refresh',
+        '/auth/v1/users/refresh',
         data: {
-          'refresh_token': _refreshToken,
+          'refreshToken': _refreshToken,
         },
       );
 
       if (response.statusCode == 201 || response.statusCode == 200) {
         repository.saveTokens(
-          accessToken: response.data['data']['access_token'],
-          refreshToken: response.data['data']['refresh_token'],
+          accessToken: response.data['data']['accessToken'],
+          refreshToken: response.data['data']['refreshToken'],
         );
       }
     } catch (e) {
@@ -97,18 +99,4 @@ class JWTInterceptor extends QueuedInterceptor {
     );
   }
 
-/*
-  Future<void> _getFreeToken({bool isInit = false}) async {
-    final response = await _dio.post('/auth/v1/token/free',
-        data: {'user_uuid': UuidManager.cachedUuid},
-        options: Options(
-          headers: {
-            'Authorization': 'Basic YXBwOmZpdHRpbmFwcA==',
-          },
-        ));
-
-    if (isInit) {
-      await _saveTokens(response, isFreeToken: true);
-    }
-  }*/
 }

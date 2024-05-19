@@ -60,8 +60,9 @@ class AuthScreenWidget extends ElementaryWidget<IAuthScreenWidgetModel> {
               height: 15,
             ),
             CustomTextfield(
-              controller: wm.emailController,
+              controller: wm.passwordController,
               autofocus: false,
+              obscureText: true,
               textFieldBorderRadius: 0,
               hint: 'Пароль',
               contentPadding:
@@ -71,8 +72,9 @@ class AuthScreenWidget extends ElementaryWidget<IAuthScreenWidgetModel> {
               height: 15,
             ),
             CustomTextfield(
-              controller: wm.emailController,
+              controller: wm.repeatPasswordController,
               autofocus: false,
+              obscureText: true,
               textFieldBorderRadius: 0,
               hint: 'Повторите пароль',
               contentPadding:
@@ -89,7 +91,7 @@ class AuthScreenWidget extends ElementaryWidget<IAuthScreenWidgetModel> {
               height: 15,
             ),
             CustomTextfield(
-              controller: wm.emailController,
+              controller: wm.shopController,
               autofocus: false,
               textFieldBorderRadius: 0,
               hint: 'Название магазина',
@@ -104,7 +106,7 @@ class AuthScreenWidget extends ElementaryWidget<IAuthScreenWidgetModel> {
               ),
             ),
             const SizedBox(
-              height: 15,
+              height: 10,
             ),
             CustomFilledButton(
               text: 'Зарегистрироваться',

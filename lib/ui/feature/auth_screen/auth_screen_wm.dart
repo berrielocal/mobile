@@ -1,15 +1,20 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/data/token/repository/auth_repository.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'auth_screen_model.dart';
 import 'auth_screen_widget.dart';
 
 abstract interface class IAuthScreenWidgetModel implements IWidgetModel {
   void back();
-  void authCode();
+  Future<void> authCode();
   TextEditingController get emailController;
+  TextEditingController get passwordController;
+  TextEditingController get repeatPasswordController;
+  TextEditingController get shopController;
 }
 
 AuthScreenWidgetModel defaultAuthScreenWidgetModelFactory(
@@ -34,7 +39,22 @@ class AuthScreenWidgetModel
   final emailController = TextEditingController();
 
   @override
-  void authCode() {
-    context.router.navigate(AuthCodeRoute());
+  final repeatPasswordController = TextEditingController();
+
+  @override
+  Future<void> authCode() async {
+    await model.authPart1(
+      emailController.text,
+      passwordController.text,
+    );
+    context.router.push(
+      AuthCodeRoute(email: emailController.text),
+    );
   }
+
+  @override
+  final passwordController = TextEditingController();
+
+  @override
+  final shopController = TextEditingController();
 }

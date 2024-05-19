@@ -20,9 +20,9 @@ JwtResponse _$JwtResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$JwtResponse {
-  @JsonKey(name: "access_token")
+  @JsonKey(name: "accessToken")
   String get accessToken => throw _privateConstructorUsedError;
-  @JsonKey(name: "refresh_token")
+  @JsonKey(name: "refreshToken")
   String get refreshToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,8 +38,8 @@ abstract class $JwtResponseCopyWith<$Res> {
       _$JwtResponseCopyWithImpl<$Res, JwtResponse>;
   @useResult
   $Res call(
-      {@JsonKey(name: "access_token") String accessToken,
-      @JsonKey(name: "refresh_token") String refreshToken});
+      {@JsonKey(name: "accessToken") String accessToken,
+      @JsonKey(name: "refreshToken") String refreshToken});
 }
 
 /// @nodoc
@@ -80,8 +80,8 @@ abstract class _$$JwtResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "access_token") String accessToken,
-      @JsonKey(name: "refresh_token") String refreshToken});
+      {@JsonKey(name: "accessToken") String accessToken,
+      @JsonKey(name: "refreshToken") String refreshToken});
 }
 
 /// @nodoc
@@ -116,17 +116,17 @@ class __$$JwtResponseImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true, includeIfNull: false)
 class _$JwtResponseImpl implements _JwtResponse {
   const _$JwtResponseImpl(
-      {@JsonKey(name: "access_token") required this.accessToken,
-      @JsonKey(name: "refresh_token") required this.refreshToken});
+      {@JsonKey(name: "accessToken") required this.accessToken,
+      @JsonKey(name: "refreshToken") required this.refreshToken});
 
   factory _$JwtResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$JwtResponseImplFromJson(json);
 
   @override
-  @JsonKey(name: "access_token")
+  @JsonKey(name: "accessToken")
   final String accessToken;
   @override
-  @JsonKey(name: "refresh_token")
+  @JsonKey(name: "refreshToken")
   final String refreshToken;
 
   @override
@@ -165,18 +165,18 @@ class _$JwtResponseImpl implements _JwtResponse {
 
 abstract class _JwtResponse implements JwtResponse {
   const factory _JwtResponse(
-          {@JsonKey(name: "access_token") required final String accessToken,
-          @JsonKey(name: "refresh_token") required final String refreshToken}) =
+          {@JsonKey(name: "accessToken") required final String accessToken,
+          @JsonKey(name: "refreshToken") required final String refreshToken}) =
       _$JwtResponseImpl;
 
   factory _JwtResponse.fromJson(Map<String, dynamic> json) =
       _$JwtResponseImpl.fromJson;
 
   @override
-  @JsonKey(name: "access_token")
+  @JsonKey(name: "accessToken")
   String get accessToken;
   @override
-  @JsonKey(name: "refresh_token")
+  @JsonKey(name: "refreshToken")
   String get refreshToken;
   @override
   @JsonKey(ignore: true)

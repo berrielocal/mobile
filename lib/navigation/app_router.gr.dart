@@ -16,11 +16,11 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     AuthCodeRoute.name: (routeData) {
-      final args = routeData.argsAs<AuthCodeRouteArgs>(
-          orElse: () => const AuthCodeRouteArgs());
+      final args = routeData.argsAs<AuthCodeRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: AuthCodeScreenWidget(
+          email: args.email,
           key: args.key,
           wmFactory: args.wmFactory,
         ),
@@ -184,6 +184,7 @@ abstract class _$AppRouter extends RootStackRouter {
 /// [AuthCodeScreenWidget]
 class AuthCodeRoute extends PageRouteInfo<AuthCodeRouteArgs> {
   AuthCodeRoute({
+    required String email,
     Key? key,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
@@ -192,6 +193,7 @@ class AuthCodeRoute extends PageRouteInfo<AuthCodeRouteArgs> {
   }) : super(
           AuthCodeRoute.name,
           args: AuthCodeRouteArgs(
+            email: email,
             key: key,
             wmFactory: wmFactory,
           ),
@@ -206,9 +208,12 @@ class AuthCodeRoute extends PageRouteInfo<AuthCodeRouteArgs> {
 
 class AuthCodeRouteArgs {
   const AuthCodeRouteArgs({
+    required this.email,
     this.key,
     this.wmFactory = defaultAuthCodeScreenWidgetModelFactory,
   });
+
+  final String email;
 
   final Key? key;
 
@@ -217,7 +222,7 @@ class AuthCodeRouteArgs {
 
   @override
   String toString() {
-    return 'AuthCodeRouteArgs{key: $key, wmFactory: $wmFactory}';
+    return 'AuthCodeRouteArgs{email: $email, key: $key, wmFactory: $wmFactory}';
   }
 }
 

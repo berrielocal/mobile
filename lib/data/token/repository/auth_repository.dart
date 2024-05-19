@@ -24,4 +24,15 @@ class AuthRepository {
       );
     }
   }
+
+  Future<bool> emailPart2({
+    required String activationCode,
+  }) async {
+    try {
+      await _authService.authEmailPart2(activationCode: activationCode);
+      return true;
+    } on DioException catch (error) {
+      return false;
+    }
+  }
 }

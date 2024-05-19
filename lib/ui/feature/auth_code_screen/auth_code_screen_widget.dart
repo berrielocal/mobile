@@ -13,9 +13,12 @@ import 'auth_code_screen_wm.dart';
 class AuthCodeScreenWidget
     extends ElementaryWidget<IAuthCodeScreenWidgetModel> {
   const AuthCodeScreenWidget({
+    required this.email,
     Key? key,
     WidgetModelFactory wmFactory = defaultAuthCodeScreenWidgetModelFactory,
   }) : super(wmFactory, key: key);
+
+  final String email;
 
   @override
   Widget build(IAuthCodeScreenWidgetModel wm) {
@@ -50,7 +53,7 @@ class AuthCodeScreenWidget
               height: 15,
             ),
             Text(
-              'Мы отправили письмо с кодом на**********@gmail.com',
+              'Мы отправили письмо с кодом на $email',
               style: AppTypography.personalCardTitle.copyWith(fontSize: 12),
             ),
             const SizedBox(
@@ -61,6 +64,7 @@ class AuthCodeScreenWidget
               autofocus: false,
               textFieldBorderRadius: 0,
               hint: 'Код подтверждения',
+              keyboardType: TextInputType.number,
               contentPadding:
                   EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             ),

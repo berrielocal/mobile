@@ -65,13 +65,13 @@ class _AppDependencyState extends State<AppDependency> {
     _searchScreenModel = SearchScreenModel(errorHandler);
     _shopScreenModel = ShopScreenModel(errorHandler, mockProductService);
     _productScreenModel = ProductScreenModel(errorHandler);
-    _authScreenModel = AuthScreenModel(errorHandler);
+    _authScreenModel = AuthScreenModel(errorHandler, authRepository);
     _profileScreenModel = ProfileScreenModel(errorHandler);
     _orderScreenModel = OrderScreenModel(errorHandler);
     _orderHistoryScreenModel = OrderHistoryScreenModel(errorHandler);
     _shopEditScreenModel =
         ShopEditScreenModel(errorHandler, mockProductService);
-    _authCodeScreenModel = AuthCodeScreenModel(errorHandler);
+    _authCodeScreenModel = AuthCodeScreenModel(errorHandler, authRepository);
     _favoriteScreenModel = FavoriteScreenModel(errorHandler);
   }
 
