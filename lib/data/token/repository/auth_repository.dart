@@ -1,5 +1,6 @@
 import 'package:berrielocal/data/service/auth_service.dart';
 import 'package:berrielocal/domain/user/jwt_response.dart';
+import 'package:berrielocal/domain/user/user_id_response.dart';
 import 'package:berrielocal/domain/user/user_registration_request.dart';
 import 'package:dio/dio.dart';
 
@@ -33,6 +34,17 @@ class AuthRepository {
       return true;
     } on DioException catch (error) {
       return false;
+    }
+  }
+
+  Future<UserIdResponse> getUserById() async {
+    try {
+      final result = await _authService.getUserById();
+      return result;
+    } on DioException catch (error) {
+      throw Exception(
+        error.response?.data['message'],
+      );
     }
   }
 }

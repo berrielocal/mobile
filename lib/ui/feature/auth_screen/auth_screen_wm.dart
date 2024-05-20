@@ -43,12 +43,12 @@ class AuthScreenWidgetModel
 
   @override
   Future<void> authCode() async {
+    context.router.push(
+      AuthCodeRoute(email: emailController.text),
+    );
     await model.authPart1(
       emailController.text,
       passwordController.text,
-    );
-    context.router.push(
-      AuthCodeRoute(email: emailController.text),
     );
   }
 

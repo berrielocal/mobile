@@ -1,6 +1,5 @@
+import 'package:berrielocal/data/token/repository/token_repository.dart';
 import 'package:dio/dio.dart';
-
-import '../repository/token_repository.dart';
 
 /// Interceptor for working with JWT tokens, updating and saving them.
 /// Requires [Dio] to work.
@@ -34,14 +33,13 @@ class JWTInterceptor extends QueuedInterceptor {
   }
 
   /// Save tokens received after authorization.
-  /// 409 if email is used
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
     if (response.requestOptions.path.contains('/api/v1/users/registration') ||
         response.requestOptions.path == '/api/v1/users/login') {
       repository.saveTokens(
-        accessToken: response.data['data']['accessToken'],
-        refreshToken: response.data['data']['refreshToken'],
+        accessToken: response.data['accessToken'],
+        refreshToken: response.data['refreshToken'],
       );
     }
 
@@ -65,6 +63,10 @@ class JWTInterceptor extends QueuedInterceptor {
 
   /// Make a request to update the JWT token and save it to cache.
   Future<void> _refresh() async {
+    if (_refreshToken == null) {
+      return;
+    }
+
     try {
       final response = await _dio.post(
         '/auth/v1/users/refresh',
@@ -75,8 +77,8 @@ class JWTInterceptor extends QueuedInterceptor {
 
       if (response.statusCode == 201 || response.statusCode == 200) {
         repository.saveTokens(
-          accessToken: response.data['data']['accessToken'],
-          refreshToken: response.data['data']['refreshToken'],
+          accessToken: response.data['accessToken'],
+          refreshToken: response.data['refreshToken'],
         );
       }
     } catch (e) {
@@ -98,5 +100,4 @@ class JWTInterceptor extends QueuedInterceptor {
       options: options,
     );
   }
-
 }

@@ -66,7 +66,7 @@ class _AppDependencyState extends State<AppDependency> {
     _shopScreenModel = ShopScreenModel(errorHandler, mockProductService);
     _productScreenModel = ProductScreenModel(errorHandler);
     _authScreenModel = AuthScreenModel(errorHandler, authRepository);
-    _profileScreenModel = ProfileScreenModel(errorHandler);
+    _profileScreenModel = ProfileScreenModel(errorHandler, authRepository);
     _orderScreenModel = OrderScreenModel(errorHandler);
     _orderHistoryScreenModel = OrderHistoryScreenModel(errorHandler);
     _shopEditScreenModel =

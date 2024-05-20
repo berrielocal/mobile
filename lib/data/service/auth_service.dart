@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:berrielocal/domain/user/jwt_response.dart';
+import 'package:berrielocal/domain/user/user_id_response.dart';
 import 'package:berrielocal/domain/user/user_registration_request.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
@@ -23,4 +24,7 @@ abstract class AuthService {
   Future<void> authEmailPart2({
     @Path() required String activationCode,
   });
+
+  @GET('/api/v1/users')
+  Future<UserIdResponse> getUserById();
 }
