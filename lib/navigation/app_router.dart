@@ -7,6 +7,8 @@ import 'package:berrielocal/ui/feature/cart_screen/cart_screen_widget.dart';
 import 'package:berrielocal/ui/feature/cart_screen/cart_screen_wm.dart';
 import 'package:berrielocal/ui/feature/favorite_screen/favorite_screen_widget.dart';
 import 'package:berrielocal/ui/feature/favorite_screen/favorite_screen_wm.dart';
+import 'package:berrielocal/ui/feature/login_screen/login_screen_widget.dart';
+import 'package:berrielocal/ui/feature/login_screen/login_screen_wm.dart';
 import 'package:berrielocal/ui/feature/order_history_screen/order_history_screen_widget.dart';
 import 'package:berrielocal/ui/feature/order_history_screen/order_history_screen_wm.dart';
 import 'package:berrielocal/ui/feature/order_screen/order_screen_widget.dart';
@@ -103,6 +105,10 @@ class AppRouter extends _$AppRouter {
               ],
             ),
           ],
+        ),
+        AutoRoute(
+          page: LoginRoute.page,
+          path: '/loginScreen',
         ),
         AutoRoute(
           page: AuthRoute.page,

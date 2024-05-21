@@ -30,12 +30,12 @@ class ProfileScreenWidgetModel
 
   @override
   void initWidgetModel() {
-    model.getUserById();
+    // model.getUserById();
     super.initWidgetModel();
   }
 
   @override
   void toAuth() {
-    context.router.navigate(AuthRoute());
+    context.router.navigate(LoginRoute());
   }
 }

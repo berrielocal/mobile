@@ -25,8 +25,8 @@ class JWTInterceptor extends QueuedInterceptor {
   /// Add JWT authorization token to any request, if available.
   @override
   void onRequest(options, handler) {
-    if (_accessToken != null) {
-      options.headers['Authorization'] = 'Bearer $_accessToken';
+    if (_accessToken != null && options.path.contains('/api/v1/users/activate/')) {
+      options.headers['Authorization'] = '$_accessToken';
     }
 
     return super.onRequest(options, handler);
@@ -51,7 +51,9 @@ class JWTInterceptor extends QueuedInterceptor {
   Future onError(error, handler) async {
     if ((error.response?.statusCode == 403 ||
             error.response?.statusCode == 401) &&
-        error.requestOptions.path != '/api/v1/users/registration') {
+        (error.requestOptions.path != '/api/v1/users/registration' &&
+            error.requestOptions.path != '/api/v1/users/login' &&
+            error.requestOptions.path != '/api/v1/users/activate')) {
       await _refresh();
       if (repository.auth) {
         final response = await _retry(error.requestOptions);
