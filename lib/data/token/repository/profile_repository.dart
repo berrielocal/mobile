@@ -1,4 +1,5 @@
 import 'package:berrielocal/data/token/repository/auth_repository.dart';
+import 'package:berrielocal/data/token/repository/shop_repository.dart';
 import 'package:berrielocal/data/token/repository/token_repository.dart';
 import 'package:berrielocal/domain/shop/shop_all_info_response.dart';
 import 'package:rxdart/rxdart.dart';
@@ -8,7 +9,10 @@ class ProfileRepository {
   final AuthRepository authRepository;
   final BehaviorSubject<ShopAllInfoResponse?> profile = BehaviorSubject();
 
-  ProfileRepository(this.repository, this.authRepository);
+  ProfileRepository(
+    this.repository,
+    this.authRepository,
+  );
 
   void dispose() {
     repository.removeListener(_listenTokenStatus);
@@ -32,8 +36,12 @@ class ProfileRepository {
     profile.add(null);
   }
 
-  Future<void> loadProfile() async {
-    // final result = await authRepository.getUser();
-    // profile.add(result);
+  Future<ShopAllInfoResponse?> loadProfile() async {
+    final id = await authRepository.getUserById();
+    final result = await authRepository.getShopById(
+      id.shopId!,
+    );
+    profile.add(result);
+    return result;
   }
 }

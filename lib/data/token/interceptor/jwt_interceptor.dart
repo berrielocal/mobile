@@ -25,7 +25,9 @@ class JWTInterceptor extends QueuedInterceptor {
   /// Add JWT authorization token to any request, if available.
   @override
   void onRequest(options, handler) {
-    if (_accessToken != null && options.path.contains('/api/v1/users/activate/')) {
+    if (_accessToken != null &&
+        options.path != '/api/v1/users/login' &&
+        options.path != '/api/v1/users/registration') {
       options.headers['Authorization'] = '$_accessToken';
     }
 
