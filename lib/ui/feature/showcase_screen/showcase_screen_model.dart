@@ -1,4 +1,4 @@
-import 'package:berrielocal/data/service_mock/shop_service.dart';
+import 'package:berrielocal/data/service_mock/shop_service_mock.dart';
 import 'package:berrielocal/domain/shop/shop_main_info.dart';
 import 'package:elementary/elementary.dart';
 

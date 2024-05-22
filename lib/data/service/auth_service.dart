@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:berrielocal/domain/user/jwt_response.dart';
+import 'package:berrielocal/domain/user/user_authorization_request.dart';
 import 'package:berrielocal/domain/user/user_id_response.dart';
 import 'package:berrielocal/domain/user/user_registration_request.dart';
 import 'package:dio/dio.dart';
@@ -27,4 +28,9 @@ abstract class AuthService {
 
   @GET('/api/v1/users')
   Future<UserIdResponse> getUserById();
+
+  @POST('/api/v1/users/login')
+  Future<JwtResponse> loginUser({
+    @Body() required UserAuthorizationRequest request,
+  });
 }
