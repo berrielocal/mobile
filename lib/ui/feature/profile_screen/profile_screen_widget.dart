@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/domain/shop/shop_all_info_response.dart';
 import 'package:berrielocal/navigation/app_router.dart';
+import 'package:berrielocal/res/theme/app_typography.dart';
+import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:berrielocal/ui/ui_kit/custom_filled_button.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/cupertino.dart';
@@ -168,15 +170,33 @@ class ProfileCardsAuthorized extends StatelessWidget {
         ),
         const Spacer(),
         Padding(
-          padding: const EdgeInsets.only(bottom: 24),
+          padding: const EdgeInsets.only(bottom: 48),
           child: Center(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              height: 50,
-              child: CustomFilledButton(
-                onTap: () {},
-                text: 'Выйти',
-              ),
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  height: 50,
+                  child: CustomFilledButton(
+                    fillColor: AppColor.white,
+                    textColor: AppColor.black,
+                    onTap: () {
+                      wm.profileRepository.logout();
+                    },
+                    text: 'Выйти',
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text(
+                    'Удалить аккаунт',
+                    style: AppTypography.label.copyWith(
+                      color: const Color(0xFFB90000),
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
         ),

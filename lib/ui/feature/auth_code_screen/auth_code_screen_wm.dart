@@ -1,4 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/data/token/repository/auth_repository.dart';
+import 'package:berrielocal/data/token/repository/profile_repository.dart';
+import 'package:berrielocal/di/app_components.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/ui/feature/auth_screen/auth_screen_model.dart';
 import 'package:elementary/elementary.dart';
@@ -11,6 +14,8 @@ abstract interface class IAuthCodeScreenWidgetModel implements IWidgetModel {
   TextEditingController get emailController;
   void back();
   Future<void> toProfile();
+  AuthRepository get authRepository;
+  ProfileRepository get profileRepository;
 }
 
 AuthCodeScreenWidgetModel defaultAuthCodeScreenWidgetModelFactory(
@@ -37,6 +42,13 @@ class AuthCodeScreenWidgetModel
   @override
   Future<void> toProfile() async {
     await model.authPart2(emailController.text);
+    await profileRepository.loadProfile();
     context.router.navigate(ProfileRoute());
   }
+
+  @override
+  AuthRepository authRepository = AppComponents().authRepository;
+
+  @override
+  ProfileRepository profileRepository = AppComponents().profileRepository;
 }
