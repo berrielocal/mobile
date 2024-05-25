@@ -1,4 +1,5 @@
 import 'package:berrielocal/data/token/repository/token_repository.dart';
+import 'package:berrielocal/domain/user/user_refresh_request.dart';
 import 'package:dio/dio.dart';
 
 /// Interceptor for working with JWT tokens, updating and saving them.
@@ -75,7 +76,9 @@ class JWTInterceptor extends QueuedInterceptor {
     try {
       final response = await _dio.post(
         '/api/v1/users/refresh',
-        data: _refreshToken,
+        data: UserRefreshRequest(
+          refreshToken: _refreshToken,
+        ),
       );
 
       if (response.statusCode == 201 || response.statusCode == 200) {

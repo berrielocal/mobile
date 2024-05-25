@@ -9,9 +9,13 @@ part of 'shop_list_response.dart';
 _$ShopListResponseImpl _$$ShopListResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$ShopListResponseImpl(
-      shops: (json['shops'] as List<dynamic>)
-          .map((e) => ShopMainInfo.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      shops: (json['shops'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(
+            k,
+            (e as List<dynamic>)
+                .map((e) => ShopMainInfo.fromJson(e as Map<String, dynamic>))
+                .toList()),
+      ),
     );
 
 Map<String, dynamic> _$$ShopListResponseImplToJson(
