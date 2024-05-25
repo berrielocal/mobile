@@ -5,6 +5,7 @@ import 'package:berrielocal/data/service_mock/product_service_mock.dart';
 import 'package:berrielocal/data/service_mock/shop_service_mock.dart';
 import 'package:berrielocal/data/token/repository/auth_repository.dart';
 import 'package:berrielocal/data/token/repository/profile_repository.dart';
+import 'package:berrielocal/data/token/repository/shop_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:elementary/elementary.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -33,6 +34,9 @@ class AppComponents {
   late final TokenRepository tokenRepository = TokenRepository();
   late final AuthRepository authRepository = AuthRepository(
     _authService,
+    _shopService,
+  );
+  late final ShopRepository shopRepository = ShopRepository(
     _shopService,
   );
   late final ProfileRepository profileRepository = ProfileRepository(

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'shop_service.dart';
+part of 'cart_service.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'shop_service.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _ShopService implements ShopService {
-  _ShopService(
+class _CartService implements CartService {
+  _CartService(
     this._dio, {
     this.baseUrl,
   });
@@ -19,20 +19,20 @@ class _ShopService implements ShopService {
   String? baseUrl;
 
   @override
-  Future<ShopAllInfoResponse> getShopById({required int shopId}) async {
+  Future<OrderPartListResponse> getUserCart() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ShopAllInfoResponse>(Options(
+        _setStreamType<OrderPartListResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/api/v1/shop/${shopId}',
+              '/api/v1/cart',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -41,36 +41,7 @@ class _ShopService implements ShopService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ShopAllInfoResponse.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<ShopListResponse> getAllShops({Map<String, dynamic>? queries}) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    queryParameters.addAll(queries ?? <String, dynamic>{});
-    queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ShopListResponse>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/api/v1/shop',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ShopListResponse.fromJson(_result.data!);
+    final value = OrderPartListResponse.fromJson(_result.data!);
     return value;
   }
 

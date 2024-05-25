@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:berrielocal/domain/shop/shop_all_info_response.dart';
+import 'package:berrielocal/domain/shop/shop_list_response.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
@@ -17,4 +18,8 @@ abstract class ShopService {
   Future<ShopAllInfoResponse> getShopById({
     @Path() required int shopId,
   });
+
+  @GET('/api/v1/shop')
+  Future<ShopListResponse> getAllShops(
+      {@Queries() Map<String, dynamic>? queries});
 }

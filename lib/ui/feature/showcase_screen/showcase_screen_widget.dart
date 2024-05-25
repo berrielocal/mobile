@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/domain/shop/shop_list_response.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/ui/ui_kit/showcase/catalog_card_list.dart';
 import 'package:berrielocal/ui/ui_kit/search_widget.dart';
@@ -23,7 +24,7 @@ class ShowcaseScreenWidget
       child: EntityStateNotifierBuilder(
         listenableEntityState: wm.testShop,
         builder: (context, data) {
-          data ??= [];
+          data ??= ShopListResponse(shops: {});
           return Padding(
             padding: const EdgeInsets.all(8),
             child: Column(

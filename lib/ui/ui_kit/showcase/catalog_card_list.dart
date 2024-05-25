@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/domain/shop/shop_list_response.dart';
 import 'package:berrielocal/domain/shop/shop_main_info.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
@@ -11,7 +12,7 @@ class CatalogCardList extends StatelessWidget {
     required this.list,
   });
 
-  final List<ShopMainInfo> list;
+  final ShopListResponse list;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class CatalogCardList extends StatelessWidget {
           height: 150,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: list.map((e) {
+            children: list.shops.values.first.map((e) {
               return Padding(
                 padding: const EdgeInsets.all(8),
                 child: GestureDetector(
