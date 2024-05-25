@@ -10,12 +10,13 @@ class AuthScreenModel extends ElementaryModel {
   AuthScreenModel(ErrorHandler errorHandler, this._authRepository)
       : super(errorHandler: errorHandler);
 
-  Future<void> authPart1(String email, String password) async {
+  Future<void> authPart1(String email, String password, String shopName) async {
     try {
       await _authRepository.emailPart1(
         request: UserRegistrationRequest(
           email: email,
           password: password,
+          name: shopName,
         ),
       );
     } catch (e, s) {

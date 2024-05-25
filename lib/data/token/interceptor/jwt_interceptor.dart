@@ -1,4 +1,5 @@
 import 'package:berrielocal/data/token/repository/token_repository.dart';
+import 'package:berrielocal/domain/user/user_refresh_request.dart';
 import 'package:dio/dio.dart';
 
 /// Interceptor for working with JWT tokens, updating and saving them.
@@ -27,8 +28,9 @@ class JWTInterceptor extends QueuedInterceptor {
   void onRequest(options, handler) {
     if (_accessToken != null &&
         options.path != '/api/v1/users/login' &&
-        options.path != '/api/v1/users/registration') {
-      options.headers['Authorization'] = '$_accessToken';
+        options.path != '/api/v1/users/registration' &&
+        options.path != '/api/v1/users/refresh') {
+      options.headers['AccessToken'] = '$_accessToken';
     }
 
     return super.onRequest(options, handler);
@@ -73,10 +75,10 @@ class JWTInterceptor extends QueuedInterceptor {
 
     try {
       final response = await _dio.post(
-        '/auth/v1/users/refresh',
-        data: {
-          'refreshToken': _refreshToken,
-        },
+        '/api/v1/users/refresh',
+        data: UserRefreshRequest(
+          refreshToken: _refreshToken,
+        ),
       );
 
       if (response.statusCode == 201 || response.statusCode == 200) {

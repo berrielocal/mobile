@@ -49,6 +49,7 @@ class AuthScreenWidgetModel
     await model.authPart1(
       emailController.text,
       passwordController.text,
+      shopController.text,
     );
   }
 

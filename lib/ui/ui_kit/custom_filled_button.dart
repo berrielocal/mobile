@@ -5,11 +5,15 @@ class CustomFilledButton extends StatelessWidget {
   const CustomFilledButton({
     super.key,
     this.onTap,
+    this.fillColor = AppColor.green,
+    this.textColor = AppColor.white,
     required this.text,
   });
 
   final VoidCallback? onTap;
   final String text;
+  final Color fillColor;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +23,7 @@ class CustomFilledButton extends StatelessWidget {
       width: 360,
       child: FilledButton(
         style: ButtonStyle(
-          backgroundColor: const MaterialStatePropertyAll(AppColor.green),
+          backgroundColor: MaterialStatePropertyAll(fillColor),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
               side: const BorderSide(
@@ -33,10 +37,10 @@ class CustomFilledButton extends StatelessWidget {
         child: Center(
           child: Text(
             text.toUpperCase(),
-            style: Theme.of(context)
-                .textTheme
-                .labelMedium
-                ?.copyWith(color: color, fontWeight: FontWeight.w600),
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: textColor,
+                  fontWeight: FontWeight.w600,
+                ),
           ),
         ),
       ),
