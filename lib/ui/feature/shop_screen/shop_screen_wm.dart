@@ -1,4 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/data/token/repository/auth_repository.dart';
+import 'package:berrielocal/data/token/repository/product_repository.dart';
+import 'package:berrielocal/data/token/repository/profile_repository.dart';
+import 'package:berrielocal/data/token/repository/shop_repository.dart';
+import 'package:berrielocal/di/app_components.dart';
 import 'package:berrielocal/domain/product/product_list_response.dart';
 import 'package:berrielocal/utils/theme_extension.dart';
 import 'package:elementary/elementary.dart';
@@ -12,6 +17,9 @@ abstract interface class IShopScreenWidgetModel
     implements IWidgetModel, IThemeProvider {
   EntityStateNotifier<ProductListResponse> get testProducts;
   void back();
+  ProductRepository get productRepository;
+  AuthRepository get authRepository;
+  Future<void> loadProducts(int shopId);
 }
 
 ShopScreenWidgetModel defaultShopScreenWidgetModelFactory(
@@ -31,13 +39,15 @@ class ShopScreenWidgetModel
   ShopScreenWidgetModel(ShopScreenModel model) : super(model);
 
   @override
-  void initWidgetModel() {
-    super.initWidgetModel();
-    _loadProducts();
-  }
-
   Future<void> loadProducts(int shopId) async {
-    
+    final previousData = _testProducts.value.data;
+    _testProducts.loading(previousData);
+    try {
+      final res = await productRepository.getShopProducts(shopId);
+      _testProducts.content(res);
+    } on Exception catch (e) {
+      _testProducts.error(e, previousData);
+    }
   }
 
   Future<void> _loadProducts() async {
@@ -58,4 +68,10 @@ class ShopScreenWidgetModel
 
   @override
   EntityStateNotifier<ProductListResponse> get testProducts => _testProducts;
+
+  @override
+  ProductRepository productRepository = AppComponents().productRepository;
+
+  @override
+  AuthRepository authRepository = AppComponents().authRepository;
 }

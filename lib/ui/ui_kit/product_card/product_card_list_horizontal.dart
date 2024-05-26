@@ -7,6 +7,7 @@ import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:berrielocal/ui/ui_kit/showcase/catalog_card.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -15,28 +16,31 @@ class ProductCardListHorizontal extends StatelessWidget {
   const ProductCardListHorizontal({
     super.key,
     required this.response,
+    required this.category,
   });
 
-  final ProductListResponse response;
+  final List<ProductResponse> response;
+  final String category;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          'Категория 1',
+          category ?? 'Название категории',
           style: AppTypography.label.copyWith(fontSize: 16),
         ),
         SizedBox(
           height: 260,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: response.products!.map((e) {
+            children: response.map((e) {
               return Padding(
                 padding: const EdgeInsets.all(8),
                 child: GestureDetector(
                   onTap: () {
-                    context.router.navigate(ProductRoute());
+                    context.router
+                        .navigate(ProductRoute(productId: e.productId!));
                   },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,16 +63,26 @@ class ProductCardListHorizontal extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
-                            Image.asset(
+                            CachedNetworkImage(
                               height: 192,
-                              e.imageUrl ?? 'assets/image/empty_photo.png',
-                              fit: BoxFit.fill,
+                              imageUrl: e.imageUrl ?? '',
+                              progressIndicatorBuilder: (_, __, ___) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              },
+                              errorWidget: (_, __, ___) {
+                                return Image.asset(
+                                  'assets/image/empty_photo.png',
+                                  fit: BoxFit.fill,
+                                );
+                              },
                             ),
                           ],
                         ),
                       ),
                       Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                             top: 8,
                             bottom: 8,
                           ),

@@ -10,8 +10,7 @@ part 'product_list_response.g.dart';
 class ProductListResponse with _$ProductListResponse {
   const factory ProductListResponse({
     int? shopId,
-    List<ProductResponse>? products,
-
+    Map<String, List<ProductResponse>?>? products,
   }) = _ProductListResponse;
 
   factory ProductListResponse.fromJson(Map<String, dynamic> json) =>

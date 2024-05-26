@@ -28,6 +28,7 @@ mixin _$ProductResponse {
   int? get minSize => throw _privateConstructorUsedError;
   String? get units => throw _privateConstructorUsedError;
   int? get shopId => throw _privateConstructorUsedError;
+  List<String>? get categories => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +50,8 @@ abstract class $ProductResponseCopyWith<$Res> {
       int? maxSize,
       int? minSize,
       String? units,
-      int? shopId});
+      int? shopId,
+      List<String>? categories});
 }
 
 /// @nodoc
@@ -73,6 +75,7 @@ class _$ProductResponseCopyWithImpl<$Res, $Val extends ProductResponse>
     Object? minSize = freezed,
     Object? units = freezed,
     Object? shopId = freezed,
+    Object? categories = freezed,
   }) {
     return _then(_value.copyWith(
       productId: freezed == productId
@@ -107,6 +110,10 @@ class _$ProductResponseCopyWithImpl<$Res, $Val extends ProductResponse>
           ? _value.shopId
           : shopId // ignore: cast_nullable_to_non_nullable
               as int?,
+      categories: freezed == categories
+          ? _value.categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -127,7 +134,8 @@ abstract class _$$ProductResponseImplCopyWith<$Res>
       int? maxSize,
       int? minSize,
       String? units,
-      int? shopId});
+      int? shopId,
+      List<String>? categories});
 }
 
 /// @nodoc
@@ -149,6 +157,7 @@ class __$$ProductResponseImplCopyWithImpl<$Res>
     Object? minSize = freezed,
     Object? units = freezed,
     Object? shopId = freezed,
+    Object? categories = freezed,
   }) {
     return _then(_$ProductResponseImpl(
       productId: freezed == productId
@@ -183,6 +192,10 @@ class __$$ProductResponseImplCopyWithImpl<$Res>
           ? _value.shopId
           : shopId // ignore: cast_nullable_to_non_nullable
               as int?,
+      categories: freezed == categories
+          ? _value._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -198,7 +211,9 @@ class _$ProductResponseImpl implements _ProductResponse {
       this.maxSize,
       this.minSize,
       this.units,
-      this.shopId});
+      this.shopId,
+      final List<String>? categories})
+      : _categories = categories;
 
   factory _$ProductResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductResponseImplFromJson(json);
@@ -219,10 +234,19 @@ class _$ProductResponseImpl implements _ProductResponse {
   final String? units;
   @override
   final int? shopId;
+  final List<String>? _categories;
+  @override
+  List<String>? get categories {
+    final value = _categories;
+    if (value == null) return null;
+    if (_categories is EqualUnmodifiableListView) return _categories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'ProductResponse(productId: $productId, name: $name, imageUrl: $imageUrl, cost: $cost, maxSize: $maxSize, minSize: $minSize, units: $units, shopId: $shopId)';
+    return 'ProductResponse(productId: $productId, name: $name, imageUrl: $imageUrl, cost: $cost, maxSize: $maxSize, minSize: $minSize, units: $units, shopId: $shopId, categories: $categories)';
   }
 
   @override
@@ -239,13 +263,24 @@ class _$ProductResponseImpl implements _ProductResponse {
             (identical(other.maxSize, maxSize) || other.maxSize == maxSize) &&
             (identical(other.minSize, minSize) || other.minSize == minSize) &&
             (identical(other.units, units) || other.units == units) &&
-            (identical(other.shopId, shopId) || other.shopId == shopId));
+            (identical(other.shopId, shopId) || other.shopId == shopId) &&
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, productId, name, imageUrl, cost,
-      maxSize, minSize, units, shopId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      productId,
+      name,
+      imageUrl,
+      cost,
+      maxSize,
+      minSize,
+      units,
+      shopId,
+      const DeepCollectionEquality().hash(_categories));
 
   @JsonKey(ignore: true)
   @override
@@ -271,7 +306,8 @@ abstract class _ProductResponse implements ProductResponse {
       final int? maxSize,
       final int? minSize,
       final String? units,
-      final int? shopId}) = _$ProductResponseImpl;
+      final int? shopId,
+      final List<String>? categories}) = _$ProductResponseImpl;
 
   factory _ProductResponse.fromJson(Map<String, dynamic> json) =
       _$ProductResponseImpl.fromJson;
@@ -292,6 +328,8 @@ abstract class _ProductResponse implements ProductResponse {
   String? get units;
   @override
   int? get shopId;
+  @override
+  List<String>? get categories;
   @override
   @JsonKey(ignore: true)
   _$$ProductResponseImplCopyWith<_$ProductResponseImpl> get copyWith =>

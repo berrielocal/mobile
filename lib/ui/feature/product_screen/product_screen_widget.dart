@@ -15,10 +15,10 @@ import 'product_screen_wm.dart';
 /// Main widget for ProductScreen module
 @RoutePage()
 class ProductScreenWidget extends ElementaryWidget<IProductScreenWidgetModel> {
-  final int id;
+  final int productId;
   const ProductScreenWidget({
     Key? key,
-    @PathParam('productId') required this.id,
+    @PathParam('productId') required this.productId,
     WidgetModelFactory wmFactory = defaultProductScreenWidgetModelFactory,
   }) : super(wmFactory, key: key);
 

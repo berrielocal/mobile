@@ -21,7 +21,8 @@ ProductListResponse _$ProductListResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ProductListResponse {
   int? get shopId => throw _privateConstructorUsedError;
-  List<ProductResponse>? get products => throw _privateConstructorUsedError;
+  Map<String, List<ProductResponse>?>? get products =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $ProductListResponseCopyWith<$Res> {
           ProductListResponse value, $Res Function(ProductListResponse) then) =
       _$ProductListResponseCopyWithImpl<$Res, ProductListResponse>;
   @useResult
-  $Res call({int? shopId, List<ProductResponse>? products});
+  $Res call({int? shopId, Map<String, List<ProductResponse>?>? products});
 }
 
 /// @nodoc
@@ -62,7 +63,7 @@ class _$ProductListResponseCopyWithImpl<$Res, $Val extends ProductListResponse>
       products: freezed == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductResponse>?,
+              as Map<String, List<ProductResponse>?>?,
     ) as $Val);
   }
 }
@@ -75,7 +76,7 @@ abstract class _$$ProductListResponseImplCopyWith<$Res>
       __$$ProductListResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? shopId, List<ProductResponse>? products});
+  $Res call({int? shopId, Map<String, List<ProductResponse>?>? products});
 }
 
 /// @nodoc
@@ -100,7 +101,7 @@ class __$$ProductListResponseImplCopyWithImpl<$Res>
       products: freezed == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductResponse>?,
+              as Map<String, List<ProductResponse>?>?,
     ));
   }
 }
@@ -109,7 +110,7 @@ class __$$ProductListResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProductListResponseImpl implements _ProductListResponse {
   const _$ProductListResponseImpl(
-      {this.shopId, final List<ProductResponse>? products})
+      {this.shopId, final Map<String, List<ProductResponse>?>? products})
       : _products = products;
 
   factory _$ProductListResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -117,14 +118,14 @@ class _$ProductListResponseImpl implements _ProductListResponse {
 
   @override
   final int? shopId;
-  final List<ProductResponse>? _products;
+  final Map<String, List<ProductResponse>?>? _products;
   @override
-  List<ProductResponse>? get products {
+  Map<String, List<ProductResponse>?>? get products {
     final value = _products;
     if (value == null) return null;
-    if (_products is EqualUnmodifiableListView) return _products;
+    if (_products is EqualUnmodifiableMapView) return _products;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableMapView(value);
   }
 
   @override
@@ -163,8 +164,9 @@ class _$ProductListResponseImpl implements _ProductListResponse {
 
 abstract class _ProductListResponse implements ProductListResponse {
   const factory _ProductListResponse(
-      {final int? shopId,
-      final List<ProductResponse>? products}) = _$ProductListResponseImpl;
+          {final int? shopId,
+          final Map<String, List<ProductResponse>?>? products}) =
+      _$ProductListResponseImpl;
 
   factory _ProductListResponse.fromJson(Map<String, dynamic> json) =
       _$ProductListResponseImpl.fromJson;
@@ -172,7 +174,7 @@ abstract class _ProductListResponse implements ProductListResponse {
   @override
   int? get shopId;
   @override
-  List<ProductResponse>? get products;
+  Map<String, List<ProductResponse>?>? get products;
   @override
   @JsonKey(ignore: true)
   _$$ProductListResponseImplCopyWith<_$ProductListResponseImpl> get copyWith =>

@@ -29,43 +29,38 @@ class CategoriesList extends StatelessWidget {
             children: list.map((e) {
               return Padding(
                 padding: const EdgeInsets.all(8),
-                child: GestureDetector(
-                  onTap: () {
-                    context.router.navigate(ShopRoute());
-                  },
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 84,
-                        height: 35,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColor.black.withOpacity(0.08),
-                              offset: const Offset(0, 4),
-                              blurRadius: 12,
-                              spreadRadius: 0,
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(7),
-                          color: Colors.white,
-                        ),
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              decoration: const BoxDecoration(
-                                color: Color(0xFFDCECE0),
-                              ),
-                            ),
-                            Text(e),
-                          ],
-                        ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 84,
+                      height: 35,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColor.black.withOpacity(0.08),
+                            offset: const Offset(0, 4),
+                            blurRadius: 12,
+                            spreadRadius: 0,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(7),
+                        color: Colors.white,
                       ),
-                    ],
-                  ),
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFDCECE0),
+                            ),
+                          ),
+                          Text(e),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               );
             }).toList(),
