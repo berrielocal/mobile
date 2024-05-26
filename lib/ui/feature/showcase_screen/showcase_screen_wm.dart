@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/data/token/repository/profile_repository.dart';
 import 'package:berrielocal/data/token/repository/shop_repository.dart';
 import 'package:berrielocal/di/app_components.dart';
 import 'package:berrielocal/domain/shop/shop_list_response.dart';
@@ -18,7 +19,9 @@ abstract interface class IShowcaseScreenWidgetModel
     implements IWidgetModel, IThemeProvider {
   ValueNotifier<EntityState<ShopListResponse>> get testShop;
   void openSearch();
+  Future<void> getAllShops();
   ShopRepository get shopRepository;
+  ProfileRepository get profileRepository;
 }
 
 ShowcaseScreenWidgetModel defaultShowcaseScreenWidgetModelFactory(
@@ -42,22 +45,30 @@ class ShowcaseScreenWidgetModel
   @override
   void initWidgetModel() {
     super.initWidgetModel();
-    getAllShops();
+    profileRepository.loadProfile();
+    // getAllShops();
     // _loadShops();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    profileRepository.dispose();
+  }
+
+  @override
   Future<void> getAllShops() async {
     final previousData = _testShop.value.data;
     _testShop.loading(previousData);
     final queries = {
       'category': [
         'FISH',
-        'MEAT',
-        'VEGETABLES',
-        'FRUITS',
-        'NUTS',
-        'MUSHROOMS',
-        'EXOTIC',
+        // 'MEAT',
+        // 'VEGETABLES',
+        // 'FRUITS',
+        // 'NUTS',
+        // 'MUSHROOMS',
+        // 'EXOTIC',
       ]
     };
     try {
@@ -86,4 +97,7 @@ class ShowcaseScreenWidgetModel
 
   @override
   ShopRepository shopRepository = AppComponents().shopRepository;
+
+  @override
+  ProfileRepository profileRepository = AppComponents().profileRepository;
 }

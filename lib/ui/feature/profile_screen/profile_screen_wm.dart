@@ -35,18 +35,6 @@ class ProfileScreenWidgetModel
   ProfileScreenWidgetModel(ProfileScreenModel model) : super(model);
 
   @override
-  void initWidgetModel() {
-    super.initWidgetModel();
-    profileRepository.loadProfile();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    profileRepository.dispose();
-  }
-
-  @override
   void toAuth() {
     context.router.navigate(LoginRoute());
   }

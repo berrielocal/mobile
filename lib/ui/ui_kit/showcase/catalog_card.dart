@@ -1,6 +1,7 @@
 import 'package:berrielocal/domain/shop/shop_main_info.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -34,13 +35,19 @@ class CatalogCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             color: Colors.white,
           ),
-          child: Image.asset(
-            'assets/image/empty_photo.png',
-            fit: BoxFit.fill,
+          child: CachedNetworkImage(
+            imageUrl: shop.imageUrl != null && shop.imageUrl!.isNotEmpty
+                ? shop.imageUrl!
+                : '',
+            fadeOutDuration: const Duration(milliseconds: 600),
+            fadeInDuration: const Duration(milliseconds: 600),
+            fit: BoxFit.cover,
+            alignment: Alignment.topCenter,
+            placeholderFadeInDuration: const Duration(milliseconds: 500),
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 6),
+          padding: const EdgeInsets.only(left: 6),
           child: Text(shop.name!),
         )
       ],

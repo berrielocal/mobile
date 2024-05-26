@@ -2,6 +2,7 @@ import 'package:berrielocal/data/service_mock/cart_service_mock.dart';
 import 'package:berrielocal/data/service_mock/product_service_mock.dart';
 import 'package:berrielocal/data/service_mock/shop_service_mock.dart';
 import 'package:berrielocal/data/token/repository/auth_repository.dart';
+import 'package:berrielocal/data/token/repository/product_repository.dart';
 import 'package:berrielocal/data/token/repository/profile_repository.dart';
 import 'package:berrielocal/data/token/repository/shop_repository.dart';
 import 'package:berrielocal/ui/feature/auth_code_screen/auth_code_screen_model.dart';
@@ -61,6 +62,8 @@ class _AppDependencyState extends State<AppDependency> {
     final ShopRepository shopRepository = AppComponents().shopRepository;
     final MockShopService mockShopService = AppComponents().mockShopService;
     final MockCartService mockCartService = AppComponents().mockCartService;
+    final ProductRepository productRepository =
+        AppComponents().productRepository;
     final ProfileRepository profileRepository =
         AppComponents().profileRepository;
     final MockProductService mockProductService =

@@ -33,7 +33,7 @@ class ProductCardListVertical extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 16),
                 child: GestureDetector(
                   onTap: () {
-                    context.router.navigate(ProductRoute());
+                    context.router.navigate(ProductRoute(id: id));
                   },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

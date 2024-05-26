@@ -53,6 +53,7 @@ class AppRouter extends _$AppRouter {
                 ),
                 AutoRoute(
                   page: ShopRoute.page,
+                  path: 'shop/:shopId'
                 ),
                 AutoRoute(
                   page: ProductRoute.page,
@@ -98,6 +99,7 @@ class AppRouter extends _$AppRouter {
                 ),
                 AutoRoute(
                   page: ShopEditRoute.page,
+                  path: 'shopedit/:shopId'
                 ),
                 AutoRoute(
                   page: FavoriteRoute.page,
