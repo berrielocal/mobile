@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/domain/shop/shop_list_response.dart';
 import 'package:berrielocal/domain/shop/shop_main_info.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
@@ -9,9 +10,11 @@ class CatalogCardList extends StatelessWidget {
   const CatalogCardList({
     super.key,
     required this.list,
+    required this.category,
   });
 
   final List<ShopMainInfo> list;
+  final String category;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class CatalogCardList extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 8),
           child: Text(
-            'Категория 1',
+            category,
             style: AppTypography.label.copyWith(fontSize: 16),
           ),
         ),
@@ -34,7 +37,8 @@ class CatalogCardList extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 child: GestureDetector(
                   onTap: () {
-                    context.router.navigate(ShopRoute());
+                    context.router
+                        .navigate(ShopRoute(shopId: int.parse(e.shopId!)));
                   },
                   child: CatalogCard(shop: e),
                 ),

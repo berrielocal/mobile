@@ -8,14 +8,17 @@ import 'package:elementary/elementary.dart';
 import 'package:elementary_helper/elementary_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'shop_screen_wm.dart';
 
 // TODO: cover with documentation
 /// Main widget for ShopScreen module
 @RoutePage()
 class ShopScreenWidget extends ElementaryWidget<IShopScreenWidgetModel> {
+  final int shopId;
   const ShopScreenWidget({
     Key? key,
+    @PathParam('shopId') required this.shopId,
     WidgetModelFactory wmFactory = defaultShopScreenWidgetModelFactory,
   }) : super(wmFactory, key: key);
 

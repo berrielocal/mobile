@@ -69,7 +69,9 @@ class ProfileCardsAuthorized extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            context.router.navigate(ShopEditRoute());
+            context.router.navigate(ShopEditRoute(
+                shopId:
+                    int.parse(wm.profileRepository.profile.value!.shopId!)));
           },
           child: SizedBox(
             height: 45,
@@ -219,7 +221,7 @@ class ProfileCardsUnauthorized extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            context.router.navigate(ShopEditRoute());
+            context.router.navigate(LoginRoute());
           },
           child: SizedBox(
             height: 45,

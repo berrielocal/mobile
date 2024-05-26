@@ -1,4 +1,10 @@
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/data/token/repository/profile_repository.dart';
+import 'package:berrielocal/data/token/repository/shop_repository.dart';
+import 'package:berrielocal/di/app_components.dart';
+import 'package:berrielocal/domain/shop/shop_list_response.dart';
 import 'package:berrielocal/domain/shop/shop_main_info.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/utils/theme_extension.dart';
@@ -11,8 +17,11 @@ import 'showcase_screen_widget.dart';
 
 abstract interface class IShowcaseScreenWidgetModel
     implements IWidgetModel, IThemeProvider {
-  ValueNotifier<EntityState<List<ShopMainInfo>>> get testShop;
+  ValueNotifier<EntityState<ShopListResponse>> get testShop;
   void openSearch();
+  Future<void> getAllShops();
+  ShopRepository get shopRepository;
+  ProfileRepository get profileRepository;
 }
 
 ShowcaseScreenWidgetModel defaultShowcaseScreenWidgetModelFactory(
@@ -27,32 +36,68 @@ class ShowcaseScreenWidgetModel
     extends WidgetModel<ShowcaseScreenWidget, ShowcaseScreenModel>
     with ThemeProvider
     implements IShowcaseScreenWidgetModel {
-  final EntityStateNotifier<List<ShopMainInfo>> _testShop =
-      EntityStateNotifier();
+  final EntityStateNotifier<ShopListResponse> _testShop = EntityStateNotifier();
   ShowcaseScreenWidgetModel(ShowcaseScreenModel model) : super(model);
 
   @override
-  ValueNotifier<EntityState<List<ShopMainInfo>>> get testShop => _testShop;
+  ValueNotifier<EntityState<ShopListResponse>> get testShop => _testShop;
 
   @override
   void initWidgetModel() {
     super.initWidgetModel();
-    _loadShops();
+    profileRepository.loadProfile();
+    // getAllShops();
+    // _loadShops();
   }
 
-  Future<void> _loadShops() async {
+  @override
+  void dispose() {
+    super.dispose();
+    profileRepository.dispose();
+  }
+
+  @override
+  Future<void> getAllShops() async {
     final previousData = _testShop.value.data;
     _testShop.loading(previousData);
+    final queries = {
+      'category': [
+        'FISH',
+        // 'MEAT',
+        // 'VEGETABLES',
+        // 'FRUITS',
+        // 'NUTS',
+        // 'MUSHROOMS',
+        // 'EXOTIC',
+      ]
+    };
     try {
-      final res = await model.getShops();
-      _testShop.content(res);
+      final result = await shopRepository.getAllShops(queries: queries);
+      _testShop.content(result);
     } on Exception catch (e) {
       _testShop.error(e, previousData);
     }
   }
 
+  // Future<void> _loadShops() async {
+  //   final previousData = _testShop.value.data;
+  //   _testShop.loading(previousData);
+  //   try {
+  //     final res = await model.getShops();
+  //     _testShop.content(res);
+  //   } on Exception catch (e) {
+  //     _testShop.error(e, previousData);
+  //   }
+  // }
+
   @override
   void openSearch() async {
     context.router.navigate(SearchRoute());
   }
+
+  @override
+  ShopRepository shopRepository = AppComponents().shopRepository;
+
+  @override
+  ProfileRepository profileRepository = AppComponents().profileRepository;
 }

@@ -12,7 +12,7 @@ import 'cart_screen_widget.dart';
 abstract interface class ICartScreenWidgetModel
     implements IWidgetModel, IThemeProvider {
   ValueNotifier<EntityState<List<ProductResponse>>> get cartState;
-  void toProduct();
+  void toProduct(int productId);
   void toOrder();
 }
 
@@ -58,8 +58,8 @@ class CartScreenWidgetModel
   }
 
   @override
-  void toProduct() {
-    context.router.root.navigate(ProductRoute());
+  void toProduct(int productId) {
+    context.router.root.navigate(ProductRoute(id: productId));
   }
 
   @override

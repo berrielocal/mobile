@@ -111,12 +111,14 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     ProductRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<ProductRouteArgs>(
-          orElse: () => const ProductRouteArgs());
+          orElse: () => ProductRouteArgs(id: pathParams.getInt('productId')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: ProductScreenWidget(
           key: args.key,
+          id: args.id,
           wmFactory: args.wmFactory,
         ),
       );
@@ -150,23 +152,27 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     ShopEditRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<ShopEditRouteArgs>(
-          orElse: () => const ShopEditRouteArgs());
+          orElse: () => ShopEditRouteArgs(shopId: pathParams.getInt('shopId')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: ShopEditScreenWidget(
           key: args.key,
+          shopId: args.shopId,
           wmFactory: args.wmFactory,
         ),
       );
     },
     ShopRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<ShopRouteArgs>(orElse: () => const ShopRouteArgs());
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<ShopRouteArgs>(
+          orElse: () => ShopRouteArgs(shopId: pathParams.getInt('shopId')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: ShopScreenWidget(
           key: args.key,
+          shopId: args.shopId,
           wmFactory: args.wmFactory,
         ),
       );
@@ -526,6 +532,7 @@ class OrderSuccessRoute extends PageRouteInfo<void> {
 class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
   ProductRoute({
     Key? key,
+    required int id,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
         wmFactory = defaultProductScreenWidgetModelFactory,
@@ -534,8 +541,10 @@ class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
           ProductRoute.name,
           args: ProductRouteArgs(
             key: key,
+            id: id,
             wmFactory: wmFactory,
           ),
+          rawPathParams: {'productId': id},
           initialChildren: children,
         );
 
@@ -548,17 +557,20 @@ class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
 class ProductRouteArgs {
   const ProductRouteArgs({
     this.key,
+    required this.id,
     this.wmFactory = defaultProductScreenWidgetModelFactory,
   });
 
   final Key? key;
+
+  final int id;
 
   final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
       BuildContext) wmFactory;
 
   @override
   String toString() {
-    return 'ProductRouteArgs{key: $key, wmFactory: $wmFactory}';
+    return 'ProductRouteArgs{key: $key, id: $id, wmFactory: $wmFactory}';
   }
 }
 
@@ -662,6 +674,7 @@ class SearchRouteArgs {
 class ShopEditRoute extends PageRouteInfo<ShopEditRouteArgs> {
   ShopEditRoute({
     Key? key,
+    required int shopId,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
         wmFactory = defaultShopEditScreenWidgetModelFactory,
@@ -670,8 +683,10 @@ class ShopEditRoute extends PageRouteInfo<ShopEditRouteArgs> {
           ShopEditRoute.name,
           args: ShopEditRouteArgs(
             key: key,
+            shopId: shopId,
             wmFactory: wmFactory,
           ),
+          rawPathParams: {'shopId': shopId},
           initialChildren: children,
         );
 
@@ -684,17 +699,20 @@ class ShopEditRoute extends PageRouteInfo<ShopEditRouteArgs> {
 class ShopEditRouteArgs {
   const ShopEditRouteArgs({
     this.key,
+    required this.shopId,
     this.wmFactory = defaultShopEditScreenWidgetModelFactory,
   });
 
   final Key? key;
+
+  final int shopId;
 
   final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
       BuildContext) wmFactory;
 
   @override
   String toString() {
-    return 'ShopEditRouteArgs{key: $key, wmFactory: $wmFactory}';
+    return 'ShopEditRouteArgs{key: $key, shopId: $shopId, wmFactory: $wmFactory}';
   }
 }
 
@@ -703,6 +721,7 @@ class ShopEditRouteArgs {
 class ShopRoute extends PageRouteInfo<ShopRouteArgs> {
   ShopRoute({
     Key? key,
+    required int shopId,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
         wmFactory = defaultShopScreenWidgetModelFactory,
@@ -711,8 +730,10 @@ class ShopRoute extends PageRouteInfo<ShopRouteArgs> {
           ShopRoute.name,
           args: ShopRouteArgs(
             key: key,
+            shopId: shopId,
             wmFactory: wmFactory,
           ),
+          rawPathParams: {'shopId': shopId},
           initialChildren: children,
         );
 
@@ -724,17 +745,20 @@ class ShopRoute extends PageRouteInfo<ShopRouteArgs> {
 class ShopRouteArgs {
   const ShopRouteArgs({
     this.key,
+    required this.shopId,
     this.wmFactory = defaultShopScreenWidgetModelFactory,
   });
 
   final Key? key;
+
+  final int shopId;
 
   final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
       BuildContext) wmFactory;
 
   @override
   String toString() {
-    return 'ShopRouteArgs{key: $key, wmFactory: $wmFactory}';
+    return 'ShopRouteArgs{key: $key, shopId: $shopId, wmFactory: $wmFactory}';
   }
 }
 

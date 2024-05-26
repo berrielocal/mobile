@@ -1,10 +1,13 @@
 import 'package:berrielocal/data/service/auth_service.dart';
+import 'package:berrielocal/data/service/product_service.dart';
 import 'package:berrielocal/data/service/shop_service.dart';
 import 'package:berrielocal/data/service_mock/cart_service_mock.dart';
 import 'package:berrielocal/data/service_mock/product_service_mock.dart';
 import 'package:berrielocal/data/service_mock/shop_service_mock.dart';
 import 'package:berrielocal/data/token/repository/auth_repository.dart';
+import 'package:berrielocal/data/token/repository/product_repository.dart';
 import 'package:berrielocal/data/token/repository/profile_repository.dart';
+import 'package:berrielocal/data/token/repository/shop_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:elementary/elementary.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -28,6 +31,7 @@ class AppComponents {
   //service
   late final AuthService _authService = AuthService(dio);
   late final ShopService _shopService = ShopService(dio);
+  late final ProductService _productService = ProductService(dio);
 
   //repository
   late final TokenRepository tokenRepository = TokenRepository();
@@ -35,10 +39,15 @@ class AppComponents {
     _authService,
     _shopService,
   );
+  late final ShopRepository shopRepository = ShopRepository(
+    _shopService,
+  );
   late final ProfileRepository profileRepository = ProfileRepository(
     tokenRepository,
     authRepository,
   );
+  late final ProductRepository productRepository =
+      ProductRepository(_productService);
   late final MockShopService mockShopService = MockShopService();
   late final MockCartService mockCartService = MockCartService();
   late final MockProductService mockProductService = MockProductService();

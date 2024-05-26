@@ -20,8 +20,10 @@ import 'shop_edit_screen_wm.dart';
 @RoutePage()
 class ShopEditScreenWidget
     extends ElementaryWidget<IShopEditScreenWidgetModel> {
+  final int shopId;
   const ShopEditScreenWidget({
     Key? key,
+    @PathParam('shopId') required this.shopId,
     WidgetModelFactory wmFactory = defaultShopEditScreenWidgetModelFactory,
   }) : super(wmFactory, key: key);
 

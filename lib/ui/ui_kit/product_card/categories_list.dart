@@ -56,7 +56,7 @@ class CategoriesList extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color(0xFFDCECE0),
                               ),
                             ),

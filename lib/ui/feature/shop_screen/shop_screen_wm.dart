@@ -36,6 +36,10 @@ class ShopScreenWidgetModel
     _loadProducts();
   }
 
+  Future<void> loadProducts(int shopId) async {
+    
+  }
+
   Future<void> _loadProducts() async {
     final previousData = _testProducts.value.data;
     _testProducts.loading(previousData);
