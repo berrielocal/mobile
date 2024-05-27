@@ -1,4 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/data/repository/product_repository.dart';
+import 'package:berrielocal/di/app_components.dart';
+import 'package:berrielocal/domain/product/product_response.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +12,8 @@ import 'product_screen_widget.dart';
 abstract interface class IProductScreenWidgetModel implements IWidgetModel {
   void back();
   void toCart();
+  ProductRepository get productRepository;
+  Future<ProductResponse> getProductById(int productId);
 }
 
 ProductScreenWidgetModel defaultProductScreenWidgetModelFactory(
@@ -32,5 +37,18 @@ class ProductScreenWidgetModel
   @override
   void toCart() {
     context.router.navigate(const CartTab());
+  }
+
+  @override
+  ProductRepository productRepository = AppComponents().productRepository;
+
+  @override
+  Future<ProductResponse> getProductById(int productId) async {
+    try {
+      final result = productRepository.getProductById(productId);
+      return result;
+    } catch (e, s) {
+      Error.throwWithStackTrace(e, s);
+    }
   }
 }

@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:berrielocal/data/token/repository/auth_repository.dart';
+import 'package:berrielocal/data/repository/auth_repository.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';

@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:berrielocal/data/token/repository/auth_repository.dart';
-import 'package:berrielocal/data/token/repository/product_repository.dart';
-import 'package:berrielocal/data/token/repository/profile_repository.dart';
-import 'package:berrielocal/data/token/repository/shop_repository.dart';
+import 'package:berrielocal/data/repository/auth_repository.dart';
+import 'package:berrielocal/data/repository/product_repository.dart';
+import 'package:berrielocal/data/repository/profile_repository.dart';
+import 'package:berrielocal/data/repository/shop_repository.dart';
 import 'package:berrielocal/di/app_components.dart';
 import 'package:berrielocal/domain/product/product_list_response.dart';
 import 'package:berrielocal/utils/theme_extension.dart';

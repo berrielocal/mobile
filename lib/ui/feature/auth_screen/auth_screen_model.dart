@@ -1,4 +1,4 @@
-import 'package:berrielocal/data/token/repository/auth_repository.dart';
+import 'package:berrielocal/data/repository/auth_repository.dart';
 import 'package:berrielocal/domain/user/user_registration_request.dart';
 import 'package:elementary/elementary.dart';
 
