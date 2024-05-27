@@ -23,6 +23,8 @@ mixin _$ShopAllInfoResponse {
   String? get shopId => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
+  double? get matchLevel => throw _privateConstructorUsedError;
+  List<String>? get categories => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +38,12 @@ abstract class $ShopAllInfoResponseCopyWith<$Res> {
           ShopAllInfoResponse value, $Res Function(ShopAllInfoResponse) then) =
       _$ShopAllInfoResponseCopyWithImpl<$Res, ShopAllInfoResponse>;
   @useResult
-  $Res call({String? shopId, String? name, String? imageUrl});
+  $Res call(
+      {String? shopId,
+      String? name,
+      String? imageUrl,
+      double? matchLevel,
+      List<String>? categories});
 }
 
 /// @nodoc
@@ -55,6 +62,8 @@ class _$ShopAllInfoResponseCopyWithImpl<$Res, $Val extends ShopAllInfoResponse>
     Object? shopId = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
+    Object? matchLevel = freezed,
+    Object? categories = freezed,
   }) {
     return _then(_value.copyWith(
       shopId: freezed == shopId
@@ -69,6 +78,14 @@ class _$ShopAllInfoResponseCopyWithImpl<$Res, $Val extends ShopAllInfoResponse>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      matchLevel: freezed == matchLevel
+          ? _value.matchLevel
+          : matchLevel // ignore: cast_nullable_to_non_nullable
+              as double?,
+      categories: freezed == categories
+          ? _value.categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -81,7 +98,12 @@ abstract class _$$ShopAllInfoResponseImplCopyWith<$Res>
       __$$ShopAllInfoResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? shopId, String? name, String? imageUrl});
+  $Res call(
+      {String? shopId,
+      String? name,
+      String? imageUrl,
+      double? matchLevel,
+      List<String>? categories});
 }
 
 /// @nodoc
@@ -98,6 +120,8 @@ class __$$ShopAllInfoResponseImplCopyWithImpl<$Res>
     Object? shopId = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
+    Object? matchLevel = freezed,
+    Object? categories = freezed,
   }) {
     return _then(_$ShopAllInfoResponseImpl(
       shopId: freezed == shopId
@@ -112,6 +136,14 @@ class __$$ShopAllInfoResponseImplCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      matchLevel: freezed == matchLevel
+          ? _value.matchLevel
+          : matchLevel // ignore: cast_nullable_to_non_nullable
+              as double?,
+      categories: freezed == categories
+          ? _value._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -119,7 +151,13 @@ class __$$ShopAllInfoResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ShopAllInfoResponseImpl implements _ShopAllInfoResponse {
-  const _$ShopAllInfoResponseImpl({this.shopId, this.name, this.imageUrl});
+  const _$ShopAllInfoResponseImpl(
+      {this.shopId,
+      this.name,
+      this.imageUrl,
+      this.matchLevel,
+      final List<String>? categories})
+      : _categories = categories;
 
   factory _$ShopAllInfoResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ShopAllInfoResponseImplFromJson(json);
@@ -130,10 +168,21 @@ class _$ShopAllInfoResponseImpl implements _ShopAllInfoResponse {
   final String? name;
   @override
   final String? imageUrl;
+  @override
+  final double? matchLevel;
+  final List<String>? _categories;
+  @override
+  List<String>? get categories {
+    final value = _categories;
+    if (value == null) return null;
+    if (_categories is EqualUnmodifiableListView) return _categories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'ShopAllInfoResponse(shopId: $shopId, name: $name, imageUrl: $imageUrl)';
+    return 'ShopAllInfoResponse(shopId: $shopId, name: $name, imageUrl: $imageUrl, matchLevel: $matchLevel, categories: $categories)';
   }
 
   @override
@@ -144,12 +193,17 @@ class _$ShopAllInfoResponseImpl implements _ShopAllInfoResponse {
             (identical(other.shopId, shopId) || other.shopId == shopId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl));
+                other.imageUrl == imageUrl) &&
+            (identical(other.matchLevel, matchLevel) ||
+                other.matchLevel == matchLevel) &&
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, shopId, name, imageUrl);
+  int get hashCode => Object.hash(runtimeType, shopId, name, imageUrl,
+      matchLevel, const DeepCollectionEquality().hash(_categories));
 
   @JsonKey(ignore: true)
   @override
@@ -170,7 +224,9 @@ abstract class _ShopAllInfoResponse implements ShopAllInfoResponse {
   const factory _ShopAllInfoResponse(
       {final String? shopId,
       final String? name,
-      final String? imageUrl}) = _$ShopAllInfoResponseImpl;
+      final String? imageUrl,
+      final double? matchLevel,
+      final List<String>? categories}) = _$ShopAllInfoResponseImpl;
 
   factory _ShopAllInfoResponse.fromJson(Map<String, dynamic> json) =
       _$ShopAllInfoResponseImpl.fromJson;
@@ -181,6 +237,10 @@ abstract class _ShopAllInfoResponse implements ShopAllInfoResponse {
   String? get name;
   @override
   String? get imageUrl;
+  @override
+  double? get matchLevel;
+  @override
+  List<String>? get categories;
   @override
   @JsonKey(ignore: true)
   _$$ShopAllInfoResponseImplCopyWith<_$ShopAllInfoResponseImpl> get copyWith =>

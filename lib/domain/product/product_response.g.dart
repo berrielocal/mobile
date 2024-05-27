@@ -17,6 +17,9 @@ _$ProductResponseImpl _$$ProductResponseImplFromJson(
       minSize: json['minSize'] as int?,
       units: json['units'] as String?,
       shopId: json['shopId'] as int?,
+      categories: (json['categories'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$$ProductResponseImplToJson(
@@ -30,4 +33,5 @@ Map<String, dynamic> _$$ProductResponseImplToJson(
       'minSize': instance.minSize,
       'units': instance.units,
       'shopId': instance.shopId,
+      'categories': instance.categories,
     };

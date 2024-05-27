@@ -59,7 +59,7 @@ class CartScreenWidgetModel
 
   @override
   void toProduct(int productId) {
-    context.router.root.navigate(ProductRoute(id: productId));
+    context.router.root.navigate(ProductRoute(productId: productId));
   }
 
   @override

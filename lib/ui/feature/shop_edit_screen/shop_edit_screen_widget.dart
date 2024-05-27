@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/domain/product/product_response.dart';
 import 'package:berrielocal/extensions/money_extension.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
@@ -157,7 +158,8 @@ class ShopEditScreenWidget
                   children: List.generate(
                     1,
                     (index) => ProductCardListVertical(
-                      response: data!,
+                      response: [ProductResponse()],
+                      category: '',
                     ),
                   ),
                 );

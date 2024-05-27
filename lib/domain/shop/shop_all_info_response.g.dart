@@ -12,6 +12,10 @@ _$ShopAllInfoResponseImpl _$$ShopAllInfoResponseImplFromJson(
       shopId: json['shopId'] as String?,
       name: json['name'] as String?,
       imageUrl: json['imageUrl'] as String?,
+      matchLevel: (json['matchLevel'] as num?)?.toDouble(),
+      categories: (json['categories'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$$ShopAllInfoResponseImplToJson(
@@ -20,4 +24,6 @@ Map<String, dynamic> _$$ShopAllInfoResponseImplToJson(
       'shopId': instance.shopId,
       'name': instance.name,
       'imageUrl': instance.imageUrl,
+      'matchLevel': instance.matchLevel,
+      'categories': instance.categories,
     };

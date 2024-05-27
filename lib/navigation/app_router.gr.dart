@@ -113,12 +113,13 @@ abstract class _$AppRouter extends RootStackRouter {
     ProductRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<ProductRouteArgs>(
-          orElse: () => ProductRouteArgs(id: pathParams.getInt('productId')));
+          orElse: () =>
+              ProductRouteArgs(productId: pathParams.getInt('productId')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: ProductScreenWidget(
           key: args.key,
-          id: args.id,
+          productId: args.productId,
           wmFactory: args.wmFactory,
         ),
       );
@@ -532,7 +533,7 @@ class OrderSuccessRoute extends PageRouteInfo<void> {
 class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
   ProductRoute({
     Key? key,
-    required int id,
+    required int productId,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
         wmFactory = defaultProductScreenWidgetModelFactory,
@@ -541,10 +542,10 @@ class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
           ProductRoute.name,
           args: ProductRouteArgs(
             key: key,
-            id: id,
+            productId: productId,
             wmFactory: wmFactory,
           ),
-          rawPathParams: {'productId': id},
+          rawPathParams: {'productId': productId},
           initialChildren: children,
         );
 
@@ -557,20 +558,20 @@ class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
 class ProductRouteArgs {
   const ProductRouteArgs({
     this.key,
-    required this.id,
+    required this.productId,
     this.wmFactory = defaultProductScreenWidgetModelFactory,
   });
 
   final Key? key;
 
-  final int id;
+  final int productId;
 
   final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
       BuildContext) wmFactory;
 
   @override
   String toString() {
-    return 'ProductRouteArgs{key: $key, id: $id, wmFactory: $wmFactory}';
+    return 'ProductRouteArgs{key: $key, productId: $productId, wmFactory: $wmFactory}';
   }
 }
 

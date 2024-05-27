@@ -10,9 +10,14 @@ _$ProductListResponseImpl _$$ProductListResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$ProductListResponseImpl(
       shopId: json['shopId'] as int?,
-      products: (json['products'] as List<dynamic>?)
-          ?.map((e) => ProductResponse.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      products: (json['products'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(
+            k,
+            (e as List<dynamic>?)
+                ?.map(
+                    (e) => ProductResponse.fromJson(e as Map<String, dynamic>))
+                .toList()),
+      ),
     );
 
 Map<String, dynamic> _$$ProductListResponseImplToJson(
