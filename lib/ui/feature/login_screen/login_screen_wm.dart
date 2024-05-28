@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:berrielocal/data/token/repository/auth_repository.dart';
-import 'package:berrielocal/data/token/repository/profile_repository.dart';
+import 'package:berrielocal/data/repository/auth_repository.dart';
+import 'package:berrielocal/data/repository/profile_repository.dart';
 import 'package:berrielocal/di/app_components.dart';
 import 'package:berrielocal/domain/user/user_authorization_request.dart';
 import 'package:berrielocal/navigation/app_router.dart';

@@ -1,6 +1,6 @@
-import 'package:berrielocal/data/token/repository/auth_repository.dart';
-import 'package:berrielocal/data/token/repository/shop_repository.dart';
-import 'package:berrielocal/data/token/repository/token_repository.dart';
+import 'package:berrielocal/data/repository/auth_repository.dart';
+import 'package:berrielocal/data/repository/shop_repository.dart';
+import 'package:berrielocal/data/repository/token_repository.dart';
 import 'package:berrielocal/domain/shop/shop_all_info_response.dart';
 import 'package:rxdart/rxdart.dart';
 

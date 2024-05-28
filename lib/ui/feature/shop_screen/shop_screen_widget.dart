@@ -135,7 +135,7 @@ class ShopScreenWidget extends ElementaryWidget<IShopScreenWidgetModel> {
                                 final title =
                                     data.products!.keys.elementAt(index);
                                 List<ProductResponse> shopList =
-                                    data.products![title]!;
+                                    data.products?[title] ?? [];
                                 return ProductCardListHorizontal(
                                   response: shopList,
                                   category: title,

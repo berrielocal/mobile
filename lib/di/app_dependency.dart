@@ -1,10 +1,10 @@
 import 'package:berrielocal/data/service_mock/cart_service_mock.dart';
 import 'package:berrielocal/data/service_mock/product_service_mock.dart';
 import 'package:berrielocal/data/service_mock/shop_service_mock.dart';
-import 'package:berrielocal/data/token/repository/auth_repository.dart';
-import 'package:berrielocal/data/token/repository/product_repository.dart';
-import 'package:berrielocal/data/token/repository/profile_repository.dart';
-import 'package:berrielocal/data/token/repository/shop_repository.dart';
+import 'package:berrielocal/data/repository/auth_repository.dart';
+import 'package:berrielocal/data/repository/product_repository.dart';
+import 'package:berrielocal/data/repository/profile_repository.dart';
+import 'package:berrielocal/data/repository/shop_repository.dart';
 import 'package:berrielocal/ui/feature/auth_code_screen/auth_code_screen_model.dart';
 import 'package:berrielocal/ui/feature/auth_screen/auth_screen_model.dart';
 import 'package:berrielocal/ui/feature/cart_screen/cart_screen_model.dart';

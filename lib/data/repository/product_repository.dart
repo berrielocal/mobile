@@ -1,5 +1,6 @@
 import 'package:berrielocal/data/service/product_service.dart';
 import 'package:berrielocal/domain/product/product_list_response.dart';
+import 'package:berrielocal/domain/product/product_response.dart';
 import 'package:dio/dio.dart';
 
 class ProductRepository {
@@ -11,6 +12,17 @@ class ProductRepository {
   Future<ProductListResponse> getShopProducts(int shopId) async {
     try {
       final result = await _productService.getShopProducts(shopId: shopId);
+      return result;
+    } on DioException catch (error) {
+      throw Exception(
+        error.response?.data['message'],
+      );
+    }
+  }
+
+  Future<ProductResponse> getProductById(int productId) async {
+    try {
+      final result = _productService.getProductById(productId: productId);
       return result;
     } on DioException catch (error) {
       throw Exception(

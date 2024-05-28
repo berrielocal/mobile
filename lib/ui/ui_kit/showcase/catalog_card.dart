@@ -36,14 +36,19 @@ class CatalogCard extends StatelessWidget {
             color: Colors.white,
           ),
           child: CachedNetworkImage(
-            imageUrl: shop.imageUrl != null && shop.imageUrl!.isNotEmpty
-                ? shop.imageUrl!
-                : '',
-            fadeOutDuration: const Duration(milliseconds: 600),
-            fadeInDuration: const Duration(milliseconds: 600),
             fit: BoxFit.cover,
-            alignment: Alignment.topCenter,
-            placeholderFadeInDuration: const Duration(milliseconds: 500),
+            imageUrl: shop.imageUrl ?? '',
+            progressIndicatorBuilder: (_, __, ___) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+            errorWidget: (_, __, ___) {
+              return Image.asset(
+                'assets/image/empty_photo.png',
+                fit: BoxFit.cover,
+              );
+            },
           ),
         ),
         Padding(
