@@ -21,7 +21,7 @@ class LoginScreenWidget extends ElementaryWidget<ILoginScreenWidgetModel> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Регистрация',
+          'Вход',
           style: AppTypography.personalCardTitle,
         ),
         centerTitle: true,

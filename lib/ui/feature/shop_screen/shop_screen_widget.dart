@@ -111,14 +111,6 @@ class ShopScreenWidget extends ElementaryWidget<IShopScreenWidgetModel> {
                             )
                           ],
                         ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: CategoriesList(
-                                  list: snapshot.data?.categories ?? []),
-                            )
-                          ],
-                        ),
                         EntityStateNotifierBuilder(
                           listenableEntityState: wm.testProducts,
                           loadingBuilder: (context, data) {
@@ -127,20 +119,34 @@ class ShopScreenWidget extends ElementaryWidget<IShopScreenWidgetModel> {
                             );
                           },
                           builder: ((context, data) {
-                            return ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: data!.products!.keys.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                final title =
-                                    data.products!.keys.elementAt(index);
-                                List<ProductResponse> shopList =
-                                    data.products?[title] ?? [];
-                                return ProductCardListHorizontal(
-                                  response: shopList,
-                                  category: title,
-                                );
-                              },
+                            return Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: CategoriesList(
+                                          list: data!.products!.keys.toList() ??
+                                              []),
+                                    )
+                                  ],
+                                ),
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: data!.products!.keys.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    final title =
+                                        data.products!.keys.elementAt(index);
+                                    List<ProductResponse> shopList =
+                                        data.products?[title] ?? [];
+                                    return ProductCardListHorizontal(
+                                      response: shopList,
+                                      category: title,
+                                    );
+                                  },
+                                ),
+                              ],
                             );
                           }),
                         ),

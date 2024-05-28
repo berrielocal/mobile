@@ -125,14 +125,19 @@ class ProfileCardsAuthorized extends StatelessWidget {
         ),
         SizedBox(
           height: 45,
-          child: ListTile(
-            title: Text(
-              'Любимые категории',
-              style: Theme.of(context).textTheme.titleMedium,
+          child: GestureDetector(
+            onTap: () => context.router.navigate(
+              const FavoriteCategoriesRoute(),
             ),
-            trailing: const Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 20,
+            child: ListTile(
+              title: Text(
+                'Любимые категории',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 20,
+              ),
             ),
           ),
         ),
@@ -247,9 +252,9 @@ class ProfileCardsUnauthorized extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: () => context.router.navigate(
-            OrderHistoryRoute(),
-          ),
+          onTap: () {
+            context.router.navigate(LoginRoute());
+          },
           child: SizedBox(
             height: 45,
             child: ListTile(
@@ -275,14 +280,19 @@ class ProfileCardsUnauthorized extends StatelessWidget {
         ),
         SizedBox(
           height: 45,
-          child: ListTile(
-            title: Text(
-              'Любимые категории',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            trailing: const Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 20,
+          child: GestureDetector(
+            onTap: () {
+              context.router.navigate(LoginRoute());
+            },
+            child: ListTile(
+              title: Text(
+                'Любимые категории',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 20,
+              ),
             ),
           ),
         ),
@@ -296,7 +306,9 @@ class ProfileCardsUnauthorized extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: () => context.router.navigate(FavoriteRoute()),
+          onTap: () {
+            context.router.navigate(LoginRoute());
+          },
           child: SizedBox(
             height: 45,
             child: ListTile(

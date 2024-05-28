@@ -63,12 +63,12 @@ class ShowcaseScreenWidgetModel
     final queries = {
       'category': [
         'FISH',
-        // 'MEAT',
-        // 'VEGETABLES',
-        // 'FRUITS',
-        // 'NUTS',
-        // 'MUSHROOMS',
-        // 'EXOTIC',
+        'MEAT',
+        'VEGETABLES',
+        'FRUITS',
+        'NUTS',
+        'MUSHROOMS',
+        'EXOTIC',
       ]
     };
     try {

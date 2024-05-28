@@ -24,80 +24,82 @@ class ProductCardListHorizontal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          category ?? 'Название категории',
-          style: AppTypography.label.copyWith(fontSize: 16),
-        ),
-        SizedBox(
-          height: 260,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: response.map((e) {
-              return Padding(
-                padding: const EdgeInsets.all(8),
-                child: GestureDetector(
-                  onTap: () {
-                    context.router
-                        .navigate(ProductRoute(productId: e.productId!));
-                  },
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 164,
-                        height: 192,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColor.black.withOpacity(0.08),
-                              offset: const Offset(0, 4),
-                              blurRadius: 12,
-                              spreadRadius: 0,
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(7),
-                          color: Colors.white,
-                        ),
+    return response == null || response.isEmpty
+        ? const SizedBox.shrink()
+        : Column(
+            children: [
+              Text(
+                category ?? 'Название категории',
+                style: AppTypography.label.copyWith(fontSize: 16),
+              ),
+              SizedBox(
+                height: 260,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: response.map((e) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: GestureDetector(
+                        onTap: () {
+                          context.router
+                              .navigate(ProductRoute(productId: e.productId!));
+                        },
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            CachedNetworkImage(
+                            Container(
+                              width: 164,
                               height: 192,
-                              imageUrl: e.imageUrl ?? '',
-                              progressIndicatorBuilder: (_, __, ___) {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              },
-                              errorWidget: (_, __, ___) {
-                                return Image.asset(
-                                  'assets/image/empty_photo.png',
-                                  fit: BoxFit.fill,
-                                );
-                              },
+                              clipBehavior: Clip.hardEdge,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColor.black.withOpacity(0.08),
+                                    offset: const Offset(0, 4),
+                                    blurRadius: 12,
+                                    spreadRadius: 0,
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(7),
+                                color: Colors.white,
+                              ),
+                              child: Column(
+                                children: [
+                                  CachedNetworkImage(
+                                    height: 192,
+                                    imageUrl: e.imageUrl ?? '',
+                                    progressIndicatorBuilder: (_, __, ___) {
+                                      return const Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    },
+                                    errorWidget: (_, __, ___) {
+                                      return Image.asset(
+                                        'assets/image/empty_photo.png',
+                                        fit: BoxFit.fill,
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
                             ),
+                            Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 8,
+                                  bottom: 8,
+                                ),
+                                child: Text(e.name!)),
+                            Text(Decimal.parse(
+                              e.cost.toString(),
+                            ).formatMoney()),
                           ],
                         ),
                       ),
-                      Padding(
-                          padding: const EdgeInsets.only(
-                            top: 8,
-                            bottom: 8,
-                          ),
-                          child: Text(e.name!)),
-                      Text(Decimal.parse(
-                        e.cost.toString(),
-                      ).formatMoney()),
-                    ],
-                  ),
+                    );
+                  }).toList(),
                 ),
-              );
-            }).toList(),
-          ),
-        ),
-      ],
-    );
+              ),
+            ],
+          );
   }
 }

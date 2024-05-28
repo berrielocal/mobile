@@ -52,7 +52,8 @@ class ShowcaseScreenWidget
                           itemCount: data!.shops.keys.length,
                           itemBuilder: (BuildContext context, int index) {
                             final title = data.shops.keys.elementAt(index);
-                            List<ShopMainInfo> shopList = data.shops[title]!;
+                            List<ShopMainInfo> shopList =
+                                data.shops[title] ?? [];
                             return CatalogCardList(
                               list: shopList,
                               category: title,

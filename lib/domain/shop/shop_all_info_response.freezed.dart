@@ -25,6 +25,8 @@ mixin _$ShopAllInfoResponse {
   String? get imageUrl => throw _privateConstructorUsedError;
   double? get matchLevel => throw _privateConstructorUsedError;
   List<String>? get categories => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get phoneNumber => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +45,9 @@ abstract class $ShopAllInfoResponseCopyWith<$Res> {
       String? name,
       String? imageUrl,
       double? matchLevel,
-      List<String>? categories});
+      List<String>? categories,
+      String? email,
+      String? phoneNumber});
 }
 
 /// @nodoc
@@ -64,6 +68,8 @@ class _$ShopAllInfoResponseCopyWithImpl<$Res, $Val extends ShopAllInfoResponse>
     Object? imageUrl = freezed,
     Object? matchLevel = freezed,
     Object? categories = freezed,
+    Object? email = freezed,
+    Object? phoneNumber = freezed,
   }) {
     return _then(_value.copyWith(
       shopId: freezed == shopId
@@ -86,6 +92,14 @@ class _$ShopAllInfoResponseCopyWithImpl<$Res, $Val extends ShopAllInfoResponse>
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -103,7 +117,9 @@ abstract class _$$ShopAllInfoResponseImplCopyWith<$Res>
       String? name,
       String? imageUrl,
       double? matchLevel,
-      List<String>? categories});
+      List<String>? categories,
+      String? email,
+      String? phoneNumber});
 }
 
 /// @nodoc
@@ -122,6 +138,8 @@ class __$$ShopAllInfoResponseImplCopyWithImpl<$Res>
     Object? imageUrl = freezed,
     Object? matchLevel = freezed,
     Object? categories = freezed,
+    Object? email = freezed,
+    Object? phoneNumber = freezed,
   }) {
     return _then(_$ShopAllInfoResponseImpl(
       shopId: freezed == shopId
@@ -144,6 +162,14 @@ class __$$ShopAllInfoResponseImplCopyWithImpl<$Res>
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -156,7 +182,9 @@ class _$ShopAllInfoResponseImpl implements _ShopAllInfoResponse {
       this.name,
       this.imageUrl,
       this.matchLevel,
-      final List<String>? categories})
+      final List<String>? categories,
+      this.email,
+      this.phoneNumber})
       : _categories = categories;
 
   factory _$ShopAllInfoResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -181,8 +209,13 @@ class _$ShopAllInfoResponseImpl implements _ShopAllInfoResponse {
   }
 
   @override
+  final String? email;
+  @override
+  final String? phoneNumber;
+
+  @override
   String toString() {
-    return 'ShopAllInfoResponse(shopId: $shopId, name: $name, imageUrl: $imageUrl, matchLevel: $matchLevel, categories: $categories)';
+    return 'ShopAllInfoResponse(shopId: $shopId, name: $name, imageUrl: $imageUrl, matchLevel: $matchLevel, categories: $categories, email: $email, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -197,13 +230,23 @@ class _$ShopAllInfoResponseImpl implements _ShopAllInfoResponse {
             (identical(other.matchLevel, matchLevel) ||
                 other.matchLevel == matchLevel) &&
             const DeepCollectionEquality()
-                .equals(other._categories, _categories));
+                .equals(other._categories, _categories) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, shopId, name, imageUrl,
-      matchLevel, const DeepCollectionEquality().hash(_categories));
+  int get hashCode => Object.hash(
+      runtimeType,
+      shopId,
+      name,
+      imageUrl,
+      matchLevel,
+      const DeepCollectionEquality().hash(_categories),
+      email,
+      phoneNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -226,7 +269,9 @@ abstract class _ShopAllInfoResponse implements ShopAllInfoResponse {
       final String? name,
       final String? imageUrl,
       final double? matchLevel,
-      final List<String>? categories}) = _$ShopAllInfoResponseImpl;
+      final List<String>? categories,
+      final String? email,
+      final String? phoneNumber}) = _$ShopAllInfoResponseImpl;
 
   factory _ShopAllInfoResponse.fromJson(Map<String, dynamic> json) =
       _$ShopAllInfoResponseImpl.fromJson;
@@ -241,6 +286,10 @@ abstract class _ShopAllInfoResponse implements ShopAllInfoResponse {
   double? get matchLevel;
   @override
   List<String>? get categories;
+  @override
+  String? get email;
+  @override
+  String? get phoneNumber;
   @override
   @JsonKey(ignore: true)
   _$$ShopAllInfoResponseImplCopyWith<_$ShopAllInfoResponseImpl> get copyWith =>

@@ -5,6 +5,7 @@ import 'package:berrielocal/ui/feature/auth_screen/auth_screen_widget.dart';
 import 'package:berrielocal/ui/feature/auth_screen/auth_screen_wm.dart';
 import 'package:berrielocal/ui/feature/cart_screen/cart_screen_widget.dart';
 import 'package:berrielocal/ui/feature/cart_screen/cart_screen_wm.dart';
+import 'package:berrielocal/ui/feature/favorite_categories_screen/favorite_categories_screen.dart';
 import 'package:berrielocal/ui/feature/favorite_screen/favorite_screen_widget.dart';
 import 'package:berrielocal/ui/feature/favorite_screen/favorite_screen_wm.dart';
 import 'package:berrielocal/ui/feature/login_screen/login_screen_widget.dart';
@@ -51,10 +52,7 @@ class AppRouter extends _$AppRouter {
                 AutoRoute(
                   page: SearchRoute.page,
                 ),
-                AutoRoute(
-                  page: ShopRoute.page,
-                  path: 'shop/:shopId'
-                ),
+                AutoRoute(page: ShopRoute.page, path: 'shop/:shopId'),
                 AutoRoute(
                   page: ProductRoute.page,
                   path: 'product/:productId',
@@ -99,10 +97,13 @@ class AppRouter extends _$AppRouter {
                 ),
                 AutoRoute(
                   page: ShopEditRoute.page,
-                  path: 'shopedit/:shopId'
+                  path: 'shopedit/:shopId',
                 ),
                 AutoRoute(
                   page: FavoriteRoute.page,
+                ),
+                AutoRoute(
+                  page: FavoriteCategoriesRoute.page,
                 )
               ],
             ),
