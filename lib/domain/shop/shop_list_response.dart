@@ -8,7 +8,7 @@ part 'shop_list_response.g.dart';
 @freezed
 class ShopListResponse with _$ShopListResponse {
   const factory ShopListResponse({
-    required Map<String, List<ShopMainInfo>> shops,
+    required Map<String, List<ShopMainInfo>?> shops,
   }) = _ShopListResponse;
 
   factory ShopListResponse.fromJson(Map<String, dynamic> json) =>

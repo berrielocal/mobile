@@ -54,6 +54,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CartTabPage(),
       );
     },
+    FavoriteCategoriesRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FavoriteCategoriesScreenWidget(),
+      );
+    },
     FavoriteRoute.name: (routeData) {
       final args = routeData.argsAs<FavoriteRouteArgs>(
           orElse: () => const FavoriteRouteArgs());
@@ -334,6 +340,20 @@ class CartTab extends PageRouteInfo<void> {
         );
 
   static const String name = 'CartTab';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [FavoriteCategoriesScreenWidget]
+class FavoriteCategoriesRoute extends PageRouteInfo<void> {
+  const FavoriteCategoriesRoute({List<PageRouteInfo>? children})
+      : super(
+          FavoriteCategoriesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FavoriteCategoriesRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

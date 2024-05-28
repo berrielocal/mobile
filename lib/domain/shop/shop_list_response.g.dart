@@ -12,8 +12,8 @@ _$ShopListResponseImpl _$$ShopListResponseImplFromJson(
       shops: (json['shops'] as Map<String, dynamic>).map(
         (k, e) => MapEntry(
             k,
-            (e as List<dynamic>)
-                .map((e) => ShopMainInfo.fromJson(e as Map<String, dynamic>))
+            (e as List<dynamic>?)
+                ?.map((e) => ShopMainInfo.fromJson(e as Map<String, dynamic>))
                 .toList()),
       ),
     );
