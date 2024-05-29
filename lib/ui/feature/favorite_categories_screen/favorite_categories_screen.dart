@@ -5,6 +5,7 @@ import 'package:berrielocal/domain/shop/shop_update_request.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:berrielocal/ui/ui_kit/custom_filled_button.dart';
+import 'package:berrielocal/utils/translation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -39,8 +40,8 @@ class _FavoriteCategoriesScreenWidgetState
     if (profileRepository.profile.hasValue &&
         profileRepository.profile.value?.categories != null) {
       for (final String item in profileRepository.profile.value!.categories!) {
-        if (map.containsKey(item)) {
-          map[item] = true;
+        if (map.containsKey(item.translateRuEn())) {
+          map[item.translateRuEn()] = true;
           _selectedCategoryCount++;
         }
       }

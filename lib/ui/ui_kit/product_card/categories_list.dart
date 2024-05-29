@@ -4,6 +4,7 @@ import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:berrielocal/ui/ui_kit/showcase/catalog_card.dart';
+import 'package:berrielocal/utils/translation.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesList extends StatelessWidget {
@@ -56,7 +57,7 @@ class CategoriesList extends StatelessWidget {
                               color: Color(0xFFDCECE0),
                             ),
                           ),
-                          Text(e),
+                          Text(e.translateEnRu()),
                         ],
                       ),
                     ),

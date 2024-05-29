@@ -7,11 +7,14 @@ import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:berrielocal/ui/ui_kit/default_shimmer.dart';
 import 'package:berrielocal/ui/ui_kit/product_card/categories_list.dart';
 import 'package:berrielocal/ui/ui_kit/product_card/product_card_list_horizontal.dart';
+import 'package:berrielocal/ui/ui_kit/product_card/rating_stars.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elementary/elementary.dart';
 import 'package:elementary_helper/elementary_helper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'shop_screen_wm.dart';
 
@@ -78,20 +81,104 @@ class ShopScreenWidget extends ElementaryWidget<IShopScreenWidgetModel> {
                                   borderRadius: BorderRadius.circular(15),
                                   color: Colors.white,
                                 ),
-                                child: CachedNetworkImage(
-                                  fit: BoxFit.fill,
-                                  imageUrl: snapshot.data?.imageUrl ?? '',
-                                  progressIndicatorBuilder: (_, __, ___) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  },
-                                  errorWidget: (_, __, ___) {
-                                    return Image.asset(
-                                      'assets/image/empty_photo.png',
-                                      fit: BoxFit.fill,
-                                    );
-                                  },
+                                child: Stack(
+                                  children: [
+                                    CachedNetworkImage(
+                                      fit: BoxFit.contain,
+                                      imageUrl: snapshot.data?.imageUrl ?? '',
+                                      progressIndicatorBuilder: (_, __, ___) {
+                                        return const Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      },
+                                      errorWidget: (_, __, ___) {
+                                        return Image.asset(
+                                          'assets/image/empty_photo.png',
+                                          fit: BoxFit.fill,
+                                        );
+                                      },
+                                    ),
+                                    Positioned(
+                                      right: 10,
+                                      top: 8,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            5,
+                                          ),
+                                          color: AppColor.red,
+                                        ),
+                                        height: 24,
+                                        width: 67,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              '${snapshot.data?.matchLevel?.floor()}%' ??
+                                                  '0%',
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                color: AppColor.white,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 4,
+                                            ),
+                                            GestureDetector(
+                                              onTap:
+                                                  wm.tooltipController.toggle,
+                                              child: DefaultTextStyle(
+                                                style:
+                                                    DefaultTextStyle.of(context)
+                                                        .style
+                                                        .copyWith(fontSize: 10),
+                                                child: OverlayPortal(
+                                                  controller:
+                                                      wm.tooltipController,
+                                                  overlayChildBuilder:
+                                                      (BuildContext context) {
+                                                    return Positioned(
+                                                      top: 50,
+                                                      left: 50,
+                                                      child: Container(
+                                                        padding:
+                                                            EdgeInsets.all(3),
+                                                        width: 185,
+                                                        height: 46,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          color:
+                                                              Color(0xFFF0F0F0),
+                                                          border: Border.all(
+                                                            color: Color(
+                                                                0xFF318F45),
+                                                          ),
+                                                        ),
+                                                        child: Text(
+                                                          'Данный показатель рассчитан на основе выбранной вами категорий товаров.',
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: SvgPicture.asset(
+                                                    'assets/svg/info.svg',
+                                                    height: 18,
+                                                    width: 18,
+                                                    color: AppColor.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
@@ -110,6 +197,38 @@ class ShopScreenWidget extends ElementaryWidget<IShopScreenWidgetModel> {
                               ),
                             )
                           ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 10),
+                          child: Row(
+                            children: [
+                              buildRatingStars(snapshot.data?.rating ?? 0.0),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(snapshot.data?.rating == null
+                                  ? '0.0'
+                                  : snapshot.data!.rating.toString()),
+                              Spacer(),
+                              FutureBuilder(
+                                future:
+                                    wm.commentRepository.getComments(shopId),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    return Text(
+                                      '${snapshot.data?.comments.length} отзывов >' ??
+                                          '0',
+                                      style: AppTypography.personalCardTitle,
+                                    );
+                                  }
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                },
+                              )
+                            ],
+                          ),
                         ),
                         EntityStateNotifierBuilder(
                           listenableEntityState: wm.testProducts,
