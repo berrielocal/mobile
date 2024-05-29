@@ -14,6 +14,7 @@ class ShopAllInfoResponse with _$ShopAllInfoResponse {
     List<String>? categories,
     String? email,
     String? phoneNumber,
+    double? rating,
   }) = _ShopAllInfoResponse;
 
   factory ShopAllInfoResponse.fromJson(Map<String, dynamic> json) =>

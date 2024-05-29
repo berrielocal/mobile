@@ -1,3 +1,4 @@
+import 'package:berrielocal/data/repository/comment_repository.dart';
 import 'package:berrielocal/data/service_mock/cart_service_mock.dart';
 import 'package:berrielocal/data/service_mock/product_service_mock.dart';
 import 'package:berrielocal/data/service_mock/shop_service_mock.dart';
@@ -62,6 +63,8 @@ class _AppDependencyState extends State<AppDependency> {
     final ShopRepository shopRepository = AppComponents().shopRepository;
     final MockShopService mockShopService = AppComponents().mockShopService;
     final MockCartService mockCartService = AppComponents().mockCartService;
+    final CommentRepository commentRepository =
+        AppComponents().commentRepository;
     final ProductRepository productRepository =
         AppComponents().productRepository;
     final ProfileRepository profileRepository =

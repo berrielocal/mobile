@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/data/repository/auth_repository.dart';
+import 'package:berrielocal/data/repository/comment_repository.dart';
 import 'package:berrielocal/data/repository/product_repository.dart';
 import 'package:berrielocal/data/repository/profile_repository.dart';
 import 'package:berrielocal/data/repository/shop_repository.dart';
@@ -19,7 +20,9 @@ abstract interface class IShopScreenWidgetModel
   void back();
   ProductRepository get productRepository;
   AuthRepository get authRepository;
+  CommentRepository get commentRepository;
   Future<void> loadProducts(int shopId);
+  late final OverlayPortalController tooltipController;
 }
 
 ShopScreenWidgetModel defaultShopScreenWidgetModelFactory(
@@ -74,4 +77,10 @@ class ShopScreenWidgetModel
 
   @override
   AuthRepository authRepository = AppComponents().authRepository;
+
+  @override
+  OverlayPortalController tooltipController = OverlayPortalController();
+
+  @override
+  CommentRepository commentRepository = AppComponents().commentRepository;
 }

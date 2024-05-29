@@ -18,6 +18,7 @@ _$ShopAllInfoResponseImpl _$$ShopAllInfoResponseImplFromJson(
           .toList(),
       email: json['email'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
+      rating: (json['rating'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$ShopAllInfoResponseImplToJson(
@@ -30,4 +31,5 @@ Map<String, dynamic> _$$ShopAllInfoResponseImplToJson(
       'categories': instance.categories,
       'email': instance.email,
       'phoneNumber': instance.phoneNumber,
+      'rating': instance.rating,
     };

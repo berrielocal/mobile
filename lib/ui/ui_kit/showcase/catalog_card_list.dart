@@ -4,6 +4,7 @@ import 'package:berrielocal/domain/shop/shop_main_info.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/ui/ui_kit/showcase/catalog_card.dart';
+import 'package:berrielocal/utils/translation.dart';
 import 'package:flutter/material.dart';
 
 class CatalogCardList extends StatelessWidget {
@@ -24,7 +25,7 @@ class CatalogCardList extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 8),
           child: Text(
-            category,
+            category.translateEnRu(),
             style: AppTypography.label.copyWith(fontSize: 16),
           ),
         ),

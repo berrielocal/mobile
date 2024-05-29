@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CatalogCard extends StatelessWidget {
   const CatalogCard({
@@ -51,9 +52,20 @@ class CatalogCard extends StatelessWidget {
             },
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 6),
-          child: Text(shop.name!),
+        SizedBox(
+          width: 200,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 140,
+                child: Text(shop.name!),
+              ),
+              Spacer(),
+              SvgPicture.asset('assets/svg/star.svg'),
+              Text(shop.matchLevel.toString() ?? '0.0')
+            ],
+          ),
         )
       ],
     );

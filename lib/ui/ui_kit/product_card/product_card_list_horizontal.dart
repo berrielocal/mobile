@@ -7,6 +7,7 @@ import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:berrielocal/ui/ui_kit/showcase/catalog_card.dart';
+import 'package:berrielocal/utils/translation.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class ProductCardListHorizontal extends StatelessWidget {
         : Column(
             children: [
               Text(
-                category ?? 'Название категории',
+                category.translateEnRu() ?? 'Название категории',
                 style: AppTypography.label.copyWith(fontSize: 16),
               ),
               SizedBox(
