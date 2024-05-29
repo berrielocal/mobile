@@ -1,6 +1,7 @@
 import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/data/repository/product_repository.dart';
+import 'package:berrielocal/data/repository/profile_repository.dart';
 import 'package:berrielocal/di/app_components.dart';
 import 'package:berrielocal/domain/product/product_response.dart';
 import 'package:berrielocal/navigation/app_router.dart';
@@ -14,6 +15,7 @@ abstract interface class IProductScreenWidgetModel implements IWidgetModel {
   void back();
   void toCart();
   ProductRepository get productRepository;
+  ProfileRepository get profileRepository;
   Future<ProductResponse> getProductById(int productId);
 }
 
@@ -34,6 +36,7 @@ class ProductScreenWidgetModel
   void back() {
     context.router.pop();
   }
+
   @override
   void initWidgetModel() {
     AppMetrica.reportEvent('open_productPage');
@@ -42,8 +45,12 @@ class ProductScreenWidgetModel
 
   @override
   void toCart() {
-    AppMetrica.reportEvent('open_cartPage');
-    context.router.navigate(const CartTab());
+    if (profileRepository.profile.value != null) {
+      AppMetrica.reportEvent('open_cartPage');
+      context.router.navigate(const CartTab());
+    } else {
+      context.router.navigate(LoginRoute());
+    }
   }
 
   @override
@@ -58,4 +65,7 @@ class ProductScreenWidgetModel
       Error.throwWithStackTrace(e, s);
     }
   }
+
+  @override
+  ProfileRepository profileRepository = AppComponents().profileRepository;
 }

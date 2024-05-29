@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/extensions/money_extension.dart';
 import 'package:berrielocal/navigation/app_router.dart';
+import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/ui/ui_kit/cart/basket_card.dart';
 import 'package:berrielocal/ui/ui_kit/custom_filled_button.dart';
 import 'package:decimal/decimal.dart';
@@ -32,6 +33,15 @@ class CartScreenWidget extends ElementaryWidget<ICartScreenWidgetModel> {
           );
         },
         builder: (context, data) {
+          if (wm.cartState.value.data == null ||
+              wm.cartState.value.data!.isEmpty) {
+            return Center(
+              child: Text(
+                'Пока здесь пусто :(',
+                style: AppTypography.personalCardTitle,
+              ),
+            );
+          }
           final products = data ?? [];
 
           return ListView.builder(

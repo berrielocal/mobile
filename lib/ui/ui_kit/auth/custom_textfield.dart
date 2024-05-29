@@ -11,6 +11,8 @@ class CustomTextfield extends StatelessWidget {
     this.obscureText = false,
     this.textStyle,
     this.hintStyle,
+    this.validator,
+    this.errorText,
     this.contentPadding = const EdgeInsets.symmetric(
       horizontal: 16,
       vertical: 10,
@@ -23,7 +25,8 @@ class CustomTextfield extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.prefixIconColor,
     this.textFieldBorderRadius = 10,
-    this.textFieldBorderSide = const BorderSide(width: 0, style: BorderStyle.none),
+    this.textFieldBorderSide =
+        const BorderSide(width: 0, style: BorderStyle.none),
   }) : super(key: key);
   final bool enabled;
   final bool autofocus;
@@ -42,6 +45,8 @@ class CustomTextfield extends StatelessWidget {
   final double textFieldBorderRadius;
   final BorderSide textFieldBorderSide;
   final Widget? suffixIcon;
+  final FormFieldValidator<String>? validator;
+  final String? errorText;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +64,7 @@ class CustomTextfield extends StatelessWidget {
       minLines: 1,
       maxLength: maxLength,
       decoration: InputDecoration(
+        errorText: errorText,
         prefixIcon: prefixIconActive
             ? const AnimatedSwitcher(
                 duration: Duration(

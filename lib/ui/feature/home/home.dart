@@ -1,6 +1,9 @@
 import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/data/repository/profile_repository.dart';
+import 'package:berrielocal/di/app_components.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
+import 'package:berrielocal/ui/feature/favorite_categories_screen/favorite_categories_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:berrielocal/generated/l10n.dart';
 import 'package:berrielocal/navigation/app_router.dart';
@@ -20,6 +23,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
     super.initState();
     AppMetrica.reportEvent('app_launch');
   }
+
+  final ProfileRepository = AppComponents().profileRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +59,11 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                     'assets/svg/cart.svg',
                     color: AppColor.black,
                   ),
-                  SvgPicture.asset(
-                    'assets/svg/vector.svg',
-                  ),
+                  if (profileRepository.profile.hasValue &&
+                      profileRepository.profile.value != null)
+                    SvgPicture.asset(
+                      'assets/svg/vector.svg',
+                    ),
                 ],
               ),
               selectedIcon: Stack(
@@ -66,9 +73,11 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                     'assets/svg/cart.svg',
                     color: AppColor.green,
                   ),
-                  SvgPicture.asset(
-                    'assets/svg/vector.svg',
-                  ),
+                  if (profileRepository.profile.hasValue &&
+                      profileRepository.profile.value != null)
+                    SvgPicture.asset(
+                      'assets/svg/vector.svg',
+                    ),
                 ],
               ),
               label: localization.cart,

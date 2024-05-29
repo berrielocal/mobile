@@ -116,6 +116,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const OrderSuccessScreenWidget(),
       );
     },
+    ProductAddRoute.name: (routeData) {
+      final args = routeData.argsAs<ProductAddRouteArgs>(
+          orElse: () => const ProductAddRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ProductAddScreenWidget(
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
     ProductRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<ProductRouteArgs>(
@@ -546,6 +557,47 @@ class OrderSuccessRoute extends PageRouteInfo<void> {
   static const String name = 'OrderSuccessRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProductAddScreenWidget]
+class ProductAddRoute extends PageRouteInfo<ProductAddRouteArgs> {
+  ProductAddRoute({
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultProductAddScreenWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ProductAddRoute.name,
+          args: ProductAddRouteArgs(
+            key: key,
+            wmFactory: wmFactory,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ProductAddRoute';
+
+  static const PageInfo<ProductAddRouteArgs> page =
+      PageInfo<ProductAddRouteArgs>(name);
+}
+
+class ProductAddRouteArgs {
+  const ProductAddRouteArgs({
+    this.key,
+    this.wmFactory = defaultProductAddScreenWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'ProductAddRouteArgs{key: $key, wmFactory: $wmFactory}';
+  }
 }
 
 /// generated route for
