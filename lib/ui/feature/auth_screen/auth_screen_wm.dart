@@ -1,3 +1,4 @@
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/data/repository/auth_repository.dart';
 import 'package:berrielocal/navigation/app_router.dart';
@@ -36,6 +37,12 @@ class AuthScreenWidgetModel
   }
 
   @override
+  void initWidgetModel() {
+    AppMetrica.reportEvent('open_authPage');
+    super.initWidgetModel();
+  }
+
+  @override
   final emailController = TextEditingController();
 
   @override
@@ -46,6 +53,7 @@ class AuthScreenWidgetModel
     context.router.push(
       AuthCodeRoute(email: emailController.text),
     );
+    await AppMetrica.reportEvent('send_code');
     await model.authPart1(
       emailController.text,
       passwordController.text,

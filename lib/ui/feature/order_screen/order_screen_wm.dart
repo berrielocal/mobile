@@ -1,3 +1,4 @@
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:elementary/elementary.dart';
@@ -31,10 +32,17 @@ class OrderScreenWidgetModel
   }
 
   @override
+  void initWidgetModel() {
+    AppMetrica.reportEvent('open_orderPage');
+    super.initWidgetModel();
+  }
+
+  @override
   final emailController = TextEditingController();
 
   @override
   void toResult() {
+    AppMetrica.reportEvent('order_success');
     context.router.navigate(OrderSuccessRoute());
   }
 }

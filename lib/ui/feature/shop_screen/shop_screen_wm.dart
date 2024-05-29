@@ -1,3 +1,4 @@
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/data/repository/auth_repository.dart';
 import 'package:berrielocal/data/repository/comment_repository.dart';
@@ -41,6 +42,12 @@ class ShopScreenWidgetModel
       EntityStateNotifier();
   ShopScreenWidgetModel(ShopScreenModel model) : super(model);
 
+
+  @override
+  void initWidgetModel() {
+    AppMetrica.reportEvent('open_shopPage');
+    super.initWidgetModel();
+  }
   @override
   Future<void> loadProducts(int shopId) async {
     final previousData = _testProducts.value.data;

@@ -1,3 +1,4 @@
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/data/repository/product_repository.dart';
 import 'package:berrielocal/di/app_components.dart';
@@ -33,9 +34,15 @@ class ProductScreenWidgetModel
   void back() {
     context.router.pop();
   }
+  @override
+  void initWidgetModel() {
+    AppMetrica.reportEvent('open_productPage');
+    super.initWidgetModel();
+  }
 
   @override
   void toCart() {
+    AppMetrica.reportEvent('open_cartPage');
     context.router.navigate(const CartTab());
   }
 

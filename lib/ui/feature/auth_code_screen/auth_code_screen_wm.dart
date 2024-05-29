@@ -1,3 +1,4 @@
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/data/repository/auth_repository.dart';
 import 'package:berrielocal/data/repository/profile_repository.dart';
@@ -41,8 +42,10 @@ class AuthCodeScreenWidgetModel
 
   @override
   Future<void> toProfile() async {
+    AppMetrica.reportEvent('validation');
     await model.authPart2(emailController.text);
     await profileRepository.loadProfile();
+    AppMetrica.reportEvent('registration');
     context.router.navigate(ProfileRoute());
   }
 
