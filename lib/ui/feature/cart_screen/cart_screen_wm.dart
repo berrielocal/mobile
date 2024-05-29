@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/data/repository/profile_repository.dart';
+import 'package:berrielocal/di/app_components.dart';
 import 'package:berrielocal/domain/product/product_response.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/utils/theme_extension.dart';
@@ -14,6 +16,7 @@ abstract interface class ICartScreenWidgetModel
   ValueNotifier<EntityState<List<ProductResponse>>> get cartState;
   void toProduct(int productId);
   void toOrder();
+  ProfileRepository get profileRepository;
 }
 
 CartScreenWidgetModel defaultCartScreenWidgetModelFactory(
@@ -38,23 +41,29 @@ class CartScreenWidgetModel
   @override
   void initWidgetModel() {
     super.initWidgetModel();
-    _cartState.content([
-      const ProductResponse(
-        name: 'Test',
-        cost: 100,
-        units: '1',
-      ),
-      const ProductResponse(
-        name: 'Test',
-        cost: 100,
-        units: '1',
-      ),
-      const ProductResponse(
-        name: 'Test',
-        cost: 100,
-        units: '1',
-      )
-    ]);
+    profileRepository.profile.listen((value) {
+      if (value != null) {
+        _cartState.content([
+          const ProductResponse(
+            name: 'Test',
+            cost: 100,
+            units: '1',
+          ),
+          const ProductResponse(
+            name: 'Test',
+            cost: 100,
+            units: '1',
+          ),
+          const ProductResponse(
+            name: 'Test',
+            cost: 100,
+            units: '1',
+          )
+        ]);
+      } else {
+        _cartState.content([]);
+      }
+    });
   }
 
   @override
@@ -66,4 +75,7 @@ class CartScreenWidgetModel
   void toOrder() {
     context.router.navigate(OrderRoute());
   }
+
+  @override
+  ProfileRepository profileRepository = AppComponents().profileRepository;
 }

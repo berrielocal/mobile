@@ -1,10 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/domain/product/product_response.dart';
 import 'package:berrielocal/domain/shop/shop_all_info_response.dart';
+import 'package:berrielocal/domain/shop/shop_update_request.dart';
 import 'package:berrielocal/extensions/money_extension.dart';
+import 'package:berrielocal/extensions/snack_bar.dart';
+import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:berrielocal/ui/ui_kit/auth/custom_textfield.dart';
+import 'package:berrielocal/ui/ui_kit/custom_alert.dart';
 import 'package:berrielocal/ui/ui_kit/custom_filled_button.dart';
 import 'package:berrielocal/ui/ui_kit/product_card/product_card_list_horizontal.dart';
 import 'package:berrielocal/ui/ui_kit/product_card/product_card_list_vertical.dart';
@@ -32,175 +36,208 @@ class ShopEditScreenWidget
 
   @override
   Widget build(IShopEditScreenWidgetModel wm) {
-    return FutureBuilder(
-        future: wm.authRepository.getShopById(shopId),
-        builder: (BuildContext context,
-            AsyncSnapshot<ShopAllInfoResponse> snapshot) {
-          if (snapshot.hasData) {
-            wm.setData(snapshot.data!);
-            wm.loadProducts(shopId);
-            return Scaffold(
-              appBar: AppBar(
-                title: Text(
-                  snapshot.data?.name ?? 'Мой магазин',
-                  style: AppTypography.personalCardTitle,
-                ),
-                centerTitle: true,
-                leading: IconButton(
-                  padding: EdgeInsets.zero,
-                  visualDensity: VisualDensity.comfortable,
-                  onPressed: wm.back,
-                  icon: const Icon(
-                    Icons.arrow_back_ios,
-                    color: AppColor.black,
+    return Builder(builder: (context) {
+      return PopScope(
+        canPop: true,
+        onPopInvoked: (didPop) async {
+          await wm.shopRepository.updateShop(
+            request: ShopUpdateRequest(
+              name: wm.nameController.text,
+              imageUrl: wm.urlController.text,
+              email: wm.emailController.text,
+              phoneNumber: wm.phoneController.text,
+            ),
+          );
+          context.showSnackBar('Изменения в профиле сохранены!');
+        },
+        child: FutureBuilder(
+            future: wm.authRepository.getShopById(shopId),
+            builder: (BuildContext context,
+                AsyncSnapshot<ShopAllInfoResponse> snapshot) {
+              if (snapshot.hasData) {
+                wm.setData(snapshot.data!);
+                wm.loadProducts(shopId);
+                return Scaffold(
+                  appBar: AppBar(
+                    title: Text(
+                      snapshot.data?.name ?? 'Мой магазин',
+                      style: AppTypography.personalCardTitle,
+                    ),
+                    centerTitle: true,
+                    leading: IconButton(
+                      padding: EdgeInsets.zero,
+                      visualDensity: VisualDensity.comfortable,
+                      onPressed: wm.back,
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        color: AppColor.black,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              body: SafeArea(
-                minimum: const EdgeInsets.only(left: 24, right: 24, bottom: 16),
-                child: ListView(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                  body: SafeArea(
+                    minimum:
+                        const EdgeInsets.only(left: 24, right: 24, bottom: 16),
+                    child: ListView(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Stack(
-                              alignment: Alignment.bottomRight,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                CachedNetworkImage(
-                                  height: 273,
-                                  width: 273,
-                                  imageUrl: snapshot.data?.imageUrl ?? '',
-                                  progressIndicatorBuilder: (_, __, ___) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  },
-                                  errorWidget: (_, __, ___) {
-                                    return Image.asset(
-                                      'assets/image/empty_photo.png',
-                                    );
-                                  },
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(16),
-                                  child: SvgPicture.asset('assets/svg/add.svg'),
+                                Stack(
+                                  alignment: Alignment.bottomRight,
+                                  children: [
+                                    CachedNetworkImage(
+                                      height: 273,
+                                      width: 273,
+                                      imageUrl: snapshot.data?.imageUrl ?? '',
+                                      progressIndicatorBuilder: (_, __, ___) {
+                                        return const Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      },
+                                      errorWidget: (_, __, ___) {
+                                        return Image.asset(
+                                          'assets/image/empty_photo.png',
+                                        );
+                                      },
+                                    ),
+                                    GestureDetector(
+                                      onTap: () => customDialog(
+                                          context,
+                                          'Вставьте ссылку на изображение',
+                                          'Формат .png 1024 x 1024',
+                                          () {},
+                                          wm.urlController),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(16),
+                                        child: SvgPicture.asset(
+                                            'assets/svg/add.svg'),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        const Text(
-                          'Данные магазина',
-                          style: AppTypography.personalCardTitle,
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        CustomTextfield(
-                          controller: wm.nameController,
-                          autofocus: false,
-                          textFieldBorderRadius: 0,
-                          hint: 'Название магазина',
-                          contentPadding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 16),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        CustomTextfield(
-                          controller: wm.infoController,
-                          enabled: false,
-                          autofocus: false,
-                          textFieldBorderRadius: 0,
-                          hint: 'Информация',
-                          contentPadding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 16),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        CustomTextfield(
-                          controller: wm.phoneController,
-                          autofocus: false,
-                          textFieldBorderRadius: 0,
-                          hint: 'Телефон',
-                          contentPadding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 16),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        CustomTextfield(
-                          controller: wm.emailController,
-                          autofocus: false,
-                          textFieldBorderRadius: 0,
-                          hint: 'E-mail',
-                          contentPadding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 16),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'Продукция магазина',
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            const Text(
+                              'Данные магазина',
                               style: AppTypography.personalCardTitle,
                             ),
                             const SizedBox(
-                              width: 15,
+                              height: 15,
                             ),
-                            SvgPicture.asset('assets/svg/add.svg'),
+                            CustomTextfield(
+                              controller: wm.nameController,
+                              autofocus: false,
+                              textFieldBorderRadius: 0,
+                              hint: 'Название магазина',
+                              contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 16, horizontal: 16),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            CustomTextfield(
+                              controller: wm.infoController,
+                              enabled: false,
+                              autofocus: false,
+                              textFieldBorderRadius: 0,
+                              hint: 'Информация',
+                              contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 16, horizontal: 16),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            CustomTextfield(
+                              controller: wm.phoneController,
+                              autofocus: false,
+                              textFieldBorderRadius: 0,
+                              hint: 'Телефон',
+                              contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 16, horizontal: 16),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            CustomTextfield(
+                              controller: wm.emailController,
+                              autofocus: false,
+                              textFieldBorderRadius: 0,
+                              hint: 'E-mail',
+                              contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 16, horizontal: 16),
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Продукция магазина',
+                                  style: AppTypography.personalCardTitle,
+                                ),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                GestureDetector(
+                                  onTap: () => context.router
+                                      .navigate(ProductAddRoute()),
+                                  child: SvgPicture.asset(
+                                    'assets/svg/add.svg',
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 15,
+                        EntityStateNotifierBuilder(
+                          listenableEntityState: wm.testProducts,
+                          loadingBuilder: (context, data) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
+                          builder: ((context, data) {
+                            return Column(
+                              children: [
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: data!.products!.keys.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    final title =
+                                        data.products!.keys.elementAt(index);
+                                    List<ProductResponse> shopList =
+                                        data.products?[title] ?? [];
+                                    return ProductCardListHorizontal(
+                                      response: shopList,
+                                      category: title,
+                                    );
+                                  },
+                                ),
+                              ],
+                            );
+                          }),
                         ),
                       ],
                     ),
-                    EntityStateNotifierBuilder(
-                      listenableEntityState: wm.testProducts,
-                      loadingBuilder: (context, data) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      },
-                      builder: ((context, data) {
-                        return Column(
-                          children: [
-                            ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: data!.products!.keys.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                final title =
-                                    data.products!.keys.elementAt(index);
-                                List<ProductResponse> shopList =
-                                    data.products?[title] ?? [];
-                                return ProductCardListHorizontal(
-                                  response: shopList,
-                                  category: title,
-                                );
-                              },
-                            ),
-                          ],
-                        );
-                      }),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
+                  ),
+                );
+              }
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }),
+      );
+    });
   }
 }

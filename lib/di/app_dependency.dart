@@ -13,6 +13,7 @@ import 'package:berrielocal/ui/feature/favorite_screen/favorite_screen_model.dar
 import 'package:berrielocal/ui/feature/login_screen/login_screen_model.dart';
 import 'package:berrielocal/ui/feature/order_history_screen/order_history_screen_model.dart';
 import 'package:berrielocal/ui/feature/order_screen/order_screen_model.dart';
+import 'package:berrielocal/ui/feature/product_add_screen/product_add_screen_model.dart';
 import 'package:berrielocal/ui/feature/product_screen/product_screen_model.dart';
 import 'package:berrielocal/ui/feature/profile_screen/profile_screen_model.dart';
 import 'package:berrielocal/ui/feature/search_screen/search_screen_model.dart';
@@ -51,6 +52,7 @@ class _AppDependencyState extends State<AppDependency> {
   late final AuthCodeScreenModel _authCodeScreenModel;
   late final FavoriteScreenModel _favoriteScreenModel;
   late final LoginScreenModel _loginScreenModel;
+  late final ProductAddScreenModel _productAddScreenModel;
 
   @override
   void initState() {
@@ -87,6 +89,7 @@ class _AppDependencyState extends State<AppDependency> {
     _authCodeScreenModel = AuthCodeScreenModel(errorHandler, authRepository);
     _favoriteScreenModel = FavoriteScreenModel(errorHandler);
     _loginScreenModel = LoginScreenModel(errorHandler, authRepository);
+    _productAddScreenModel = ProductAddScreenModel(errorHandler);
   }
 
   @override
@@ -135,6 +138,9 @@ class _AppDependencyState extends State<AppDependency> {
         ),
         Provider(
           create: (context) => _loginScreenModel,
+        ),
+        Provider(
+          create: (context) => _productAddScreenModel,
         ),
       ],
       child: widget.app,

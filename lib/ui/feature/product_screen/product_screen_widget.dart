@@ -85,8 +85,7 @@ class ProductScreenWidget extends ElementaryWidget<IProductScreenWidgetModel> {
                           ),
                           const Spacer(),
                           Text(
-                            Decimal.fromInt(snapshot.data?.cost?.toInt() ?? 100)
-                                .formatMoney(),
+                            '${Decimal.fromInt(snapshot.data?.cost?.toInt() ?? 100).formatMoney()} / ${snapshot.data?.units ?? 'шт'}',
                             style: AppTypography.personalCardTitle,
                           ),
                         ],
@@ -113,15 +112,31 @@ class ProductScreenWidget extends ElementaryWidget<IProductScreenWidgetModel> {
                           const SizedBox(
                             width: 20,
                           ),
-                          SizedBox(
-                            width: 270,
-                            child: CustomFilledButton(
-                              text: 'В КОРЗИНЕ',
-                              onTap: () {
-                                wm.toCart();
-                              },
+                          if (wm.profileRepository.profile.hasValue &&
+                              wm.profileRepository.profile.value != null)
+                            int.parse(wm.profileRepository.profile.value!
+                                        .shopId!) !=
+                                    snapshot.data!.shopId
+                                ? SizedBox(
+                                    width: 270,
+                                    child: CustomFilledButton(
+                                      text: 'В КОРЗИНЕ',
+                                      onTap: () {
+                                        wm.toCart();
+                                      },
+                                    ),
+                                  )
+                                : SizedBox.shrink(),
+                          if (wm.profileRepository.profile.value == null)
+                            SizedBox(
+                              width: 270,
+                              child: CustomFilledButton(
+                                text: 'В КОРЗИНУ',
+                                onTap: () {
+                                  wm.toCart();
+                                },
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     )

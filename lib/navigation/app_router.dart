@@ -15,6 +15,8 @@ import 'package:berrielocal/ui/feature/order_history_screen/order_history_screen
 import 'package:berrielocal/ui/feature/order_screen/order_screen_widget.dart';
 import 'package:berrielocal/ui/feature/order_screen/order_screen_wm.dart';
 import 'package:berrielocal/ui/feature/order_screen/order_success_screen.dart';
+import 'package:berrielocal/ui/feature/product_add_screen/product_add_screen_widget.dart';
+import 'package:berrielocal/ui/feature/product_add_screen/product_add_screen_wm.dart';
 import 'package:berrielocal/ui/feature/product_screen/product_screen_widget.dart';
 import 'package:berrielocal/ui/feature/product_screen/product_screen_wm.dart';
 import 'package:berrielocal/ui/feature/profile_screen/profile_screen_widget.dart';
@@ -104,7 +106,10 @@ class AppRouter extends _$AppRouter {
                 ),
                 AutoRoute(
                   page: FavoriteCategoriesRoute.page,
-                )
+                ),
+                AutoRoute(
+                  page: ProductAddRoute.page,
+                ),
               ],
             ),
           ],

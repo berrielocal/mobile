@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:berrielocal/domain/product/product_create_response.dart';
 import 'package:berrielocal/domain/product/product_list_response.dart';
+import 'package:berrielocal/domain/product/product_modify_request.dart';
 import 'package:berrielocal/domain/product/product_response.dart';
 import 'package:berrielocal/domain/shop/shop_all_info_response.dart';
 import 'package:berrielocal/domain/shop/shop_list_response.dart';
@@ -23,6 +25,16 @@ abstract class ProductService {
 
   @GET('/api/v1/product/{productId}')
   Future<ProductResponse> getProductById({
+    @Path() required int productId,
+  });
+
+  @POST('/api/v1/product')
+  Future<ProductCreateResponse> addProduct({
+    @Body() required ProductModifyRequest request,
+  });
+
+  @DELETE('/api/v1/product/{productId}')
+  Future<void> deleteProduct({
     @Path() required int productId,
   });
 }

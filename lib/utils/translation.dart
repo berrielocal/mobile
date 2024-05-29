@@ -22,22 +22,22 @@ extension StringTranslation on String {
 
   String translateRuEn() {
     switch (this) {
-      case 'Рыба':
+      case 'Рыба' || 'рыба':
         return 'FISH';
-      case 'Мясо':
+      case 'Мясо' || 'мясо':
         return 'MEAT';
-      case 'Овощи':
+      case 'Овощи' || 'овощи':
         return 'VEGETABLES';
-      case 'Фрукты':
+      case 'Фрукты' || 'фрукты':
         return 'FRUITS';
-      case 'Орехи':
+      case 'Орехи' || 'орехи':
         return 'NUTS';
-      case 'Грибы':
+      case 'Грибы' || 'грибы':
         return 'MUSHROOMS';
-      case 'Экзотика':
+      case 'Экзотика' || 'экзотика':
         return 'EXOTIC';
       default:
-        return 'CATEGORY';
+        return '';
     }
   }
 }

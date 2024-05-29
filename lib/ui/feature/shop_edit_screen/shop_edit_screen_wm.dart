@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/data/repository/auth_repository.dart';
 import 'package:berrielocal/data/repository/product_repository.dart';
+import 'package:berrielocal/data/repository/shop_repository.dart';
 import 'package:berrielocal/di/app_components.dart';
 import 'package:berrielocal/domain/product/product_list_response.dart';
 import 'package:berrielocal/domain/shop/shop_all_info_response.dart';
@@ -17,11 +18,13 @@ abstract interface class IShopEditScreenWidgetModel implements IWidgetModel {
   late final TextEditingController nameController;
   late final TextEditingController phoneController;
   late final TextEditingController infoController;
+  late final TextEditingController urlController;
   void setData(ShopAllInfoResponse response);
   Future<void> loadProducts(int shopId);
   EntityStateNotifier<ProductListResponse> get testProducts;
   AuthRepository get authRepository;
   ProductRepository get productRepository;
+  ShopRepository get shopRepository;
 }
 
 ShopEditScreenWidgetModel defaultShopEditScreenWidgetModelFactory(
@@ -94,4 +97,10 @@ class ShopEditScreenWidgetModel
 
   @override
   TextEditingController phoneController = TextEditingController();
+
+  @override
+  ShopRepository shopRepository = AppComponents().shopRepository;
+
+  @override
+  TextEditingController urlController = TextEditingController();
 }
