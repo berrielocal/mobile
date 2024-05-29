@@ -53,12 +53,12 @@ class _FavoriteCategoriesScreenWidgetState
     if (value == null || value == false) {
       map[category] = false;
       _selectedCategoryCount--;
-    } else if (_selectedCategoryCount < 3) {
+    } else if (_selectedCategoryCount < 5) {
       map[category] = true;
       _selectedCategoryCount++;
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Можно выбрать не более 3 категорий')),
+        const SnackBar(content: Text('Можно выбрать не более 5 категорий')),
       );
     }
     setState(() {});
@@ -98,7 +98,7 @@ class _FavoriteCategoriesScreenWidgetState
                   children: [
                     const Padding(
                       padding: EdgeInsets.all(4),
-                      child: Text('Можно выбрать не более 3 категорий'),
+                      child: Text('Можно выбрать не более 5 категорий'),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 8, bottom: 8),
@@ -219,6 +219,7 @@ class _FavoriteCategoriesScreenWidgetState
                             request: ShopUpdateRequest(
                           categories: selectedCategories,
                         ));
+                        profileRepository.loadProfile();
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text(
