@@ -1,6 +1,7 @@
 # berrielocal
 
 ## Клиентская часть приложения
+Android мобильное приложение
 
 ## Git Flow
 
@@ -17,3 +18,10 @@ State: Elementary
 Navigation: AutoRoute
 
 Network: Dio
+
+## Данные для тестового пользователя
+
+| Лоигин | Пароль                |
+|------------|--------------------------|
+| maxim_2003@mail.ru      | blabla |
+
