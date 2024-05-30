@@ -5,6 +5,7 @@ import 'package:berrielocal/ui/ui_kit/auth/custom_textfield.dart';
 import 'package:berrielocal/ui/ui_kit/custom_filled_button.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'auth_code_screen_wm.dart';
 
 // TODO: cover with documentation
@@ -69,10 +70,16 @@ class AuthCodeScreenWidget
                   EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             ),
             const Spacer(),
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(8),
-              child: Text(
-                'Нажимая кнопку, Вы соглашаетесь c Правилами и политикой конфиденциальности Компании',
+              child: GestureDetector(
+                onTap: wm.toPolicy,
+                child: Text(
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                  ),
+                  'Нажимая кнопку, Вы соглашаетесь c Правилами и политикой конфиденциальности Компании',
+                ),
               ),
             ),
             const SizedBox(

@@ -68,10 +68,16 @@ class LoginScreenWidget extends ElementaryWidget<ILoginScreenWidgetModel> {
                   EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             ),
             const Spacer(),
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(8),
-              child: Text(
-                'Нажимая кнопку, Вы соглашаетесь c Правилами и политикой конфиденциальности Компании',
+              child: GestureDetector(
+                onTap: wm.toPolicy,
+                child: Text(
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                  ),
+                  'Нажимая кнопку, Вы соглашаетесь c Правилами и политикой конфиденциальности Компании',
+                ),
               ),
             ),
             const SizedBox(

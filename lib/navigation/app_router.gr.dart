@@ -116,6 +116,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const OrderSuccessScreenWidget(),
       );
     },
+    PolicyRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const PolicyScreenWidget(),
+      );
+    },
     ProductAddRoute.name: (routeData) {
       final args = routeData.argsAs<ProductAddRouteArgs>(
           orElse: () => const ProductAddRouteArgs());
@@ -555,6 +561,20 @@ class OrderSuccessRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'OrderSuccessRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [PolicyScreenWidget]
+class PolicyRoute extends PageRouteInfo<void> {
+  const PolicyRoute({List<PageRouteInfo>? children})
+      : super(
+          PolicyRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PolicyRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

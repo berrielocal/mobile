@@ -11,6 +11,7 @@ import 'auth_screen_widget.dart';
 
 abstract interface class IAuthScreenWidgetModel implements IWidgetModel {
   void back();
+  void toPolicy();
   Future<void> authCode();
   TextEditingController get emailController;
   TextEditingController get passwordController;
@@ -66,4 +67,9 @@ class AuthScreenWidgetModel
 
   @override
   final shopController = TextEditingController();
+
+  @override
+  void toPolicy() {
+    context.router.navigate(PolicyRoute());
+  }
 }

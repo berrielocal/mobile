@@ -14,6 +14,7 @@ import 'auth_code_screen_widget.dart';
 abstract interface class IAuthCodeScreenWidgetModel implements IWidgetModel {
   TextEditingController get emailController;
   void back();
+  void toPolicy();
   Future<void> toProfile();
   AuthRepository get authRepository;
   ProfileRepository get profileRepository;
@@ -54,4 +55,9 @@ class AuthCodeScreenWidgetModel
 
   @override
   ProfileRepository profileRepository = AppComponents().profileRepository;
+
+  @override
+  void toPolicy() {
+    context.router.navigate(PolicyRoute());
+  }
 }

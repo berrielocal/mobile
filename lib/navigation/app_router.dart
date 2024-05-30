@@ -15,6 +15,7 @@ import 'package:berrielocal/ui/feature/order_history_screen/order_history_screen
 import 'package:berrielocal/ui/feature/order_screen/order_screen_widget.dart';
 import 'package:berrielocal/ui/feature/order_screen/order_screen_wm.dart';
 import 'package:berrielocal/ui/feature/order_screen/order_success_screen.dart';
+import 'package:berrielocal/ui/feature/policy_screen.dart';
 import 'package:berrielocal/ui/feature/product_add_screen/product_add_screen_widget.dart';
 import 'package:berrielocal/ui/feature/product_add_screen/product_add_screen_wm.dart';
 import 'package:berrielocal/ui/feature/product_screen/product_screen_widget.dart';
@@ -113,6 +114,10 @@ class AppRouter extends _$AppRouter {
               ],
             ),
           ],
+        ),
+        AutoRoute(
+          page: PolicyRoute.page,
+          path: '/policyScreen',
         ),
         AutoRoute(
           page: LoginRoute.page,

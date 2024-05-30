@@ -14,6 +14,7 @@ import 'login_screen_widget.dart';
 abstract interface class ILoginScreenWidgetModel implements IWidgetModel {
   void back();
   Future<void> login();
+  void toPolicy();
   AuthRepository get authRepository;
   ProfileRepository get profileRepository;
   TextEditingController get emailController;
@@ -69,4 +70,9 @@ class LoginScreenWidgetModel
 
   @override
   ProfileRepository profileRepository = AppComponents().profileRepository;
+
+  @override
+  void toPolicy() {
+    context.router.navigate(PolicyRoute());
+  }
 }
