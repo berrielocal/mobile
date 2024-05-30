@@ -46,8 +46,9 @@ class ShowcaseScreenWidgetModel
   void initWidgetModel() {
     super.initWidgetModel();
     profileRepository.loadProfile();
-    // getAllShops();
-    // _loadShops();
+    profileRepository.profile.listen((value) {
+      getAllShops();
+    });
   }
 
   @override

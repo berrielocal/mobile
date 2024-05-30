@@ -1,95 +1,26 @@
 {
   "project_info": {
-    "project_number": "251601493435",
-    "project_id": "dailydriver-18f15",
-    "storage_bucket": "dailydriver-18f15.appspot.com"
+    "project_number": "1040203882795",
+    "project_id": "berrielocal-d5739",
+    "storage_bucket": "berrielocal-d5739.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:251601493435:android:7ab999bf01a2ef6d69789e",
+        "mobilesdk_app_id": "1:1040203882795:android:cf1c59742164d46e44656e",
         "android_client_info": {
           "package_name": "com.example.berrielocal"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "251601493435-g2i2vt6alov1i5h2u1f0831mk711rvih.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC17LWKa8YdBU6hgtIa3hbsKfX-OlNE2to"
+          "current_key": "AIzaSyCc3RLMOmo9Ke2quYxHXjtF3UHBvqjoPeg"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "251601493435-g2i2vt6alov1i5h2u1f0831mk711rvih.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "251601493435-2iipib0jog6lcf4gptkdbtu10vjt9p03.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.fittin.dailydriver.OneSignalNotificationServiceExtension"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:251601493435:android:f2bd5577f9e6055d69789e",
-        "android_client_info": {
-          "package_name": "com.fittin.dailydriver"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "251601493435-not4kha6tei7c9spha2phb63fji68b18.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.fittin.dailydriver",
-            "certificate_hash": "4824d7ebf83917cf979484229245a29320590295"
-          }
-        },
-        {
-          "client_id": "251601493435-t3mug80c99r2a574pg213vmq40ov31h7.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.fittin.dailydriver",
-            "certificate_hash": "3e2c4569eacbfd9f1874971afc246776693a6819"
-          }
-        },
-        {
-          "client_id": "251601493435-g2i2vt6alov1i5h2u1f0831mk711rvih.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC17LWKa8YdBU6hgtIa3hbsKfX-OlNE2to"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "251601493435-g2i2vt6alov1i5h2u1f0831mk711rvih.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "251601493435-2iipib0jog6lcf4gptkdbtu10vjt9p03.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.fittin.dailydriver.OneSignalNotificationServiceExtension"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

@@ -7,6 +7,7 @@ import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:berrielocal/ui/ui_kit/default_shimmer.dart';
 import 'package:berrielocal/ui/ui_kit/product_card/categories_list.dart';
 import 'package:berrielocal/ui/ui_kit/product_card/product_card_list_horizontal.dart';
+import 'package:berrielocal/ui/ui_kit/product_card/product_card_list_horizontal_showcase.dart';
 import 'package:berrielocal/ui/ui_kit/product_card/rating_stars.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elementary/elementary.dart';
@@ -259,7 +260,7 @@ class ShopScreenWidget extends ElementaryWidget<IShopScreenWidgetModel> {
                                         data.products!.keys.elementAt(index);
                                     List<ProductResponse> shopList =
                                         data.products?[title] ?? [];
-                                    return ProductCardListHorizontal(
+                                    return ProductCardListHorizontalShowcase(
                                       response: shopList,
                                       category: title,
                                     );

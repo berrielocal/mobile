@@ -20,11 +20,17 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  analytics.logEvent(name: 'app_launch');
   final remoteConfig = FirebaseRemoteConfig.instance;
   await remoteConfig.setConfigSettings(RemoteConfigSettings(
     fetchTimeout: const Duration(minutes: 1),
     minimumFetchInterval: const Duration(hours: 1),
   ));
+  await remoteConfig.fetchAndActivate();
+  remoteConfig.onConfigUpdated.listen((event) async {
+    await remoteConfig.activate();
+  });
+  final bool b = remoteConfig.getBool('match_case');
   AppMetrica.activate(config);
   await AppComponents().init();
 
