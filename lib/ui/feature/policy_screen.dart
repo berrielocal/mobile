@@ -154,6 +154,16 @@ class PolicyScreenWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 16.0),
                 Text(
+                  'Ответственность пользователя',
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 16.0),
+                Text(
+                  '* На пользователе лежит ответственность за выкладываемый материал в приложение Berrielocal. В случае нарушения закона, недобросовестного использования мощностей сервера приложения, за выкладывание ненормативного, пропагандистского, порнографического и иного вида заприщенного контента, учетная запись пользователя подлежит удалению без права обжалования и оповещения об этом пользователя.',
+                  style: TextStyle(fontSize: 16.0),
+                ),
+                SizedBox(height: 16.0),
+                Text(
                   'Изменения в данной политике',
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
