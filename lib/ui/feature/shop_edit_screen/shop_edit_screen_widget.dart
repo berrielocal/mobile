@@ -48,6 +48,7 @@ class ShopEditScreenWidget
               phoneNumber: wm.phoneController.text,
             ),
           );
+          await wm.profileRepository.loadProfile();
           context.showSnackBar('Изменения в профиле сохранены!');
         },
         child: FutureBuilder(
