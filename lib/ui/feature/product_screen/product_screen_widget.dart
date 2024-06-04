@@ -127,7 +127,8 @@ class ProductScreenWidget extends ElementaryWidget<IProductScreenWidgetModel> {
                                     ),
                                   )
                                 : SizedBox.shrink(),
-                          if (wm.profileRepository.profile.value == null)
+                          if (!wm.profileRepository.profile.hasValue ||
+                              wm.profileRepository.profile.value == null)
                             SizedBox(
                               width: 270,
                               child: CustomFilledButton(

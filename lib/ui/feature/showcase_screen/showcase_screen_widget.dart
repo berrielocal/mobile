@@ -26,15 +26,10 @@ class ShowcaseScreenWidget
           stream: wm.profileRepository.profile,
           builder: (context, snapshot) {
             // //TODO: Subscription
-            // wm.getAllShops();
+            wm.getAllShops();
             return EntityStateNotifierBuilder(
               listenableEntityState: wm.testShop,
               builder: (context, data) {
-                if (data == null) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
                 return Padding(
                   padding: const EdgeInsets.all(8),
                   child: Column(

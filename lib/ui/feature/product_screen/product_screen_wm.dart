@@ -45,7 +45,8 @@ class ProductScreenWidgetModel
 
   @override
   void toCart() {
-    if (profileRepository.profile.value != null) {
+    if (profileRepository.profile.hasValue &&
+        profileRepository.profile.value != null) {
       AppMetrica.reportEvent('open_cartPage');
       context.router.navigate(const CartTab());
     } else {

@@ -52,6 +52,9 @@ dev_dependencies:
   freezed: ^2.4.6
   auto_route_generator: ^7.2.0
 
+dependency_overrides:
+   intl: ^0.18.1
+
 flutter:
   uses-material-design: true
 
