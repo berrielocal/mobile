@@ -15,6 +15,7 @@ import 'package:elementary/elementary.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:berrielocal/data/token/token_data.dart';
 import 'package:berrielocal/utils/error_handler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 const timeout = Duration(seconds: 30);
 
@@ -55,6 +56,7 @@ class AppComponents {
   late final MockShopService mockShopService = MockShopService();
   late final MockCartService mockCartService = MockCartService();
   late final MockProductService mockProductService = MockProductService();
+  late final SharedPreferences sharedPreferences;
 
   Future<void> init() async {
     dio.options
@@ -72,6 +74,7 @@ class AppComponents {
     );
 
     await tokenRepository.initTokens();
+    sharedPreferences = await SharedPreferences.getInstance();
 
     dio.interceptors.add(
       JWTInterceptor(

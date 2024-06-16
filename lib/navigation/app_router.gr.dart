@@ -15,6 +15,20 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AddReviewRoute.name: (routeData) {
+      final queryParams = routeData.queryParams;
+      final args = routeData.argsAs<AddReviewRouteArgs>(
+          orElse: () =>
+              AddReviewRouteArgs(shopId: queryParams.optInt('shopId')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: AddReviewScreenWidget(
+          key: args.key,
+          shopId: args.shopId,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
     AuthCodeRoute.name: (routeData) {
       final args = routeData.argsAs<AuthCodeRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -188,6 +202,23 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    ShopReviewsRoute.name: (routeData) {
+      final queryParams = routeData.queryParams;
+      final args = routeData.argsAs<ShopReviewsRouteArgs>(
+          orElse: () => ShopReviewsRouteArgs(
+                commentsResponse: queryParams.get('commentsResponse'),
+                shopId: queryParams.optInt('shopId'),
+              ));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ShopReviewsScreenWidget(
+          commentsResponse: args.commentsResponse,
+          shopId: args.shopId,
+          key: args.key,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
     ShopRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<ShopRouteArgs>(
@@ -219,6 +250,53 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [AddReviewScreenWidget]
+class AddReviewRoute extends PageRouteInfo<AddReviewRouteArgs> {
+  AddReviewRoute({
+    Key? key,
+    required int? shopId,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultAddReviewScreenWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          AddReviewRoute.name,
+          args: AddReviewRouteArgs(
+            key: key,
+            shopId: shopId,
+            wmFactory: wmFactory,
+          ),
+          rawQueryParams: {'shopId': shopId},
+          initialChildren: children,
+        );
+
+  static const String name = 'AddReviewRoute';
+
+  static const PageInfo<AddReviewRouteArgs> page =
+      PageInfo<AddReviewRouteArgs>(name);
+}
+
+class AddReviewRouteArgs {
+  const AddReviewRouteArgs({
+    this.key,
+    required this.shopId,
+    this.wmFactory = defaultAddReviewScreenWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final int? shopId;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'AddReviewRouteArgs{key: $key, shopId: $shopId, wmFactory: $wmFactory}';
+  }
 }
 
 /// generated route for
@@ -806,6 +884,61 @@ class ShopEditRouteArgs {
   @override
   String toString() {
     return 'ShopEditRouteArgs{key: $key, shopId: $shopId, wmFactory: $wmFactory}';
+  }
+}
+
+/// generated route for
+/// [ShopReviewsScreenWidget]
+class ShopReviewsRoute extends PageRouteInfo<ShopReviewsRouteArgs> {
+  ShopReviewsRoute({
+    required CommentsResponse? commentsResponse,
+    required int? shopId,
+    Key? key,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultShopReviewsScreenWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ShopReviewsRoute.name,
+          args: ShopReviewsRouteArgs(
+            commentsResponse: commentsResponse,
+            shopId: shopId,
+            key: key,
+            wmFactory: wmFactory,
+          ),
+          rawQueryParams: {
+            'commentsResponse': commentsResponse,
+            'shopId': shopId,
+          },
+          initialChildren: children,
+        );
+
+  static const String name = 'ShopReviewsRoute';
+
+  static const PageInfo<ShopReviewsRouteArgs> page =
+      PageInfo<ShopReviewsRouteArgs>(name);
+}
+
+class ShopReviewsRouteArgs {
+  const ShopReviewsRouteArgs({
+    required this.commentsResponse,
+    required this.shopId,
+    this.key,
+    this.wmFactory = defaultShopReviewsScreenWidgetModelFactory,
+  });
+
+  final CommentsResponse? commentsResponse;
+
+  final int? shopId;
+
+  final Key? key;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'ShopReviewsRouteArgs{commentsResponse: $commentsResponse, shopId: $shopId, key: $key, wmFactory: $wmFactory}';
   }
 }
 

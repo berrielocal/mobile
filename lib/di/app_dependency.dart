@@ -6,6 +6,7 @@ import 'package:berrielocal/data/repository/auth_repository.dart';
 import 'package:berrielocal/data/repository/product_repository.dart';
 import 'package:berrielocal/data/repository/profile_repository.dart';
 import 'package:berrielocal/data/repository/shop_repository.dart';
+import 'package:berrielocal/ui/feature/add_review_screen/add_review_screen_model.dart';
 import 'package:berrielocal/ui/feature/auth_code_screen/auth_code_screen_model.dart';
 import 'package:berrielocal/ui/feature/auth_screen/auth_screen_model.dart';
 import 'package:berrielocal/ui/feature/cart_screen/cart_screen_model.dart';
@@ -18,6 +19,7 @@ import 'package:berrielocal/ui/feature/product_screen/product_screen_model.dart'
 import 'package:berrielocal/ui/feature/profile_screen/profile_screen_model.dart';
 import 'package:berrielocal/ui/feature/search_screen/search_screen_model.dart';
 import 'package:berrielocal/ui/feature/shop_edit_screen/shop_edit_screen_model.dart';
+import 'package:berrielocal/ui/feature/shop_reviews_screen/shop_reviews_screen_model.dart';
 import 'package:berrielocal/ui/feature/shop_screen/shop_screen_model.dart';
 import 'package:berrielocal/ui/feature/showcase_screen/showcase_screen_model.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +55,8 @@ class _AppDependencyState extends State<AppDependency> {
   late final FavoriteScreenModel _favoriteScreenModel;
   late final LoginScreenModel _loginScreenModel;
   late final ProductAddScreenModel _productAddScreenModel;
+  late final ShopReviewsScreenModel _shopReviewsScreenModel;
+  late final AddReviewScreenModel _addReviewScreenModel;
 
   @override
   void initState() {
@@ -90,6 +94,8 @@ class _AppDependencyState extends State<AppDependency> {
     _favoriteScreenModel = FavoriteScreenModel(errorHandler);
     _loginScreenModel = LoginScreenModel(errorHandler, authRepository);
     _productAddScreenModel = ProductAddScreenModel(errorHandler);
+    _shopReviewsScreenModel = ShopReviewsScreenModel(errorHandler);
+    _addReviewScreenModel = AddReviewScreenModel(errorHandler);
   }
 
   @override
@@ -141,6 +147,12 @@ class _AppDependencyState extends State<AppDependency> {
         ),
         Provider(
           create: (context) => _productAddScreenModel,
+        ),
+        Provider(
+          create: (context) => _shopReviewsScreenModel,
+        ),
+        Provider(
+          create: (context) => _addReviewScreenModel,
         ),
       ],
       child: widget.app,

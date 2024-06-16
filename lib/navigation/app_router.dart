@@ -1,4 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/domain/comment/comments_response.dart';
+import 'package:berrielocal/ui/feature/add_review_screen/add_review_screen_widget.dart';
+import 'package:berrielocal/ui/feature/add_review_screen/add_review_screen_wm.dart';
 import 'package:berrielocal/ui/feature/auth_code_screen/auth_code_screen_widget.dart';
 import 'package:berrielocal/ui/feature/auth_code_screen/auth_code_screen_wm.dart';
 import 'package:berrielocal/ui/feature/auth_screen/auth_screen_widget.dart';
@@ -26,6 +29,8 @@ import 'package:berrielocal/ui/feature/search_screen/search_screen_widget.dart';
 import 'package:berrielocal/ui/feature/search_screen/search_screen_wm.dart';
 import 'package:berrielocal/ui/feature/shop_edit_screen/shop_edit_screen_widget.dart';
 import 'package:berrielocal/ui/feature/shop_edit_screen/shop_edit_screen_wm.dart';
+import 'package:berrielocal/ui/feature/shop_reviews_screen/shop_reviews_screen_widget.dart';
+import 'package:berrielocal/ui/feature/shop_reviews_screen/shop_reviews_screen_wm.dart';
 import 'package:berrielocal/ui/feature/shop_screen/shop_screen_widget.dart';
 import 'package:berrielocal/ui/feature/shop_screen/shop_screen_wm.dart';
 import 'package:berrielocal/ui/feature/showcase_screen/showcase_screen_widget.dart';
@@ -55,10 +60,19 @@ class AppRouter extends _$AppRouter {
                 AutoRoute(
                   page: SearchRoute.page,
                 ),
-                AutoRoute(page: ShopRoute.page, path: 'shop/:shopId'),
+                AutoRoute(
+                  page: ShopRoute.page,
+                  path: 'shop/:shopId',
+                ),
                 AutoRoute(
                   page: ProductRoute.page,
                   path: 'product/:productId',
+                ),
+                AutoRoute(
+                  page: ShopReviewsRoute.page,
+                ),
+                AutoRoute(
+                  page: AddReviewRoute.page,
                 ),
               ],
             ),
