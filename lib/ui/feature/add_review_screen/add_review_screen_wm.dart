@@ -7,6 +7,7 @@ import 'add_review_screen_widget.dart';
 
 abstract interface class IAddReviewScreenWidgetModel implements IWidgetModel {
   void back();
+  TextEditingController get controller;
 }
 
 AddReviewScreenWidgetModel defaultAddReviewScreenWidgetModelFactory(
@@ -26,4 +27,7 @@ class AddReviewScreenWidgetModel
   void back() {
     context.router.pop();
   }
+
+  @override
+  TextEditingController controller = TextEditingController();
 }
