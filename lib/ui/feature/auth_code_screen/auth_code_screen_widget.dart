@@ -30,15 +30,6 @@ class AuthCodeScreenWidget
           style: AppTypography.personalCardTitle,
         ),
         centerTitle: true,
-        leading: IconButton(
-          padding: EdgeInsets.zero,
-          visualDensity: VisualDensity.comfortable,
-          onPressed: wm.back,
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: AppColor.black,
-          ),
-        ),
       ),
       body: SafeArea(
         minimum: const EdgeInsets.only(left: 16, right: 16, bottom: 40),

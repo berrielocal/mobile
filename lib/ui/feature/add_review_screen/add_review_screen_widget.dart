@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/domain/comment/comment_create_request.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:berrielocal/ui/ui_kit/auth/custom_textfield.dart';
@@ -58,16 +59,17 @@ class AddReviewScreenWidget
                   color: AppColor.white,
                   maxLines: 8,
                   controller: wm.controller,
-                  decoration: InputDecoration(),
                 ),
               ),
             ),
             SizedBox(
               height: 16,
             ),
-            Rating(),
-            Spacer(),
-            CustomFilledButton(text: 'СОХРАНИТЬ'),
+            Rating(
+              shopId: shopId!,
+              controller: wm.controller,
+              repository: wm.commentRepository,
+            ),
           ],
         ),
       ),

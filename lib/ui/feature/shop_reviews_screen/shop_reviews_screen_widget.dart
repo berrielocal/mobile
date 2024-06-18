@@ -41,55 +41,129 @@ class ShopReviewsScreenWidget
         ),
       ),
       body: SafeArea(
-          minimum: EdgeInsets.only(
-            bottom: 16,
-            right: 16,
-            left: 16,
+        minimum: EdgeInsets.only(
+          bottom: 16,
+          right: 16,
+          left: 16,
+        ),
+        child: commentsResponse == null || commentsResponse!.comments.isEmpty
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Center(
+                    child: Text('Отзывов пока нет!'),
+                  ),
+                  wm.profileRepository.profile.hasValue &&
+                          wm.profileRepository.profile.value != null &&
+                          wm.profileRepository.profile.value!.shopId ==
+                              shopId.toString()
+                      ? CustomFilledButton(
+                          fillColor: Colors.grey,
+                          text: 'ОСТАВИТЬ ОТЗЫВ',
+                          onTap: () {},
+                        )
+                      : CustomFilledButton(
+                          text: 'ОСТАВИТЬ ОТЗЫВ',
+                          onTap: () => wm.addComment(shopId),
+                        ),
+                ],
+              )
+            : _CommentsList(
+                commentsResponse: commentsResponse!,
+                getCommentName: wm.getCommentName,
+                addComment: () => wm.addComment(shopId),
+                wm: wm,
+                shopId: shopId!,
+              ),
+      ),
+    );
+  }
+}
+
+class _CommentsList extends StatefulWidget {
+  const _CommentsList({
+    Key? key,
+    required this.commentsResponse,
+    required this.getCommentName,
+    required this.addComment,
+    required this.wm,
+    required this.shopId,
+  }) : super(key: key);
+
+  final CommentsResponse commentsResponse;
+  final Future<String> Function(int customerId) getCommentName;
+  final VoidCallback addComment;
+  final IShopReviewsScreenWidgetModel wm;
+  final int shopId;
+
+  @override
+  __CommentsListState createState() => __CommentsListState();
+}
+
+class __CommentsListState extends State<_CommentsList> {
+  final Map<int, Future<String>> _nameFutures = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _cacheNameFutures();
+  }
+
+  void _cacheNameFutures() {
+    for (var comment in widget.commentsResponse.comments) {
+      if (!_nameFutures.containsKey(comment.customerId)) {
+        _nameFutures[comment.customerId!] =
+            widget.getCommentName(comment.customerId!);
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemCount: widget.commentsResponse.comments.length,
+            itemBuilder: (context, index) {
+              final comment = widget.commentsResponse.comments[index];
+              return FutureBuilder(
+                future: _nameFutures[comment.customerId],
+                builder:
+                    (BuildContext context, AsyncSnapshot<String> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.hasData) {
+                      return Comment(
+                        name: snapshot.data!,
+                        text: comment.text!,
+                        rating: comment.rate.toString(),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    }
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              );
+            },
           ),
-          child: commentsResponse == null || commentsResponse!.comments.isEmpty
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Center(
-                      child: Text('Отзывов пока нет!'),
-                    ),
-                    CustomFilledButton(text: 'ОСТАВИТЬ ОТЗЫВ')
-                  ],
-                )
-              : Column(
-                  children: [
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: commentsResponse!.comments.length,
-                        itemBuilder: (context, index) {
-                          return FutureBuilder(
-                            future: wm.getCommentName(
-                              commentsResponse!.comments[index].customerId!,
-                            ),
-                            builder: (BuildContext context,
-                                AsyncSnapshot<String> snapshot) {
-                              if (snapshot.hasData) {
-                                return Comment(
-                                  name: snapshot.data!,
-                                  text: commentsResponse!.comments[index].text!,
-                                  rating: commentsResponse!.comments[index].rate
-                                      .toString(),
-                                );
-                              }
-                              return Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                    CustomFilledButton(
-                      text: 'ОСТАВИТЬ ОТЗЫВ',
-                      onTap: () => wm.addComment(shopId),
-                    )
-                  ],
-                )),
+        ),
+        widget.wm.profileRepository.profile.hasValue &&
+                widget.wm.profileRepository.profile.value != null &&
+                widget.wm.profileRepository.profile.value!.shopId ==
+                    widget.shopId.toString()
+            ? CustomFilledButton(
+                text: 'ОСТАВИТЬ ОТЗЫВ',
+                fillColor: Colors.grey,
+                onTap: () {},
+              )
+            : CustomFilledButton(
+                text: 'ОСТАВИТЬ ОТЗЫВ',
+                onTap: widget.addComment,
+              ),
+      ],
     );
   }
 }

@@ -17,47 +17,50 @@ class Comment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(
-        left: 16,
-        top: 16,
-        right: 16,
-      ),
-      width: 349,
-      height: 176,
-      decoration: BoxDecoration(
-        color: Color(0xFFF7FFF9),
-        border: Border.all(
-          color: AppColor.grey,
+    return Padding(
+      padding: EdgeInsets.only(bottom: 16),
+      child: Container(
+        padding: EdgeInsets.only(
+          left: 16,
+          top: 16,
+          right: 16,
         ),
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Text(name),
-              Spacer(),
-              SvgPicture.asset('assets/svg/star.svg'),
-              SizedBox(
-                width: 5,
-              ),
-              Text(rating),
-            ],
+        width: 349,
+        height: 176,
+        decoration: BoxDecoration(
+          color: Color(0xFFF7FFF9),
+          border: Border.all(
+            color: AppColor.grey,
           ),
-          ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: 293),
-            child: Padding(
-              padding: EdgeInsets.only(top: 16),
-              child: Text(
-                text,
-                style: AppTypography.personalCardTitle,
-                overflow: TextOverflow.ellipsis,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(name),
+                Spacer(),
+                SvgPicture.asset('assets/svg/star.svg'),
+                SizedBox(
+                  width: 5,
+                ),
+                Text(rating),
+              ],
+            ),
+            ConstrainedBox(
+              constraints: BoxConstraints(maxHeight: 293),
+              child: Padding(
+                padding: EdgeInsets.only(top: 16),
+                child: Text(
+                  text,
+                  style: AppTypography.personalCardTitle,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

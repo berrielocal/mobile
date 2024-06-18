@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/data/repository/auth_repository.dart';
+import 'package:berrielocal/data/repository/profile_repository.dart';
 import 'package:berrielocal/data/service/auth_service.dart';
 import 'package:berrielocal/di/app_components.dart';
 import 'package:berrielocal/navigation/app_router.dart';
@@ -13,6 +14,7 @@ abstract interface class IShopReviewsScreenWidgetModel implements IWidgetModel {
   void back();
   void addComment(int? shopId);
   AuthRepository get authRepository;
+  ProfileRepository get profileRepository;
   Future<String> getCommentName(int userId);
 }
 
@@ -45,6 +47,12 @@ class ShopReviewsScreenWidgetModel
 
   @override
   void addComment(int? shopId) {
-    context.router.navigate(AddReviewRoute(shopId: shopId!));
+    profileRepository.profile.hasValue &&
+            profileRepository.profile.value!.email!.isNotEmpty
+        ? context.router.navigate(AddReviewRoute(shopId: shopId!))
+        : context.router.navigate(LoginRoute());
   }
+
+  @override
+  ProfileRepository profileRepository = AppComponents().profileRepository;
 }

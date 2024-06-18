@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/src/router/controller/routing_controller.dart';
+import 'package:berrielocal/data/repository/auth_repository.dart';
 import 'package:berrielocal/data/repository/profile_repository.dart';
 import 'package:berrielocal/di/app_components.dart';
 import 'package:berrielocal/domain/shop/shop_main_info.dart';
 import 'package:berrielocal/generated/l10n.dart';
 import 'package:berrielocal/navigation/app_router.dart';
+import 'package:berrielocal/ui/ui_kit/custom_alert.dart';
 import 'package:berrielocal/utils/theme_extension.dart';
 import 'package:elementary/elementary.dart';
 import 'package:elementary_helper/elementary_helper.dart';
@@ -18,6 +20,8 @@ abstract interface class IProfileScreenWidgetModel
   void toAuth();
   ProfileRepository get profileRepository;
   EntityStateNotifier<ShopMainInfo> get profileState;
+  Future<void> deleteAccount();
+  AuthRepository get authRepository;
 }
 
 ProfileScreenWidgetModel defaultProfileScreenWidgetModelFactory(
@@ -40,8 +44,20 @@ class ProfileScreenWidgetModel
   }
 
   @override
+  Future<void> deleteAccount() async {
+    showDeleteAccountDialog(
+      context,
+      authRepository,
+      profileRepository,
+    );
+  }
+
+  @override
   ProfileRepository profileRepository = AppComponents().profileRepository;
-  
+
+  @override
+  AuthRepository authRepository = AppComponents().authRepository;
+
   @override
   EntityStateNotifier<ShopMainInfo> profileState = EntityStateNotifier();
 }
