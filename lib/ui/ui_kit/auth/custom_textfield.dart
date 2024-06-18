@@ -25,6 +25,8 @@ class CustomTextfield extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.prefixIconColor,
     this.textFieldBorderRadius = 10,
+    this.maxLines = 1,
+    this.decoration = const InputDecoration(),
     this.textFieldBorderSide =
         const BorderSide(width: 0, style: BorderStyle.none),
   }) : super(key: key);
@@ -47,6 +49,8 @@ class CustomTextfield extends StatelessWidget {
   final Widget? suffixIcon;
   final FormFieldValidator<String>? validator;
   final String? errorText;
+  final int? maxLines;
+  final InputDecoration? decoration;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +64,7 @@ class CustomTextfield extends StatelessWidget {
       inputFormatters: inputFormatters,
       autocorrect: false,
       textAlignVertical: TextAlignVertical.bottom,
-      maxLines: 1,
+      maxLines: maxLines,
       minLines: 1,
       maxLength: maxLength,
       decoration: InputDecoration(

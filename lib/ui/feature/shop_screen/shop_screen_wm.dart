@@ -22,6 +22,7 @@ abstract interface class IShopScreenWidgetModel
   ProductRepository get productRepository;
   AuthRepository get authRepository;
   CommentRepository get commentRepository;
+  ProfileRepository get profileRepository;
   Future<void> loadProducts(int shopId);
   late final OverlayPortalController tooltipController;
 }
@@ -90,4 +91,7 @@ class ShopScreenWidgetModel
 
   @override
   CommentRepository commentRepository = AppComponents().commentRepository;
+
+  @override
+  ProfileRepository profileRepository = AppComponents().profileRepository;
 }

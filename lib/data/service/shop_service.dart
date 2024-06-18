@@ -28,4 +28,7 @@ abstract class ShopService {
   Future<void> updateShop({
     @Body() required ShopUpdateRequest request,
   });
+
+  @DELETE('/api/v1/shop')
+  Future<void> deleteShop();
 }

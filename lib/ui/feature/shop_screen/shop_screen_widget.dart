@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/domain/product/product_list_response.dart';
 import 'package:berrielocal/domain/product/product_response.dart';
 import 'package:berrielocal/domain/shop/shop_all_info_response.dart';
+import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:berrielocal/ui/ui_kit/default_shimmer.dart';
@@ -217,10 +218,18 @@ class ShopScreenWidget extends ElementaryWidget<IShopScreenWidgetModel> {
                                     wm.commentRepository.getComments(shopId),
                                 builder: (context, snapshot) {
                                   if (snapshot.hasData) {
-                                    return Text(
-                                      '${snapshot.data?.comments.length} отзывов >' ??
-                                          '0',
-                                      style: AppTypography.personalCardTitle,
+                                    return GestureDetector(
+                                      onTap: () => context.router.navigate(
+                                        ShopReviewsRoute(
+                                          commentsResponse: snapshot.data,
+                                          shopId: shopId,
+                                        ),
+                                      ),
+                                      child: Text(
+                                        '${snapshot.data?.comments.length} отзыв(ов)  >' ??
+                                            '0',
+                                        style: AppTypography.personalCardTitle,
+                                      ),
                                     );
                                   }
                                   return const Center(

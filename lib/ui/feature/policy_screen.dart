@@ -29,8 +29,8 @@ class PolicyScreenWidget extends StatelessWidget {
       body: SafeArea(
         minimum: EdgeInsets.all(16),
         child: ListView(
-          children: [
-            const Column(
+          children: const [
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -150,6 +150,16 @@ class PolicyScreenWidget extends StatelessWidget {
                 SizedBox(height: 8.0),
                 Text(
                   '* Вы можете удалить свою учетную запись: вы можете удалить свою учетную запись, войдя в свою учетную запись и посетив страницу "Профиль".',
+                  style: TextStyle(fontSize: 16.0),
+                ),
+                SizedBox(height: 16.0),
+                Text(
+                  'Ответственность пользователя',
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 16.0),
+                Text(
+                  'На пользователе лежит ответственность за загружаемый им материал. Сервис доставки продуктов и интеграции локальных магазинов "Berrielocal" в праве заблокировать или удалить ненадлежащие законодательству, любой иной материал по своему собственному желанию без обьяснения причин.',
                   style: TextStyle(fontSize: 16.0),
                 ),
                 SizedBox(height: 16.0),

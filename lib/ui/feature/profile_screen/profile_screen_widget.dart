@@ -193,13 +193,16 @@ class ProfileCardsAuthorized extends StatelessWidget {
                     text: 'Выйти',
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Text(
-                    'Удалить аккаунт',
-                    style: AppTypography.label.copyWith(
-                      color: const Color(0xFFB90000),
-                      decoration: TextDecoration.underline,
+                GestureDetector(
+                  onTap: wm.deleteAccount,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Text(
+                      'Удалить аккаунт',
+                      style: AppTypography.label.copyWith(
+                        color: const Color(0xFFB90000),
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
                   ),
                 )

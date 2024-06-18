@@ -40,9 +40,6 @@ class AuthRepository {
       );
       return result;
     } catch (e, s) {
-      print('ffffff');
-      print('ffffff');
-      print('ffffff');
       throw Error.throwWithStackTrace(e, s);
     }
   }
@@ -73,6 +70,16 @@ class AuthRepository {
     try {
       final result = _shopService.getShopById(shopId: shopId);
       return result;
+    } on DioException catch (error) {
+      throw Exception(
+        error.response?.data['message'],
+      );
+    }
+  }
+
+  Future<void> deleteAccount() async {
+    try {
+      await _shopService.deleteShop();
     } on DioException catch (error) {
       throw Exception(
         error.response?.data['message'],
