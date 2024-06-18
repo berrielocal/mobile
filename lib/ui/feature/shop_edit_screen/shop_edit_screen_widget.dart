@@ -2,21 +2,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/domain/product/product_response.dart';
 import 'package:berrielocal/domain/shop/shop_all_info_response.dart';
 import 'package:berrielocal/domain/shop/shop_update_request.dart';
-import 'package:berrielocal/extensions/money_extension.dart';
 import 'package:berrielocal/extensions/snack_bar.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
 import 'package:berrielocal/ui/ui_kit/auth/custom_textfield.dart';
 import 'package:berrielocal/ui/ui_kit/custom_alert.dart';
-import 'package:berrielocal/ui/ui_kit/custom_filled_button.dart';
 import 'package:berrielocal/ui/ui_kit/product_card/product_card_list_horizontal.dart';
-import 'package:berrielocal/ui/ui_kit/product_card/product_card_list_vertical.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:decimal/decimal.dart';
 import 'package:elementary/elementary.dart';
 import 'package:elementary_helper/elementary_helper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -36,6 +31,8 @@ class ShopEditScreenWidget
 
   @override
   Widget build(IShopEditScreenWidgetModel wm) {
+    final imageUrlNotifier = ValueNotifier<String>('');
+
     return Builder(builder: (context) {
       return PopScope(
         canPop: true,
@@ -58,6 +55,7 @@ class ShopEditScreenWidget
               if (snapshot.hasData) {
                 wm.setData(snapshot.data!);
                 wm.loadProducts(shopId);
+                imageUrlNotifier.value = snapshot.data?.imageUrl ?? '';
                 return Scaffold(
                   appBar: AppBar(
                     title: Text(
@@ -89,28 +87,39 @@ class ShopEditScreenWidget
                                 Stack(
                                   alignment: Alignment.bottomRight,
                                   children: [
-                                    CachedNetworkImage(
-                                      height: 273,
-                                      width: 273,
-                                      imageUrl: snapshot.data?.imageUrl ?? '',
-                                      progressIndicatorBuilder: (_, __, ___) {
-                                        return const Center(
-                                          child: CircularProgressIndicator(),
-                                        );
-                                      },
-                                      errorWidget: (_, __, ___) {
-                                        return Image.asset(
-                                          'assets/image/empty_photo.png',
+                                    ValueListenableBuilder<String>(
+                                      valueListenable: imageUrlNotifier,
+                                      builder: (context, url, _) {
+                                        return CachedNetworkImage(
+                                          height: 273,
+                                          width: 273,
+                                          imageUrl: url,
+                                          progressIndicatorBuilder:
+                                              (_, __, ___) {
+                                            return const Center(
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            );
+                                          },
+                                          errorWidget: (_, __, ___) {
+                                            return Image.asset(
+                                              'assets/image/empty_photo.png',
+                                            );
+                                          },
                                         );
                                       },
                                     ),
                                     GestureDetector(
                                       onTap: () => customDialog(
-                                          context,
-                                          'Вставьте ссылку на изображение',
-                                          'Формат .png 1024 x 1024',
-                                          () {},
-                                          wm.urlController),
+                                        context,
+                                        'Вставьте ссылку на изображение',
+                                        'Формат .png 1024 x 1024',
+                                        () {
+                                          imageUrlNotifier.value =
+                                              wm.urlController.text;
+                                        },
+                                        wm.urlController,
+                                      ),
                                       child: Padding(
                                         padding: const EdgeInsets.all(16),
                                         child: SvgPicture.asset(
@@ -144,7 +153,7 @@ class ShopEditScreenWidget
                             ),
                             CustomTextfield(
                               controller: wm.infoController,
-                              enabled: false,
+                              enabled: true,
                               autofocus: false,
                               textFieldBorderRadius: 0,
                               hint: 'Информация',
@@ -166,6 +175,7 @@ class ShopEditScreenWidget
                               height: 15,
                             ),
                             CustomTextfield(
+                              enabled: false,
                               controller: wm.emailController,
                               autofocus: false,
                               textFieldBorderRadius: 0,

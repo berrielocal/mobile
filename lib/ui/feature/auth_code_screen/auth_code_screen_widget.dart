@@ -1,11 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
 import 'package:berrielocal/res/theme/color_const.dart';
-import 'package:berrielocal/ui/ui_kit/auth/custom_textfield.dart';
 import 'package:berrielocal/ui/ui_kit/custom_filled_button.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'auth_code_screen_wm.dart';
 
 // TODO: cover with documentation
@@ -23,6 +21,8 @@ class AuthCodeScreenWidget
 
   @override
   Widget build(IAuthCodeScreenWidgetModel wm) {
+    final _formKey = GlobalKey<FormState>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -33,54 +33,79 @@ class AuthCodeScreenWidget
       ),
       body: SafeArea(
         minimum: const EdgeInsets.only(left: 16, right: 16, bottom: 40),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              'Подтверждение почты',
-              style: AppTypography.personalCardTitle.copyWith(fontSize: 18),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Text(
-              'Мы отправили письмо с кодом на $email',
-              style: AppTypography.personalCardTitle.copyWith(fontSize: 12),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            CustomTextfield(
-              controller: wm.emailController,
-              autofocus: false,
-              textFieldBorderRadius: 0,
-              hint: 'Код подтверждения',
-              keyboardType: TextInputType.number,
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-            ),
-            const Spacer(),
-            Padding(
-              padding: EdgeInsets.all(8),
-              child: GestureDetector(
-                onTap: wm.toPolicy,
-                child: Text(
-                  style: TextStyle(
-                    decoration: TextDecoration.underline,
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                'Подтверждение почты',
+                style: AppTypography.personalCardTitle.copyWith(fontSize: 18),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Text(
+                'Мы отправили письмо с кодом на $email',
+                style: AppTypography.personalCardTitle.copyWith(fontSize: 12),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              TextFormField(
+                controller: wm.emailController,
+                autofocus: false,
+                decoration: InputDecoration(
+                  hintText: 'Код подтверждения',
+                  hintStyle:
+                      TextStyle(color: AppColor.grey),
+                  filled: true,
+                  fillColor: Color(0xFFF0F0F0),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                  border: OutlineInputBorder( 
+                    borderSide: BorderSide.none, 
                   ),
-                  'Нажимая кнопку, Вы соглашаетесь c Правилами и политикой конфиденциальности Компании',
+                  errorStyle: TextStyle(color: Colors.red), 
+                ),
+                keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Пожалуйста, введите код подтверждения';
+                  }
+                  if (value.length != 5) {
+                    return 'Код подтверждения должен быть 5 символов';
+                  }
+                  return null;
+                },
+              ),
+              const Spacer(),
+              Padding(
+                padding: EdgeInsets.all(8),
+                child: GestureDetector(
+                  onTap: wm.toPolicy,
+                  child: Text(
+                    'Нажимая кнопку, Вы соглашаетесь c Правилами и политикой конфиденциальности Компании',
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            CustomFilledButton(
-              text: 'Зарегистрироваться',
-              onTap: wm.toProfile,
-            )
-          ],
+              const SizedBox(
+                height: 15,
+              ),
+              CustomFilledButton(
+                text: 'Зарегистрироваться',
+                onTap: () {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    wm.toProfile();
+                  }
+                },
+              )
+            ],
+          ),
         ),
       ),
     );

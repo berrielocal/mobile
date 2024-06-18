@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:berrielocal/data/repository/auth_repository.dart';
 import 'package:berrielocal/data/repository/profile_repository.dart';
 import 'package:berrielocal/di/app_components.dart';
+import 'package:berrielocal/extensions/snack_bar.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/ui/feature/auth_screen/auth_screen_model.dart';
 import 'package:elementary/elementary.dart';
@@ -44,7 +45,12 @@ class AuthCodeScreenWidgetModel
   @override
   Future<void> toProfile() async {
     AppMetrica.reportEvent('validation');
-    await model.authPart2(emailController.text);
+    try {
+      await model.authPart2(emailController.text);
+    } catch (err) {
+      context.showSnackBar('Введенный код неверен!');
+      return;
+    }
     await profileRepository.loadProfile();
     AppMetrica.reportEvent('registration');
     context.router.navigate(ProfileRoute());
