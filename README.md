@@ -11,6 +11,10 @@ PR на main
 
 Mock release - mock_version branch
 
+Pre release - pre_release branch
+
+Release - release branch
+
 ## BerrieLocal Flutter project
 
 State: Elementary
