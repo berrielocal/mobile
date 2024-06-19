@@ -22,6 +22,7 @@ OrderPartListResponse _$OrderPartListResponseFromJson(
 /// @nodoc
 mixin _$OrderPartListResponse {
   List<OrderPartMainInfo> get items => throw _privateConstructorUsedError;
+  double? get sum => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $OrderPartListResponseCopyWith<$Res> {
           $Res Function(OrderPartListResponse) then) =
       _$OrderPartListResponseCopyWithImpl<$Res, OrderPartListResponse>;
   @useResult
-  $Res call({List<OrderPartMainInfo> items});
+  $Res call({List<OrderPartMainInfo> items, double? sum});
 }
 
 /// @nodoc
@@ -53,12 +54,17 @@ class _$OrderPartListResponseCopyWithImpl<$Res,
   @override
   $Res call({
     Object? items = null,
+    Object? sum = freezed,
   }) {
     return _then(_value.copyWith(
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<OrderPartMainInfo>,
+      sum: freezed == sum
+          ? _value.sum
+          : sum // ignore: cast_nullable_to_non_nullable
+              as double?,
     ) as $Val);
   }
 }
@@ -72,7 +78,7 @@ abstract class _$$OrderPartListResponseImplCopyWith<$Res>
       __$$OrderPartListResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<OrderPartMainInfo> items});
+  $Res call({List<OrderPartMainInfo> items, double? sum});
 }
 
 /// @nodoc
@@ -88,12 +94,17 @@ class __$$OrderPartListResponseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? items = null,
+    Object? sum = freezed,
   }) {
     return _then(_$OrderPartListResponseImpl(
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<OrderPartMainInfo>,
+      sum: freezed == sum
+          ? _value.sum
+          : sum // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -102,7 +113,7 @@ class __$$OrderPartListResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OrderPartListResponseImpl implements _OrderPartListResponse {
   const _$OrderPartListResponseImpl(
-      {required final List<OrderPartMainInfo> items})
+      {required final List<OrderPartMainInfo> items, required this.sum})
       : _items = items;
 
   factory _$OrderPartListResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -117,8 +128,11 @@ class _$OrderPartListResponseImpl implements _OrderPartListResponse {
   }
 
   @override
+  final double? sum;
+
+  @override
   String toString() {
-    return 'OrderPartListResponse(items: $items)';
+    return 'OrderPartListResponse(items: $items, sum: $sum)';
   }
 
   @override
@@ -126,13 +140,14 @@ class _$OrderPartListResponseImpl implements _OrderPartListResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OrderPartListResponseImpl &&
-            const DeepCollectionEquality().equals(other._items, _items));
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.sum, sum) || other.sum == sum));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_items));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_items), sum);
 
   @JsonKey(ignore: true)
   @override
@@ -151,14 +166,16 @@ class _$OrderPartListResponseImpl implements _OrderPartListResponse {
 
 abstract class _OrderPartListResponse implements OrderPartListResponse {
   const factory _OrderPartListResponse(
-          {required final List<OrderPartMainInfo> items}) =
-      _$OrderPartListResponseImpl;
+      {required final List<OrderPartMainInfo> items,
+      required final double? sum}) = _$OrderPartListResponseImpl;
 
   factory _OrderPartListResponse.fromJson(Map<String, dynamic> json) =
       _$OrderPartListResponseImpl.fromJson;
 
   @override
   List<OrderPartMainInfo> get items;
+  @override
+  double? get sum;
   @override
   @JsonKey(ignore: true)
   _$$OrderPartListResponseImplCopyWith<_$OrderPartListResponseImpl>

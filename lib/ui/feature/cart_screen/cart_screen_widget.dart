@@ -21,7 +21,6 @@ class CartScreenWidget extends ElementaryWidget<ICartScreenWidgetModel> {
   Widget build(ICartScreenWidgetModel wm) {
     return Scaffold(
       appBar: AppBar(
-        // automaticallyImplyLeading: !kIsWeb,
         title: Text(wm.localizations.cart),
         centerTitle: true,
       ),
@@ -34,7 +33,7 @@ class CartScreenWidget extends ElementaryWidget<ICartScreenWidgetModel> {
         },
         builder: (context, data) {
           if (wm.cartState.value.data == null ||
-              wm.cartState.value.data!.isEmpty) {
+              wm.cartState.value.data!.items.isEmpty) {
             return Center(
               child: Text(
                 'Пока здесь пусто :(',
@@ -42,16 +41,32 @@ class CartScreenWidget extends ElementaryWidget<ICartScreenWidgetModel> {
               ),
             );
           }
-          final products = data ?? [];
-
           return ListView.builder(
-            itemCount: products.length,
+            itemCount: data!.items.length,
             itemBuilder: (context, index) {
-              return BasketCard(
-                cartProduct: products[index],
-                onTap: () {
-                  wm.toProduct(products[index].productId!);
+              return Dismissible(
+                key: Key(data.items[index].productId.toString()),
+                direction: DismissDirection.endToStart,
+                onDismissed: (direction) {
+                  wm.removeFromCart(data.items[index].productId!);
                 },
+                background: Container(
+                  color: Colors.red,
+                  alignment: Alignment.centerRight,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Icon(
+                    Icons.delete,
+                    color: Colors.white,
+                  ),
+                ),
+                child: BasketCard(
+                  cartProduct: data.items[index],
+                  onTap: () {
+                    wm.toProduct(data.items[index].productId!);
+                  },
+                  repository: wm.productRepository,
+                  size: data.items[index].size!,
+                ),
               );
             },
           );
@@ -67,7 +82,7 @@ class CartScreenWidget extends ElementaryWidget<ICartScreenWidgetModel> {
             valueListenable: wm.cartState,
             builder: (context, val, _) {
               return Visibility(
-                visible: products.isNotEmpty,
+                visible: data?.items.isNotEmpty ?? false,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16,
@@ -92,7 +107,8 @@ class CartScreenWidget extends ElementaryWidget<ICartScreenWidgetModel> {
                               ),
                               RichText(
                                 text: TextSpan(
-                                  text: (Decimal.fromInt(150) ?? Decimal.zero)
+                                  text: (Decimal.parse(
+                                          data?.sum.toString() ?? '0'))
                                       .formatMoney(),
                                   style: theme.textTheme.bodyMedium?.copyWith(
                                     color: theme.colorScheme.onBackground,

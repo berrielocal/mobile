@@ -45,15 +45,14 @@ class AuthCodeScreenWidgetModel
   @override
   Future<void> toProfile() async {
     AppMetrica.reportEvent('validation');
-    try {
-      await model.authPart2(emailController.text);
-    } catch (err) {
-      context.showSnackBar('Введенный код неверен!');
-      return;
+    final result = await model.authPart2(emailController.text);
+    if (result) {
+      await profileRepository.loadProfile();
+      AppMetrica.reportEvent('registration');
+      context.router.navigate(ProfileRoute());
+    } else {
+      context.showSnackBar('Неправильный код! Повторите попытку');
     }
-    await profileRepository.loadProfile();
-    AppMetrica.reportEvent('registration');
-    context.router.navigate(ProfileRoute());
   }
 
   @override

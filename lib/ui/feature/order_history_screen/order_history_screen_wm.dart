@@ -42,6 +42,7 @@ class OrderHistoryScreenWidgetModel
         items: [
           OrderPartMainInfo(status: 'ORDERED'),
         ],
+        sum: null,
       ),
     );
     super.initWidgetModel();

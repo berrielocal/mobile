@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/domain/cart/order_part_list_response.dart';
 import 'package:berrielocal/domain/product/product_response.dart';
 import 'package:berrielocal/extensions/money_extension.dart';
 import 'package:berrielocal/res/theme/app_typography.dart';
@@ -104,42 +105,68 @@ class ProductScreenWidget extends ElementaryWidget<IProductScreenWidgetModel> {
                       ),
                     ),
                     const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset('assets/svg/favorite.svg'),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          if (wm.profileRepository.profile.hasValue &&
-                              wm.profileRepository.profile.value != null)
-                            int.parse(wm.profileRepository.profile.value!
-                                        .shopId!) !=
-                                    snapshot.data!.shopId
-                                ? SizedBox(
-                                    width: 270,
-                                    child: CustomFilledButton(
-                                      text: 'В КОРЗИНЕ',
-                                      onTap: () {
-                                        wm.toCart();
-                                      },
-                                    ),
-                                  )
-                                : SizedBox.shrink(),
-                          if (!wm.profileRepository.profile.hasValue ||
-                              wm.profileRepository.profile.value == null)
-                            SizedBox(
-                              width: 270,
-                              child: CustomFilledButton(
-                                text: 'В КОРЗИНУ',
-                                onTap: () {
-                                  wm.toCart();
-                                },
+                    StreamBuilder(
+                      stream: wm.cartRepository.cart,
+                      builder: (_, __) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset('assets/svg/favorite.svg'),
+                              const SizedBox(
+                                width: 20,
                               ),
-                            ),
-                        ],
-                      ),
+                              if (wm.profileRepository.profile.hasValue &&
+                                  wm.profileRepository.profile.value != null)
+                                int.parse(wm.profileRepository.profile.value!
+                                            .shopId!) !=
+                                        snapshot.data!.shopId
+                                    ? !wm.cartRepository.cart.hasValue ||
+                                            wm.cartRepository.cart.value.items
+                                                .where((e) =>
+                                                    e.productId == productId)
+                                                .isEmpty
+                                        ? SizedBox(
+                                            width: 270,
+                                            child: CustomFilledButton(
+                                              text: 'В КОРЗИНУ',
+                                              onTap: () {
+                                                wm.toCart(
+                                                    productId,
+                                                    snapshot.data?.minSize ??
+                                                        1);
+                                              },
+                                            ),
+                                          )
+                                        : SizedBox(
+                                            width: 270,
+                                            child: CustomFilledButton(
+                                              text: 'В КОРЗИНЕ',
+                                              onTap: () {
+                                                wm.toCart(
+                                                    productId,
+                                                    snapshot.data?.minSize ??
+                                                        1);
+                                              },
+                                            ),
+                                          )
+                                    : SizedBox.shrink(),
+                              if (!wm.profileRepository.profile.hasValue ||
+                                  wm.profileRepository.profile.value == null)
+                                SizedBox(
+                                  width: 270,
+                                  child: CustomFilledButton(
+                                    text: 'В КОРЗИНУ',
+                                    onTap: () {
+                                      wm.toCart(productId,
+                                          snapshot.data?.minSize ?? 1);
+                                    },
+                                  ),
+                                ),
+                            ],
+                          ),
+                        );
+                      },
                     )
                   ],
                 ),

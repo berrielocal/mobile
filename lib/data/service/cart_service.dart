@@ -20,9 +20,14 @@ abstract class CartService {
   Future<OrderPartListResponse> getUserCart();
 
   @POST('/api/v1/cart')
-  Future<void> addToCart(
-    ProductAddToCartRequest request,
-  );
+  Future<void> addToCart({
+    @Body() required ProductAddToCartRequest request,
+  });
+
+  @DELETE('/api/v1/cart/item/{productId}')
+  Future<void> deleteFromCart({
+    @Path() required int productId,
+  });
 
   @PUT('/api/v1/cart/item/{productId}/{size}')
   Future<void> incCount({

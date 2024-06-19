@@ -9,6 +9,7 @@ part 'order_part_list_response.g.dart';
 class OrderPartListResponse with _$OrderPartListResponse {
   const factory OrderPartListResponse({
     required List<OrderPartMainInfo> items,
+    required double? sum,
   }) = _OrderPartListResponse;
 
   factory OrderPartListResponse.fromJson(Map<String, dynamic> json) =>

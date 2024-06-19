@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/data/repository/cart_repository.dart';
 import 'package:berrielocal/data/repository/comment_repository.dart';
 import 'package:berrielocal/data/repository/profile_repository.dart';
 import 'package:berrielocal/data/repository/shop_repository.dart';
@@ -24,6 +25,7 @@ abstract interface class IShowcaseScreenWidgetModel
   ShopRepository get shopRepository;
   ProfileRepository get profileRepository;
   CommentRepository get commentRepository;
+  CartRepository get cartRepository;
 }
 
 ShowcaseScreenWidgetModel defaultShowcaseScreenWidgetModelFactory(
@@ -48,6 +50,7 @@ class ShowcaseScreenWidgetModel
   void initWidgetModel() {
     super.initWidgetModel();
     profileRepository.loadProfile();
+    cartRepository.getCart();
     profileRepository.profile.listen((value) {
       getAllShops();
     });
@@ -109,4 +112,7 @@ class ShowcaseScreenWidgetModel
 
   @override
   CommentRepository commentRepository = AppComponents().commentRepository;
+
+  @override
+  CartRepository cartRepository = AppComponents().cartRepository;
 }

@@ -62,7 +62,6 @@ class LoginScreenWidget extends ElementaryWidget<ILoginScreenWidgetModel> {
                       EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(10),
                   ),
                   errorStyle: TextStyle(color: Colors.red),
                 ),
@@ -92,7 +91,6 @@ class LoginScreenWidget extends ElementaryWidget<ILoginScreenWidgetModel> {
                       EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(10),
                   ),
                   errorStyle: TextStyle(color: Colors.red),
                 ),

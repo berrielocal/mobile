@@ -46,11 +46,11 @@ class _CartService implements CartService {
   }
 
   @override
-  Future<void> addToCart(ProductAddToCartRequest request) async {
+  Future<void> addToCart({required ProductAddToCartRequest request}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = request;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
@@ -59,6 +59,30 @@ class _CartService implements CartService {
         .compose(
           _dio.options,
           '/api/v1/cart',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+  }
+
+  @override
+  Future<void> deleteFromCart({required int productId}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'DELETE',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/v1/cart/item/${productId}',
           queryParameters: queryParameters,
           data: _data,
         )
