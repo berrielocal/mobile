@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 ProductAddToCartRequest _$ProductAddToCartRequestFromJson(
     Map<String, dynamic> json) {
-  return _ProductAddToCartReques.fromJson(json);
+  return _ProductAddToCartRequest.fromJson(json);
 }
 
 /// @nodoc
@@ -70,25 +70,25 @@ class _$ProductAddToCartRequestCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ProductAddToCartRequesImplCopyWith<$Res>
+abstract class _$$ProductAddToCartRequestImplCopyWith<$Res>
     implements $ProductAddToCartRequestCopyWith<$Res> {
-  factory _$$ProductAddToCartRequesImplCopyWith(
-          _$ProductAddToCartRequesImpl value,
-          $Res Function(_$ProductAddToCartRequesImpl) then) =
-      __$$ProductAddToCartRequesImplCopyWithImpl<$Res>;
+  factory _$$ProductAddToCartRequestImplCopyWith(
+          _$ProductAddToCartRequestImpl value,
+          $Res Function(_$ProductAddToCartRequestImpl) then) =
+      __$$ProductAddToCartRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int size, int productId});
 }
 
 /// @nodoc
-class __$$ProductAddToCartRequesImplCopyWithImpl<$Res>
+class __$$ProductAddToCartRequestImplCopyWithImpl<$Res>
     extends _$ProductAddToCartRequestCopyWithImpl<$Res,
-        _$ProductAddToCartRequesImpl>
-    implements _$$ProductAddToCartRequesImplCopyWith<$Res> {
-  __$$ProductAddToCartRequesImplCopyWithImpl(
-      _$ProductAddToCartRequesImpl _value,
-      $Res Function(_$ProductAddToCartRequesImpl) _then)
+        _$ProductAddToCartRequestImpl>
+    implements _$$ProductAddToCartRequestImplCopyWith<$Res> {
+  __$$ProductAddToCartRequestImplCopyWithImpl(
+      _$ProductAddToCartRequestImpl _value,
+      $Res Function(_$ProductAddToCartRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -97,7 +97,7 @@ class __$$ProductAddToCartRequesImplCopyWithImpl<$Res>
     Object? size = null,
     Object? productId = null,
   }) {
-    return _then(_$ProductAddToCartRequesImpl(
+    return _then(_$ProductAddToCartRequestImpl(
       size: null == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -111,13 +111,14 @@ class __$$ProductAddToCartRequesImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$ProductAddToCartRequesImpl implements _ProductAddToCartReques {
-  const _$ProductAddToCartRequesImpl(
+
+@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class _$ProductAddToCartRequestImpl implements _ProductAddToCartRequest {
+  const _$ProductAddToCartRequestImpl(
       {required this.size, required this.productId});
 
-  factory _$ProductAddToCartRequesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProductAddToCartRequesImplFromJson(json);
+  factory _$ProductAddToCartRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductAddToCartRequestImplFromJson(json);
 
   @override
   final int size;
@@ -133,7 +134,7 @@ class _$ProductAddToCartRequesImpl implements _ProductAddToCartReques {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProductAddToCartRequesImpl &&
+            other is _$ProductAddToCartRequestImpl &&
             (identical(other.size, size) || other.size == size) &&
             (identical(other.productId, productId) ||
                 other.productId == productId));
@@ -146,25 +147,25 @@ class _$ProductAddToCartRequesImpl implements _ProductAddToCartReques {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProductAddToCartRequesImplCopyWith<_$ProductAddToCartRequesImpl>
-      get copyWith => __$$ProductAddToCartRequesImplCopyWithImpl<
-          _$ProductAddToCartRequesImpl>(this, _$identity);
+  _$$ProductAddToCartRequestImplCopyWith<_$ProductAddToCartRequestImpl>
+      get copyWith => __$$ProductAddToCartRequestImplCopyWithImpl<
+          _$ProductAddToCartRequestImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ProductAddToCartRequesImplToJson(
+    return _$$ProductAddToCartRequestImplToJson(
       this,
     );
   }
 }
 
-abstract class _ProductAddToCartReques implements ProductAddToCartRequest {
-  const factory _ProductAddToCartReques(
+abstract class _ProductAddToCartRequest implements ProductAddToCartRequest {
+  const factory _ProductAddToCartRequest(
       {required final int size,
-      required final int productId}) = _$ProductAddToCartRequesImpl;
+      required final int productId}) = _$ProductAddToCartRequestImpl;
 
-  factory _ProductAddToCartReques.fromJson(Map<String, dynamic> json) =
-      _$ProductAddToCartRequesImpl.fromJson;
+  factory _ProductAddToCartRequest.fromJson(Map<String, dynamic> json) =
+      _$ProductAddToCartRequestImpl.fromJson;
 
   @override
   int get size;
@@ -172,6 +173,6 @@ abstract class _ProductAddToCartReques implements ProductAddToCartRequest {
   int get productId;
   @override
   @JsonKey(ignore: true)
-  _$$ProductAddToCartRequesImplCopyWith<_$ProductAddToCartRequesImpl>
+  _$$ProductAddToCartRequestImplCopyWith<_$ProductAddToCartRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

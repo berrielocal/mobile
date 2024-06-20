@@ -1,8 +1,10 @@
 import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/data/repository/cart_repository.dart';
 import 'package:berrielocal/data/repository/product_repository.dart';
 import 'package:berrielocal/data/repository/profile_repository.dart';
 import 'package:berrielocal/di/app_components.dart';
+import 'package:berrielocal/domain/cart/product_add_to_cart_request.dart';
 import 'package:berrielocal/domain/product/product_response.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:elementary/elementary.dart';
@@ -13,8 +15,9 @@ import 'product_screen_widget.dart';
 
 abstract interface class IProductScreenWidgetModel implements IWidgetModel {
   void back();
-  void toCart();
+  Future<void> toCart(int productId, int size);
   ProductRepository get productRepository;
+  CartRepository get cartRepository;
   ProfileRepository get profileRepository;
   Future<ProductResponse> getProductById(int productId);
 }
@@ -44,11 +47,21 @@ class ProductScreenWidgetModel
   }
 
   @override
-  void toCart() {
+  Future<void> toCart(int productId, int size) async {
     if (profileRepository.profile.hasValue &&
         profileRepository.profile.value != null) {
-      AppMetrica.reportEvent('open_cartPage');
-      context.router.navigate(const CartTab());
+      if (cartRepository.cart.hasValue &&
+          cartRepository.cart.value.items
+              .where((e) => e.productId == productId)
+              .isNotEmpty) {
+        AppMetrica.reportEvent('open_cartPage');
+        context.router.navigate(const CartTab());
+        return;
+      }
+      await cartRepository.addToCart(
+        ProductAddToCartRequest(size: size, productId: productId),
+      );
+      await cartRepository.getCart();
     } else {
       context.router.navigate(LoginRoute());
     }
@@ -56,6 +69,9 @@ class ProductScreenWidgetModel
 
   @override
   ProductRepository productRepository = AppComponents().productRepository;
+
+  @override
+  CartRepository cartRepository = AppComponents().cartRepository;
 
   @override
   Future<ProductResponse> getProductById(int productId) async {

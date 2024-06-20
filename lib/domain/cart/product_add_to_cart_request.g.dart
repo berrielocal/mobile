@@ -6,15 +6,15 @@ part of 'product_add_to_cart_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProductAddToCartRequesImpl _$$ProductAddToCartRequesImplFromJson(
+_$ProductAddToCartRequestImpl _$$ProductAddToCartRequestImplFromJson(
         Map<String, dynamic> json) =>
-    _$ProductAddToCartRequesImpl(
+    _$ProductAddToCartRequestImpl(
       size: json['size'] as int,
       productId: json['productId'] as int,
     );
 
-Map<String, dynamic> _$$ProductAddToCartRequesImplToJson(
-        _$ProductAddToCartRequesImpl instance) =>
+Map<String, dynamic> _$$ProductAddToCartRequestImplToJson(
+        _$ProductAddToCartRequestImpl instance) =>
     <String, dynamic>{
       'size': instance.size,
       'productId': instance.productId,

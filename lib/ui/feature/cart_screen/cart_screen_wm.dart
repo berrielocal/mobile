@@ -1,6 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/data/repository/cart_repository.dart';
+import 'package:berrielocal/data/repository/product_repository.dart';
 import 'package:berrielocal/data/repository/profile_repository.dart';
 import 'package:berrielocal/di/app_components.dart';
+import 'package:berrielocal/domain/cart/order_part_list_response.dart';
 import 'package:berrielocal/domain/product/product_response.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/utils/theme_extension.dart';
@@ -13,10 +16,13 @@ import 'cart_screen_widget.dart';
 
 abstract interface class ICartScreenWidgetModel
     implements IWidgetModel, IThemeProvider {
-  ValueNotifier<EntityState<List<ProductResponse>>> get cartState;
+  ValueNotifier<EntityState<OrderPartListResponse>> get cartState;
   void toProduct(int productId);
   void toOrder();
   ProfileRepository get profileRepository;
+  CartRepository get cartRepository;
+  ProductRepository get productRepository;
+  Future<void> removeFromCart(int productId);
 }
 
 CartScreenWidgetModel defaultCartScreenWidgetModelFactory(
@@ -31,38 +37,34 @@ class CartScreenWidgetModel
     extends WidgetModel<CartScreenWidget, CartScreenModel>
     with ThemeProvider
     implements ICartScreenWidgetModel {
-  final EntityStateNotifier<List<ProductResponse>> _cartState =
+  final EntityStateNotifier<OrderPartListResponse> _cartState =
       EntityStateNotifier();
   CartScreenWidgetModel(CartScreenModel model) : super(model);
 
   @override
-  ValueNotifier<EntityState<List<ProductResponse>>> get cartState => _cartState;
+  ValueNotifier<EntityState<OrderPartListResponse>> get cartState => _cartState;
 
   @override
   void initWidgetModel() {
     super.initWidgetModel();
-    profileRepository.profile.listen((value) {
-      if (value != null) {
-        _cartState.content([
-          const ProductResponse(
-            name: 'Test',
-            cost: 100,
-            units: '1',
-          ),
-          const ProductResponse(
-            name: 'Test',
-            cost: 100,
-            units: '1',
-          ),
-          const ProductResponse(
-            name: 'Test',
-            cost: 100,
-            units: '1',
-          )
-        ]);
-      } else {
-        _cartState.content([]);
+    _cartState.content(
+      cartRepository.cart.hasValue
+          ? cartRepository.cart.value
+          : OrderPartListResponse(
+              items: [],
+              sum: null,
+            ),
+    );
+    cartRepository.cart.listen((value) async {
+      _cartState.content(value);
+    });
+    profileRepository.profile.listen((value) async {
+      if (value == null) {
+        cartRepository.cart.add(OrderPartListResponse(items: [], sum: null));
+        _cartState.content(OrderPartListResponse(items: [], sum: null));
       }
+      await cartRepository.getCart();
+      _cartState.content(cartRepository.cart.value);
     });
   }
 
@@ -78,4 +80,17 @@ class CartScreenWidgetModel
 
   @override
   ProfileRepository profileRepository = AppComponents().profileRepository;
+
+  @override
+  CartRepository cartRepository = AppComponents().cartRepository;
+
+  @override
+  ProductRepository productRepository = AppComponents().productRepository;
+
+  @override
+  Future<void> removeFromCart(int productId) async {
+    await cartRepository.deleteFromCart(productId);
+    await cartRepository.getCart();
+    _cartState.content(cartRepository.cart.value);
+  }
 }

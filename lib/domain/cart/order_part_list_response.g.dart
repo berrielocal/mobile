@@ -12,10 +12,12 @@ _$OrderPartListResponseImpl _$$OrderPartListResponseImplFromJson(
       items: (json['items'] as List<dynamic>)
           .map((e) => OrderPartMainInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
+      sum: (json['sum'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$OrderPartListResponseImplToJson(
         _$OrderPartListResponseImpl instance) =>
     <String, dynamic>{
       'items': instance.items,
+      'sum': instance.sum,
     };

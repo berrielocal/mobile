@@ -15,7 +15,7 @@ class AuthCodeScreenModel extends ElementaryModel {
       final result = authRepository.emailPart2(activationCode: activationCode);
       return result;
     } catch (e, s) {
-      Error.throwWithStackTrace(e, s);
+      rethrow;
     }
   }
 }
