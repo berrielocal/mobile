@@ -11,7 +11,14 @@ _$OrderPartMainInfoImpl _$$OrderPartMainInfoImplFromJson(
     _$OrderPartMainInfoImpl(
       productId: json['productId'] as int?,
       size: json['size'] as int?,
+      orderPartId: json['orderPartId'] as int?,
       status: json['status'] as String,
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
+      orderedAt: json['orderedAt'] == null
+          ? null
+          : DateTime.parse(json['orderedAt'] as String),
     );
 
 Map<String, dynamic> _$$OrderPartMainInfoImplToJson(
@@ -19,5 +26,8 @@ Map<String, dynamic> _$$OrderPartMainInfoImplToJson(
     <String, dynamic>{
       'productId': instance.productId,
       'size': instance.size,
+      'orderPartId': instance.orderPartId,
       'status': instance.status,
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+      'orderedAt': instance.orderedAt?.toIso8601String(),
     };

@@ -28,6 +28,7 @@ mixin _$ShopAllInfoResponse {
   String? get email => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
   double? get rating => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +50,8 @@ abstract class $ShopAllInfoResponseCopyWith<$Res> {
       List<String>? categories,
       String? email,
       String? phoneNumber,
-      double? rating});
+      double? rating,
+      String? description});
 }
 
 /// @nodoc
@@ -73,6 +75,7 @@ class _$ShopAllInfoResponseCopyWithImpl<$Res, $Val extends ShopAllInfoResponse>
     Object? email = freezed,
     Object? phoneNumber = freezed,
     Object? rating = freezed,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       shopId: freezed == shopId
@@ -107,6 +110,10 @@ class _$ShopAllInfoResponseCopyWithImpl<$Res, $Val extends ShopAllInfoResponse>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -127,7 +134,8 @@ abstract class _$$ShopAllInfoResponseImplCopyWith<$Res>
       List<String>? categories,
       String? email,
       String? phoneNumber,
-      double? rating});
+      double? rating,
+      String? description});
 }
 
 /// @nodoc
@@ -149,6 +157,7 @@ class __$$ShopAllInfoResponseImplCopyWithImpl<$Res>
     Object? email = freezed,
     Object? phoneNumber = freezed,
     Object? rating = freezed,
+    Object? description = freezed,
   }) {
     return _then(_$ShopAllInfoResponseImpl(
       shopId: freezed == shopId
@@ -183,6 +192,10 @@ class __$$ShopAllInfoResponseImplCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -198,7 +211,8 @@ class _$ShopAllInfoResponseImpl implements _ShopAllInfoResponse {
       final List<String>? categories,
       this.email,
       this.phoneNumber,
-      this.rating})
+      this.rating,
+      this.description})
       : _categories = categories;
 
   factory _$ShopAllInfoResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -228,10 +242,12 @@ class _$ShopAllInfoResponseImpl implements _ShopAllInfoResponse {
   final String? phoneNumber;
   @override
   final double? rating;
+  @override
+  final String? description;
 
   @override
   String toString() {
-    return 'ShopAllInfoResponse(shopId: $shopId, name: $name, imageUrl: $imageUrl, matchLevel: $matchLevel, categories: $categories, email: $email, phoneNumber: $phoneNumber, rating: $rating)';
+    return 'ShopAllInfoResponse(shopId: $shopId, name: $name, imageUrl: $imageUrl, matchLevel: $matchLevel, categories: $categories, email: $email, phoneNumber: $phoneNumber, rating: $rating, description: $description)';
   }
 
   @override
@@ -250,7 +266,9 @@ class _$ShopAllInfoResponseImpl implements _ShopAllInfoResponse {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
-            (identical(other.rating, rating) || other.rating == rating));
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
@@ -264,7 +282,8 @@ class _$ShopAllInfoResponseImpl implements _ShopAllInfoResponse {
       const DeepCollectionEquality().hash(_categories),
       email,
       phoneNumber,
-      rating);
+      rating,
+      description);
 
   @JsonKey(ignore: true)
   @override
@@ -290,7 +309,8 @@ abstract class _ShopAllInfoResponse implements ShopAllInfoResponse {
       final List<String>? categories,
       final String? email,
       final String? phoneNumber,
-      final double? rating}) = _$ShopAllInfoResponseImpl;
+      final double? rating,
+      final String? description}) = _$ShopAllInfoResponseImpl;
 
   factory _ShopAllInfoResponse.fromJson(Map<String, dynamic> json) =
       _$ShopAllInfoResponseImpl.fromJson;
@@ -311,6 +331,8 @@ abstract class _ShopAllInfoResponse implements ShopAllInfoResponse {
   String? get phoneNumber;
   @override
   double? get rating;
+  @override
+  String? get description;
   @override
   @JsonKey(ignore: true)
   _$$ShopAllInfoResponseImplCopyWith<_$ShopAllInfoResponseImpl> get copyWith =>

@@ -18,7 +18,7 @@ abstract interface class ICartScreenWidgetModel
     implements IWidgetModel, IThemeProvider {
   ValueNotifier<EntityState<OrderPartListResponse>> get cartState;
   void toProduct(int productId);
-  void toOrder();
+  void toOrder(double? sum);
   ProfileRepository get profileRepository;
   CartRepository get cartRepository;
   ProductRepository get productRepository;
@@ -62,6 +62,7 @@ class CartScreenWidgetModel
       if (value == null) {
         cartRepository.cart.add(OrderPartListResponse(items: [], sum: null));
         _cartState.content(OrderPartListResponse(items: [], sum: null));
+        return;
       }
       await cartRepository.getCart();
       _cartState.content(cartRepository.cart.value);
@@ -74,8 +75,8 @@ class CartScreenWidgetModel
   }
 
   @override
-  void toOrder() {
-    context.router.navigate(OrderRoute());
+  void toOrder(double? sum) {
+    context.router.navigate(OrderRoute(sum: sum));
   }
 
   @override

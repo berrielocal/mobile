@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:berrielocal/domain/cart/order_part_main_info.dart';
 import 'package:berrielocal/domain/comment/comments_response.dart';
 import 'package:berrielocal/ui/feature/add_review_screen/add_review_screen_widget.dart';
 import 'package:berrielocal/ui/feature/add_review_screen/add_review_screen_wm.dart';
@@ -13,6 +14,8 @@ import 'package:berrielocal/ui/feature/favorite_screen/favorite_screen_widget.da
 import 'package:berrielocal/ui/feature/favorite_screen/favorite_screen_wm.dart';
 import 'package:berrielocal/ui/feature/login_screen/login_screen_widget.dart';
 import 'package:berrielocal/ui/feature/login_screen/login_screen_wm.dart';
+import 'package:berrielocal/ui/feature/order_history_detail_screen/order_history_detail_screen_widget.dart';
+import 'package:berrielocal/ui/feature/order_history_detail_screen/order_history_detail_screen_wm.dart';
 import 'package:berrielocal/ui/feature/order_history_screen/order_history_screen_widget.dart';
 import 'package:berrielocal/ui/feature/order_history_screen/order_history_screen_wm.dart';
 import 'package:berrielocal/ui/feature/order_screen/order_screen_widget.dart';
@@ -93,9 +96,6 @@ class AppRouter extends _$AppRouter {
                   page: ProductRoute.page,
                   path: 'product/:productId',
                 ),
-                AutoRoute(
-                  page: OrderHistoryRoute.page,
-                ),
               ],
             ),
             AutoRoute(
@@ -124,6 +124,9 @@ class AppRouter extends _$AppRouter {
                 ),
                 AutoRoute(
                   page: ProductAddRoute.page,
+                ),
+                AutoRoute(
+                  page: OrderHistoryDetailRoute.page,
                 ),
               ],
             ),

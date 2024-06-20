@@ -153,7 +153,7 @@ class ShopEditScreenWidget
                             ),
                             CustomTextfield(
                               controller: wm.infoController,
-                              enabled: true,
+                              enabled: false,
                               autofocus: false,
                               textFieldBorderRadius: 0,
                               hint: 'Информация',

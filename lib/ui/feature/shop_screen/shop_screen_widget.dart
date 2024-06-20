@@ -187,15 +187,19 @@ class ShopScreenWidget extends ElementaryWidget<IShopScreenWidgetModel> {
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: ListView(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  children: List.generate(
-                                    6,
-                                    (index) =>
-                                        const Text('Информация: информация'),
-                                  ),
-                                ),
+                                child: snapshot.data?.description != null &&
+                                        snapshot.data!.description!.isNotEmpty
+                                    ? Text(snapshot.data!.description!)
+                                    : ListView(
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        children: List.generate(
+                                          6,
+                                          (index) => const Text(
+                                              'Информация: информация'),
+                                        ),
+                                      ),
                               ),
                             )
                           ],

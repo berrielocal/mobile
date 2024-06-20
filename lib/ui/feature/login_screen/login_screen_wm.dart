@@ -3,6 +3,7 @@ import 'package:berrielocal/data/repository/auth_repository.dart';
 import 'package:berrielocal/data/repository/profile_repository.dart';
 import 'package:berrielocal/di/app_components.dart';
 import 'package:berrielocal/domain/user/user_authorization_request.dart';
+import 'package:berrielocal/extensions/snack_bar.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:dio/dio.dart';
 import 'package:elementary/elementary.dart';
@@ -48,6 +49,9 @@ class LoginScreenWidgetModel
     } on DioException catch (e, s) {
       if (e.response?.statusCode == 403) {
         context.router.navigate(AuthRoute());
+      }
+      if (e.response?.statusCode == 401) {
+        context.showSnackBar('Неправильный пароль!');
       }
     } catch (e, s) {
       Error.throwWithStackTrace(e, s);

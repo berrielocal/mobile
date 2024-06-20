@@ -22,7 +22,10 @@ OrderPartMainInfo _$OrderPartMainInfoFromJson(Map<String, dynamic> json) {
 mixin _$OrderPartMainInfo {
   int? get productId => throw _privateConstructorUsedError;
   int? get size => throw _privateConstructorUsedError;
+  int? get orderPartId => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
+  DateTime? get orderedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +39,13 @@ abstract class $OrderPartMainInfoCopyWith<$Res> {
           OrderPartMainInfo value, $Res Function(OrderPartMainInfo) then) =
       _$OrderPartMainInfoCopyWithImpl<$Res, OrderPartMainInfo>;
   @useResult
-  $Res call({int? productId, int? size, String status});
+  $Res call(
+      {int? productId,
+      int? size,
+      int? orderPartId,
+      String status,
+      DateTime? updatedAt,
+      DateTime? orderedAt});
 }
 
 /// @nodoc
@@ -54,7 +63,10 @@ class _$OrderPartMainInfoCopyWithImpl<$Res, $Val extends OrderPartMainInfo>
   $Res call({
     Object? productId = freezed,
     Object? size = freezed,
+    Object? orderPartId = freezed,
     Object? status = null,
+    Object? updatedAt = freezed,
+    Object? orderedAt = freezed,
   }) {
     return _then(_value.copyWith(
       productId: freezed == productId
@@ -65,10 +77,22 @@ class _$OrderPartMainInfoCopyWithImpl<$Res, $Val extends OrderPartMainInfo>
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
               as int?,
+      orderPartId: freezed == orderPartId
+          ? _value.orderPartId
+          : orderPartId // ignore: cast_nullable_to_non_nullable
+              as int?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      orderedAt: freezed == orderedAt
+          ? _value.orderedAt
+          : orderedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -81,7 +105,13 @@ abstract class _$$OrderPartMainInfoImplCopyWith<$Res>
       __$$OrderPartMainInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? productId, int? size, String status});
+  $Res call(
+      {int? productId,
+      int? size,
+      int? orderPartId,
+      String status,
+      DateTime? updatedAt,
+      DateTime? orderedAt});
 }
 
 /// @nodoc
@@ -97,7 +127,10 @@ class __$$OrderPartMainInfoImplCopyWithImpl<$Res>
   $Res call({
     Object? productId = freezed,
     Object? size = freezed,
+    Object? orderPartId = freezed,
     Object? status = null,
+    Object? updatedAt = freezed,
+    Object? orderedAt = freezed,
   }) {
     return _then(_$OrderPartMainInfoImpl(
       productId: freezed == productId
@@ -108,10 +141,22 @@ class __$$OrderPartMainInfoImplCopyWithImpl<$Res>
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
               as int?,
+      orderPartId: freezed == orderPartId
+          ? _value.orderPartId
+          : orderPartId // ignore: cast_nullable_to_non_nullable
+              as int?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      orderedAt: freezed == orderedAt
+          ? _value.orderedAt
+          : orderedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -120,7 +165,12 @@ class __$$OrderPartMainInfoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OrderPartMainInfoImpl implements _OrderPartMainInfo {
   const _$OrderPartMainInfoImpl(
-      {this.productId, this.size, required this.status});
+      {this.productId,
+      this.size,
+      this.orderPartId,
+      required this.status,
+      this.updatedAt,
+      this.orderedAt});
 
   factory _$OrderPartMainInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderPartMainInfoImplFromJson(json);
@@ -130,11 +180,17 @@ class _$OrderPartMainInfoImpl implements _OrderPartMainInfo {
   @override
   final int? size;
   @override
+  final int? orderPartId;
+  @override
   final String status;
+  @override
+  final DateTime? updatedAt;
+  @override
+  final DateTime? orderedAt;
 
   @override
   String toString() {
-    return 'OrderPartMainInfo(productId: $productId, size: $size, status: $status)';
+    return 'OrderPartMainInfo(productId: $productId, size: $size, orderPartId: $orderPartId, status: $status, updatedAt: $updatedAt, orderedAt: $orderedAt)';
   }
 
   @override
@@ -145,12 +201,19 @@ class _$OrderPartMainInfoImpl implements _OrderPartMainInfo {
             (identical(other.productId, productId) ||
                 other.productId == productId) &&
             (identical(other.size, size) || other.size == size) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.orderPartId, orderPartId) ||
+                other.orderPartId == orderPartId) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
+            (identical(other.orderedAt, orderedAt) ||
+                other.orderedAt == orderedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, productId, size, status);
+  int get hashCode => Object.hash(
+      runtimeType, productId, size, orderPartId, status, updatedAt, orderedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -171,7 +234,10 @@ abstract class _OrderPartMainInfo implements OrderPartMainInfo {
   const factory _OrderPartMainInfo(
       {final int? productId,
       final int? size,
-      required final String status}) = _$OrderPartMainInfoImpl;
+      final int? orderPartId,
+      required final String status,
+      final DateTime? updatedAt,
+      final DateTime? orderedAt}) = _$OrderPartMainInfoImpl;
 
   factory _OrderPartMainInfo.fromJson(Map<String, dynamic> json) =
       _$OrderPartMainInfoImpl.fromJson;
@@ -181,7 +247,13 @@ abstract class _OrderPartMainInfo implements OrderPartMainInfo {
   @override
   int? get size;
   @override
+  int? get orderPartId;
+  @override
   String get status;
+  @override
+  DateTime? get updatedAt;
+  @override
+  DateTime? get orderedAt;
   @override
   @JsonKey(ignore: true)
   _$$OrderPartMainInfoImplCopyWith<_$OrderPartMainInfoImpl> get copyWith =>

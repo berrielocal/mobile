@@ -1,5 +1,6 @@
 import 'package:berrielocal/data/repository/cart_repository.dart';
 import 'package:berrielocal/data/repository/comment_repository.dart';
+import 'package:berrielocal/data/repository/order_repository.dart';
 import 'package:berrielocal/data/service_mock/cart_service_mock.dart';
 import 'package:berrielocal/data/service_mock/product_service_mock.dart';
 import 'package:berrielocal/data/service_mock/shop_service_mock.dart';
@@ -13,6 +14,7 @@ import 'package:berrielocal/ui/feature/auth_screen/auth_screen_model.dart';
 import 'package:berrielocal/ui/feature/cart_screen/cart_screen_model.dart';
 import 'package:berrielocal/ui/feature/favorite_screen/favorite_screen_model.dart';
 import 'package:berrielocal/ui/feature/login_screen/login_screen_model.dart';
+import 'package:berrielocal/ui/feature/order_history_detail_screen/order_history_detail_screen_model.dart';
 import 'package:berrielocal/ui/feature/order_history_screen/order_history_screen_model.dart';
 import 'package:berrielocal/ui/feature/order_screen/order_screen_model.dart';
 import 'package:berrielocal/ui/feature/product_add_screen/product_add_screen_model.dart';
@@ -58,6 +60,7 @@ class _AppDependencyState extends State<AppDependency> {
   late final ProductAddScreenModel _productAddScreenModel;
   late final ShopReviewsScreenModel _shopReviewsScreenModel;
   late final AddReviewScreenModel _addReviewScreenModel;
+  late final OrderHistoryDetailScreenModel _detailScreenModel;
 
   @override
   void initState() {
@@ -68,6 +71,7 @@ class _AppDependencyState extends State<AppDependency> {
     //TODO: add repository in AppComponents
     final AuthRepository authRepository = AppComponents().authRepository;
     final ShopRepository shopRepository = AppComponents().shopRepository;
+    final OrderRepository orderRepository = AppComponents().orderRepository;
     final MockShopService mockShopService = AppComponents().mockShopService;
     final MockCartService mockCartService = AppComponents().mockCartService;
     final CommentRepository commentRepository =
@@ -83,7 +87,10 @@ class _AppDependencyState extends State<AppDependency> {
     //TODO: init models
     _showcaseScreenModel = ShowcaseScreenModel(errorHandler, mockShopService);
     _cartScreenModel = CartScreenModel(errorHandler);
-    _searchScreenModel = SearchScreenModel(errorHandler);
+    _searchScreenModel = SearchScreenModel(
+      shopRepository,
+      errorHandler,
+    );
     _shopScreenModel = ShopScreenModel(errorHandler, mockProductService);
     _productScreenModel = ProductScreenModel(errorHandler);
     _authScreenModel = AuthScreenModel(errorHandler, authRepository);
@@ -98,6 +105,7 @@ class _AppDependencyState extends State<AppDependency> {
     _productAddScreenModel = ProductAddScreenModel(errorHandler);
     _shopReviewsScreenModel = ShopReviewsScreenModel(errorHandler);
     _addReviewScreenModel = AddReviewScreenModel(errorHandler);
+    _detailScreenModel = OrderHistoryDetailScreenModel(errorHandler);
   }
 
   @override
@@ -155,6 +163,9 @@ class _AppDependencyState extends State<AppDependency> {
         ),
         Provider(
           create: (context) => _addReviewScreenModel,
+        ),
+        Provider(
+          create: (context) => _detailScreenModel,
         ),
       ],
       child: widget.app,
