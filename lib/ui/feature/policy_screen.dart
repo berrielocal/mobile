@@ -164,6 +164,11 @@ class PolicyScreenWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 16.0),
                 Text(
+                  'Приложение не имеет никакое отношение к устанавливаемым пользователем изображений профиля, товаров, магазина. Блокировка изображений CORS политикой или иной другой ошибкой доступа к серверу - сугубо на стороне пользователя.',
+                  style: TextStyle(fontSize: 16.0),
+                ),
+                SizedBox(height: 16.0),
+                Text(
                   'Изменения в данной политике',
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),

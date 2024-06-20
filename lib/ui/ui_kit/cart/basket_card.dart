@@ -1,3 +1,4 @@
+import 'package:berrielocal/data/repository/cart_repository.dart';
 import 'package:berrielocal/data/repository/product_repository.dart';
 import 'package:berrielocal/domain/cart/order_part_main_info.dart';
 import 'package:berrielocal/domain/product/product_response.dart';
@@ -13,11 +14,13 @@ class BasketCard extends StatelessWidget {
     required this.onTap,
     required this.repository,
     required this.size,
+    required this.cartRepository,
   }) : super(key: key);
 
   final OrderPartMainInfo cartProduct;
   final VoidCallback onTap;
   final ProductRepository repository;
+  final CartRepository cartRepository;
   final int size;
 
   @override
@@ -28,6 +31,10 @@ class BasketCard extends StatelessWidget {
         builder:
             (BuildContext context, AsyncSnapshot<ProductResponse> snapshot) {
           if (snapshot.hasData) {
+            final product = snapshot.data!;
+            final minSize = product.minSize ?? 1;
+            final maxSize = product.maxSize ?? 1;
+
             return ListTile(
               onTap: onTap,
               leading: AspectRatio(
@@ -36,7 +43,7 @@ class BasketCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   child: CachedNetworkImage(
                     fit: BoxFit.fill,
-                    imageUrl: snapshot.data?.imageUrl ?? '',
+                    imageUrl: product.imageUrl ?? '',
                     progressIndicatorBuilder: (_, __, ___) {
                       return const Center(
                         child: CircularProgressIndicator(),
@@ -52,7 +59,7 @@ class BasketCard extends StatelessWidget {
                 ),
               ),
               title: Text(
-                snapshot.data?.name ?? 'Продукт',
+                product.name ?? 'Продукт',
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: theme.colorScheme.onBackground,
                 ),
@@ -60,7 +67,7 @@ class BasketCard extends StatelessWidget {
               subtitle: RichText(
                 text: TextSpan(
                   text: Decimal.parse(
-                    snapshot.data?.cost.toString() ?? '',
+                    product.cost.toString(),
                   ).formatMoney(),
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: theme.colorScheme.onBackground,
@@ -73,22 +80,31 @@ class BasketCard extends StatelessWidget {
                   children: [
                     Expanded(
                       child: IconButton(
-                        onPressed: () {
-                          if (snapshot.data?.units != '1') {
-                          } else {}
-                        },
+                        onPressed: size > minSize
+                            ? () async {
+                                await cartRepository.incCount(
+                                    cartProduct.productId!, size - 1);
+                                await cartRepository.getCart();
+                              }
+                            : null,
                         icon: const Icon(
                           Icons.remove,
                         ),
                       ),
                     ),
                     Text(
-                      '${size} ${snapshot.data?.units}',
+                      '$size ${product.units}',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Expanded(
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: size < maxSize
+                            ? () async {
+                                await cartRepository.incCount(
+                                    cartProduct.productId!, size + 1);
+                                await cartRepository.getCart();
+                              }
+                            : () {},
                         icon: const Icon(Icons.add),
                       ),
                     ),

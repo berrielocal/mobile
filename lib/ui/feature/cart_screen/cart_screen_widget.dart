@@ -65,6 +65,7 @@ class CartScreenWidget extends ElementaryWidget<ICartScreenWidgetModel> {
                     wm.toProduct(data.items[index].productId!);
                   },
                   repository: wm.productRepository,
+                  cartRepository: wm.cartRepository,
                   size: data.items[index].size!,
                 ),
               );
