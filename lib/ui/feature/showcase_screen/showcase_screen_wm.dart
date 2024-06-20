@@ -1,13 +1,10 @@
-import 'dart:convert';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:berrielocal/data/repository/cart_repository.dart';
-import 'package:berrielocal/data/repository/comment_repository.dart';
-import 'package:berrielocal/data/repository/profile_repository.dart';
 import 'package:berrielocal/data/repository/shop_repository.dart';
+import 'package:berrielocal/data/repository/profile_repository.dart';
+import 'package:berrielocal/data/repository/comment_repository.dart';
+import 'package:berrielocal/data/repository/cart_repository.dart';
 import 'package:berrielocal/di/app_components.dart';
 import 'package:berrielocal/domain/shop/shop_list_response.dart';
-import 'package:berrielocal/domain/shop/shop_main_info.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:berrielocal/utils/theme_extension.dart';
 import 'package:elementary/elementary.dart';
@@ -21,11 +18,13 @@ abstract interface class IShowcaseScreenWidgetModel
     implements IWidgetModel, IThemeProvider {
   ValueNotifier<EntityState<ShopListResponse>> get testShop;
   void openSearch();
-  Future<void> getAllShops();
+  Future<void> getAllShops({Map<String, List<String>>? map});
   ShopRepository get shopRepository;
   ProfileRepository get profileRepository;
   CommentRepository get commentRepository;
   CartRepository get cartRepository;
+  void setSortOption(String option);
+  String get sortOption;
 }
 
 ShowcaseScreenWidgetModel defaultShowcaseScreenWidgetModelFactory(
@@ -41,45 +40,102 @@ class ShowcaseScreenWidgetModel
     with ThemeProvider
     implements IShowcaseScreenWidgetModel {
   final EntityStateNotifier<ShopListResponse> _testShop = EntityStateNotifier();
+  String sortOption = 'ПО ПОПУЛЯРНОСТИ'; // Default sort option
+
   ShowcaseScreenWidgetModel(ShowcaseScreenModel model) : super(model);
 
   @override
   ValueNotifier<EntityState<ShopListResponse>> get testShop => _testShop;
 
   @override
-  void initWidgetModel() {
-    super.initWidgetModel();
-    profileRepository.loadProfile();
-    cartRepository.getCart();
-    profileRepository.profile.listen((value) {
-      getAllShops();
-    });
-    commentRepository.comments.listen((value) {
-      getAllShops();
-    });
+  void setSortOption(String option) {
+    sortOption = option;
+    final sortQueries = getSortQueries(sortOption);
+    getAllShops(map: sortQueries);
+  }
+
+  Map<String, List<String>> getSortQueries(String sortOption) {
+    switch (sortOption) {
+      case 'А-Я':
+        return {
+          'category': [
+            'FISH',
+            'MEAT',
+            'VEGETABLES',
+            'FRUITS',
+            'NUTS',
+            'MUSHROOMS',
+            'EXOTIC',
+          ],
+        };
+      case 'ПО ПОПУЛЯРНОСТИ':
+        return {
+          'category': [
+            'FISH',
+            'MEAT',
+            'VEGETABLES',
+            'FRUITS',
+            'NUTS',
+            'MUSHROOMS',
+            'EXOTIC',
+          ],
+        };
+      case 'Я-А':
+        return {
+          'category': [
+            'EXOTIC',
+            'MUSHROOMS',
+            'NUTS',
+            'FRUITS',
+            'VEGETABLES',
+            'MEAT',
+            'FISH',
+          ],
+        };
+      case 'ПО НОВИЗНЕ':
+        return {
+          'category': [
+            'FRUITS',
+            'NUTS',
+            'MUSHROOMS',
+            'EXOTIC',
+            'FISH',
+            'MEAT',
+            'VEGETABLES',
+          ],
+        };
+      default:
+        return {
+          'category': [
+            'FISH',
+            'MEAT',
+            'VEGETABLES',
+            'FRUITS',
+            'NUTS',
+            'MUSHROOMS',
+            'EXOTIC',
+          ],
+        };
+    }
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    profileRepository.dispose();
-  }
-
-  @override
-  Future<void> getAllShops() async {
+  Future<void> getAllShops({Map<String, List<String>>? map}) async {
     final previousData = _testShop.value.data;
     _testShop.loading(previousData);
-    final queries = {
-      'category': [
-        'FISH',
-        'MEAT',
-        'VEGETABLES',
-        'FRUITS',
-        'NUTS',
-        'MUSHROOMS',
-        'EXOTIC',
-      ]
-    };
+    final queries = map ??
+        {
+          'category': [
+            'FISH',
+            'MEAT',
+            'VEGETABLES',
+            'FRUITS',
+            'NUTS',
+            'MUSHROOMS',
+            'EXOTIC',
+          ],
+        };
+
     try {
       final result = await shopRepository.getAllShops(queries: queries);
       _testShop.content(result);
@@ -87,17 +143,6 @@ class ShowcaseScreenWidgetModel
       _testShop.error(e, previousData);
     }
   }
-
-  // Future<void> _loadShops() async {
-  //   final previousData = _testShop.value.data;
-  //   _testShop.loading(previousData);
-  //   try {
-  //     final res = await model.getShops();
-  //     _testShop.content(res);
-  //   } on Exception catch (e) {
-  //     _testShop.error(e, previousData);
-  //   }
-  // }
 
   @override
   void openSearch() async {

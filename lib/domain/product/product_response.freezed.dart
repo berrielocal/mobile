@@ -29,6 +29,7 @@ mixin _$ProductResponse {
   String? get units => throw _privateConstructorUsedError;
   int? get shopId => throw _privateConstructorUsedError;
   List<String>? get categories => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +52,8 @@ abstract class $ProductResponseCopyWith<$Res> {
       int? minSize,
       String? units,
       int? shopId,
-      List<String>? categories});
+      List<String>? categories,
+      String? description});
 }
 
 /// @nodoc
@@ -76,6 +78,7 @@ class _$ProductResponseCopyWithImpl<$Res, $Val extends ProductResponse>
     Object? units = freezed,
     Object? shopId = freezed,
     Object? categories = freezed,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       productId: freezed == productId
@@ -114,6 +117,10 @@ class _$ProductResponseCopyWithImpl<$Res, $Val extends ProductResponse>
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -135,7 +142,8 @@ abstract class _$$ProductResponseImplCopyWith<$Res>
       int? minSize,
       String? units,
       int? shopId,
-      List<String>? categories});
+      List<String>? categories,
+      String? description});
 }
 
 /// @nodoc
@@ -158,6 +166,7 @@ class __$$ProductResponseImplCopyWithImpl<$Res>
     Object? units = freezed,
     Object? shopId = freezed,
     Object? categories = freezed,
+    Object? description = freezed,
   }) {
     return _then(_$ProductResponseImpl(
       productId: freezed == productId
@@ -196,6 +205,10 @@ class __$$ProductResponseImplCopyWithImpl<$Res>
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -212,7 +225,8 @@ class _$ProductResponseImpl implements _ProductResponse {
       this.minSize,
       this.units,
       this.shopId,
-      final List<String>? categories})
+      final List<String>? categories,
+      this.description})
       : _categories = categories;
 
   factory _$ProductResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -245,8 +259,11 @@ class _$ProductResponseImpl implements _ProductResponse {
   }
 
   @override
+  final String? description;
+
+  @override
   String toString() {
-    return 'ProductResponse(productId: $productId, name: $name, imageUrl: $imageUrl, cost: $cost, maxSize: $maxSize, minSize: $minSize, units: $units, shopId: $shopId, categories: $categories)';
+    return 'ProductResponse(productId: $productId, name: $name, imageUrl: $imageUrl, cost: $cost, maxSize: $maxSize, minSize: $minSize, units: $units, shopId: $shopId, categories: $categories, description: $description)';
   }
 
   @override
@@ -265,7 +282,9 @@ class _$ProductResponseImpl implements _ProductResponse {
             (identical(other.units, units) || other.units == units) &&
             (identical(other.shopId, shopId) || other.shopId == shopId) &&
             const DeepCollectionEquality()
-                .equals(other._categories, _categories));
+                .equals(other._categories, _categories) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
@@ -280,7 +299,8 @@ class _$ProductResponseImpl implements _ProductResponse {
       minSize,
       units,
       shopId,
-      const DeepCollectionEquality().hash(_categories));
+      const DeepCollectionEquality().hash(_categories),
+      description);
 
   @JsonKey(ignore: true)
   @override
@@ -307,7 +327,8 @@ abstract class _ProductResponse implements ProductResponse {
       final int? minSize,
       final String? units,
       final int? shopId,
-      final List<String>? categories}) = _$ProductResponseImpl;
+      final List<String>? categories,
+      final String? description}) = _$ProductResponseImpl;
 
   factory _ProductResponse.fromJson(Map<String, dynamic> json) =
       _$ProductResponseImpl.fromJson;
@@ -330,6 +351,8 @@ abstract class _ProductResponse implements ProductResponse {
   int? get shopId;
   @override
   List<String>? get categories;
+  @override
+  String? get description;
   @override
   @JsonKey(ignore: true)
   _$$ProductResponseImplCopyWith<_$ProductResponseImpl> get copyWith =>

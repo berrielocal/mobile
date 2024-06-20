@@ -38,68 +38,105 @@ class OrderHistoryScreenWidget
       ),
       body: SafeArea(
         minimum: const EdgeInsets.only(left: 16, right: 16, bottom: 28),
-        child: EntityStateNotifierBuilder(
-          listenableEntityState: wm.ordersState,
-          loadingBuilder: (context, data) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          },
-          builder: (context, state) {
-            final orders = state!.items;
-            return DefaultTabController(
-              length: 2,
-              child: NestedScrollView(
-                headerSliverBuilder:
-                    (BuildContext context, bool innerBoxIsScrolled) {
-                  return [
-                    SliverAppBar(
-                        toolbarHeight: 0,
-                        pinned: true,
-                        leadingWidth: 16,
-                        bottom: PreferredSize(
-                          preferredSize: TabBar(
-                            tabs: List.of(
-                              [],
-                            ),
-                          ).preferredSize,
-                          child: Stack(
-                            fit: StackFit.passthrough,
-                            alignment: Alignment.bottomCenter,
-                            children: <Widget>[
-                              TabBar(
-                                tabs: List.of([
-                                  const Padding(
-                                    padding: EdgeInsets.all(12.0),
-                                    child: Text(
-                                      'ВЫ ЗАКАЗАЛИ',
-                                      style: TextStyle(
-                                        color: AppColor.black,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ),
-                                  const Text('ЗАКАЗАЛИ У ВАС',
-                                      style: TextStyle(
-                                        color: AppColor.black,
-                                        fontSize: 14,
-                                      )),
-                                ]),
+        child: DefaultTabController(
+          length: 2,
+          child: Column(
+            children: [
+              TabBar(
+                tabs: const [
+                  Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Text(
+                      'ВЫ ЗАКАЗАЛИ',
+                      style: TextStyle(
+                        color: AppColor.black,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Text(
+                      'ЗАКАЗАЛИ У ВАС',
+                      style: TextStyle(
+                        color: AppColor.black,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ],
+                indicatorColor: Colors.green,
+              ),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    EntityStateNotifierBuilder(
+                      listenableEntityState: wm.customerOrdersState,
+                      loadingBuilder: (context, data) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                      builder: (context, state) {
+                        final orders = state?.orderParts ?? [];
+                        if (state?.orderParts == null ||
+                            state!.orderParts.isEmpty) {
+                          return Center(
+                            child: Text('Вы ничего не заказывали'),
+                          );
+                        }
+                        return ListView.builder(
+                          itemCount: orders.length,
+                          itemBuilder: (context, index) {
+                            final order = orders[index];
+                            return GestureDetector(
+                              onTap: () {
+                                wm.toDetailHistory(order);
+                              },
+                              child: OrderHistoryCard(
+                                order: order,
                               ),
-                            ],
-                          ),
-                        )),
-                  ];
-                },
-                body: TabBarView(
-                  children: List.of([
-                    OrderHistoryCard(),
-                    OrderHistoryCard(),
-                  ]),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                    EntityStateNotifierBuilder(
+                      listenableEntityState: wm.shopOrdersState,
+                      loadingBuilder: (context, data) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                      builder: (context, state) {
+                        final orders = state?.orderParts ?? [];
+                        if (state?.orderParts == null ||
+                            state!.orderParts.isEmpty) {
+                          return Center(
+                            child: Text('У вас нет заказов'),
+                          );
+                        }
+                        return ListView.builder(
+                          itemCount: orders.length,
+                          itemBuilder: (context, index) {
+                            final order = orders[index];
+                            return GestureDetector(
+                              onTap: () {
+                                wm.toDetailHistory(order);
+                              },
+                              child: OrderHistoryCard(
+                                order: order,
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
-            );
-          },
+            ],
+          ),
         ),
       ),
     );

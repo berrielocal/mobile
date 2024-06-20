@@ -86,14 +86,14 @@ class BasketCard extends StatelessWidget {
                                     cartProduct.productId!, size - 1);
                                 await cartRepository.getCart();
                               }
-                            : null,
+                            : () {},
                         icon: const Icon(
                           Icons.remove,
                         ),
                       ),
                     ),
                     Text(
-                      '$size ${product.units}',
+                      '$size',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Expanded(

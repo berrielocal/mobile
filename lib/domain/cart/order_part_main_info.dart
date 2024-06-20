@@ -9,7 +9,10 @@ class OrderPartMainInfo with _$OrderPartMainInfo {
   const factory OrderPartMainInfo({
     int? productId,
     int? size,
+    int? orderPartId,
     required String status,
+    DateTime? updatedAt,
+    DateTime? orderedAt,
   }) = _OrderPartMainInfo;
 
   factory OrderPartMainInfo.fromJson(Map<String, dynamic> json) =>

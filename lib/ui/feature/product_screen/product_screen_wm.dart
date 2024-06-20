@@ -9,6 +9,7 @@ import 'package:berrielocal/domain/product/product_response.dart';
 import 'package:berrielocal/navigation/app_router.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 import 'product_screen_model.dart';
 import 'product_screen_widget.dart';
@@ -20,6 +21,8 @@ abstract interface class IProductScreenWidgetModel implements IWidgetModel {
   CartRepository get cartRepository;
   ProfileRepository get profileRepository;
   Future<ProductResponse> getProductById(int productId);
+  void refresh();
+  ValueNotifier<int> get refreshNotifier;
 }
 
 ProductScreenWidgetModel defaultProductScreenWidgetModelFactory(
@@ -33,6 +36,8 @@ ProductScreenWidgetModel defaultProductScreenWidgetModelFactory(
 class ProductScreenWidgetModel
     extends WidgetModel<ProductScreenWidget, ProductScreenModel>
     implements IProductScreenWidgetModel {
+  final ValueNotifier<int> _refreshNotifier = ValueNotifier<int>(0);
+
   ProductScreenWidgetModel(ProductScreenModel model) : super(model);
 
   @override
@@ -85,4 +90,24 @@ class ProductScreenWidgetModel
 
   @override
   ProfileRepository profileRepository = AppComponents().profileRepository;
+
+  @override
+  void refresh() {
+    _refreshNotifier.value++;
+  }
+
+  @override
+  ValueNotifier<int> get refreshNotifier => _refreshNotifier;
+
+  Future<void> toggleFavoriteStatus(int productId) async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String> favorites = prefs.getStringList('favorites') ?? [];
+    if (favorites.contains(productId.toString())) {
+      favorites.remove(productId.toString());
+    } else {
+      favorites.add(productId.toString());
+    }
+    await prefs.setStringList('favorites', favorites);
+    refresh();
+  }
 }

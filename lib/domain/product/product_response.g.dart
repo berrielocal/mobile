@@ -20,6 +20,7 @@ _$ProductResponseImpl _$$ProductResponseImplFromJson(
       categories: (json['categories'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
+      description: json['description'] as String?,
     );
 
 Map<String, dynamic> _$$ProductResponseImplToJson(
@@ -34,4 +35,5 @@ Map<String, dynamic> _$$ProductResponseImplToJson(
       'units': instance.units,
       'shopId': instance.shopId,
       'categories': instance.categories,
+      'description': instance.description,
     };

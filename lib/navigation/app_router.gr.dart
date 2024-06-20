@@ -102,6 +102,20 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    OrderHistoryDetailRoute.name: (routeData) {
+      final queryParams = routeData.queryParams;
+      final args = routeData.argsAs<OrderHistoryDetailRouteArgs>(
+          orElse: () =>
+              OrderHistoryDetailRouteArgs(order: queryParams.get('order')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: OrderHistoryDetailScreenWidget(
+          key: args.key,
+          order: args.order,
+          wmFactory: args.wmFactory,
+        ),
+      );
+    },
     OrderHistoryRoute.name: (routeData) {
       final args = routeData.argsAs<OrderHistoryRouteArgs>(
           orElse: () => const OrderHistoryRouteArgs());
@@ -114,20 +128,29 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     OrderRoute.name: (routeData) {
+      final queryParams = routeData.queryParams;
       final args = routeData.argsAs<OrderRouteArgs>(
-          orElse: () => const OrderRouteArgs());
+          orElse: () => OrderRouteArgs(sum: queryParams.optDouble('sum')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: OrderScreenWidget(
           key: args.key,
+          sum: args.sum,
           wmFactory: args.wmFactory,
         ),
       );
     },
     OrderSuccessRoute.name: (routeData) {
+      final queryParams = routeData.queryParams;
+      final args = routeData.argsAs<OrderSuccessRouteArgs>(
+          orElse: () => OrderSuccessRouteArgs(
+              productId: queryParams.optInt('productId')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const OrderSuccessScreenWidget(),
+        child: OrderSuccessScreenWidget(
+          productId: args.productId,
+          key: args.key,
+        ),
       );
     },
     PolicyRoute.name: (routeData) {
@@ -549,6 +572,54 @@ class LoginRouteArgs {
 }
 
 /// generated route for
+/// [OrderHistoryDetailScreenWidget]
+class OrderHistoryDetailRoute
+    extends PageRouteInfo<OrderHistoryDetailRouteArgs> {
+  OrderHistoryDetailRoute({
+    Key? key,
+    required OrderPartMainInfo? order,
+    WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+            BuildContext)
+        wmFactory = defaultOrderHistoryDetailScreenWidgetModelFactory,
+    List<PageRouteInfo>? children,
+  }) : super(
+          OrderHistoryDetailRoute.name,
+          args: OrderHistoryDetailRouteArgs(
+            key: key,
+            order: order,
+            wmFactory: wmFactory,
+          ),
+          rawQueryParams: {'order': order},
+          initialChildren: children,
+        );
+
+  static const String name = 'OrderHistoryDetailRoute';
+
+  static const PageInfo<OrderHistoryDetailRouteArgs> page =
+      PageInfo<OrderHistoryDetailRouteArgs>(name);
+}
+
+class OrderHistoryDetailRouteArgs {
+  const OrderHistoryDetailRouteArgs({
+    this.key,
+    required this.order,
+    this.wmFactory = defaultOrderHistoryDetailScreenWidgetModelFactory,
+  });
+
+  final Key? key;
+
+  final OrderPartMainInfo? order;
+
+  final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
+      BuildContext) wmFactory;
+
+  @override
+  String toString() {
+    return 'OrderHistoryDetailRouteArgs{key: $key, order: $order, wmFactory: $wmFactory}';
+  }
+}
+
+/// generated route for
 /// [OrderHistoryScreenWidget]
 class OrderHistoryRoute extends PageRouteInfo<OrderHistoryRouteArgs> {
   OrderHistoryRoute({
@@ -594,6 +665,7 @@ class OrderHistoryRouteArgs {
 class OrderRoute extends PageRouteInfo<OrderRouteArgs> {
   OrderRoute({
     Key? key,
+    required double? sum,
     WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
             BuildContext)
         wmFactory = defaultOrderScreenWidgetModelFactory,
@@ -602,8 +674,10 @@ class OrderRoute extends PageRouteInfo<OrderRouteArgs> {
           OrderRoute.name,
           args: OrderRouteArgs(
             key: key,
+            sum: sum,
             wmFactory: wmFactory,
           ),
+          rawQueryParams: {'sum': sum},
           initialChildren: children,
         );
 
@@ -615,32 +689,60 @@ class OrderRoute extends PageRouteInfo<OrderRouteArgs> {
 class OrderRouteArgs {
   const OrderRouteArgs({
     this.key,
+    required this.sum,
     this.wmFactory = defaultOrderScreenWidgetModelFactory,
   });
 
   final Key? key;
+
+  final double? sum;
 
   final WidgetModel<ElementaryWidget<IWidgetModel>, ElementaryModel> Function(
       BuildContext) wmFactory;
 
   @override
   String toString() {
-    return 'OrderRouteArgs{key: $key, wmFactory: $wmFactory}';
+    return 'OrderRouteArgs{key: $key, sum: $sum, wmFactory: $wmFactory}';
   }
 }
 
 /// generated route for
 /// [OrderSuccessScreenWidget]
-class OrderSuccessRoute extends PageRouteInfo<void> {
-  const OrderSuccessRoute({List<PageRouteInfo>? children})
-      : super(
+class OrderSuccessRoute extends PageRouteInfo<OrderSuccessRouteArgs> {
+  OrderSuccessRoute({
+    required int? productId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           OrderSuccessRoute.name,
+          args: OrderSuccessRouteArgs(
+            productId: productId,
+            key: key,
+          ),
+          rawQueryParams: {'productId': productId},
           initialChildren: children,
         );
 
   static const String name = 'OrderSuccessRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<OrderSuccessRouteArgs> page =
+      PageInfo<OrderSuccessRouteArgs>(name);
+}
+
+class OrderSuccessRouteArgs {
+  const OrderSuccessRouteArgs({
+    required this.productId,
+    this.key,
+  });
+
+  final int? productId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'OrderSuccessRouteArgs{productId: $productId, key: $key}';
+  }
 }
 
 /// generated route for

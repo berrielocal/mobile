@@ -79,6 +79,9 @@ class CartScreenWidget extends ElementaryWidget<ICartScreenWidgetModel> {
         builder: (context, data) {
           final products = data ?? [];
           final theme = Theme.of(context);
+          if (data == null || data.items.isEmpty) {
+            return SizedBox.shrink();
+          }
           return ValueListenableBuilder(
             valueListenable: wm.cartState,
             builder: (context, val, _) {
@@ -121,7 +124,7 @@ class CartScreenWidget extends ElementaryWidget<ICartScreenWidgetModel> {
                         ),
                       ),
                       CustomFilledButton(
-                        onTap: wm.toOrder,
+                        onTap: () => wm.toOrder(data?.sum),
                         text: 'Перейти к оформлению',
                       )
                     ],

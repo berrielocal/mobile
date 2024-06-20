@@ -8,14 +8,19 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
 class OrderSuccessScreenWidget extends StatelessWidget {
-  const OrderSuccessScreenWidget({super.key});
+  const OrderSuccessScreenWidget({
+    @queryParam required this.productId,
+    super.key,
+  });
+
+  final int? productId;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Заказ №123',
+        title: Text(
+          'Заказ №$productId',
           style: AppTypography.personalCardTitle,
         ),
         centerTitle: true,
@@ -51,7 +56,13 @@ class OrderSuccessScreenWidget extends StatelessWidget {
               ),
               CustomFilledButton(
                 text: 'Перейти в мои заказы',
-                onTap: () => context.router.navigate(OrderHistoryRoute()),
+                onTap: () => context.router.navigate(
+                  ProfileTab(
+                    children: [
+                      OrderHistoryRoute(),
+                    ],
+                  ),
+                ),
               )
             ],
           ),
